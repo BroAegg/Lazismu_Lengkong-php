@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Services\ZakatCalculatorService;
 use App\Models\ZakatCalculation;
+use Illuminate\Support\Facades\Auth;
 
 class ZakatCalculator extends Component
 {
@@ -82,9 +83,9 @@ class ZakatCalculator extends Component
         $this->result = $service->hitung($this->type, $data);
 
         // Save calculation if authenticated
-        if (auth()->check()) {
+        if (Auth::check()) {
             ZakatCalculation::create([
-                'user_id'      => auth()->id(),
+                'user_id'      => Auth::id(),
                 'type'         => $this->type,
                 'input_data'   => $data,
                 'nisab_value'  => $this->result['nisab_value'] ?? 0,

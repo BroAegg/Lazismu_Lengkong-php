@@ -8,6 +8,7 @@ use App\Enums\PsakFundType;
 use App\Models\Donation;
 use App\Models\DonationCategory;
 use App\Models\Program;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class DonationForm extends Component
@@ -34,8 +35,8 @@ class DonationForm extends Component
         $this->categoryId = $categoryId;
 
         // Pre-fill donor info if authenticated
-        if (auth()->check()) {
-            $user = auth()->user();
+        if (Auth::check()) {
+            $user = Auth::user();
             $this->donor_name  = $user->name;
             $this->donor_email = $user->email;
             $this->donor_phone = $user->phone ?? '';
@@ -87,7 +88,7 @@ class DonationForm extends Component
 
         $donation = Donation::create([
             'invoice_number'   => Donation::generateInvoiceNumber(),
-            'donor_id'         => auth()->id(),
+            'donor_id'         => Auth::id(),
             'category_id'      => $this->categoryId,
             'program_id'       => $this->programId,
             'amount'           => $amountValue,
@@ -103,7 +104,7 @@ class DonationForm extends Component
             'message'          => $this->message,
         ]);
 
-        return $this->redirect(route('donasi.success', $donation->invoice_number), navigate: true);
+        $this->redirect(route('donasi.success', $donation->invoice_number), navigate: true);
     }
 
     private function calculateAmil(float $amount, PsakFundType $fundType): float

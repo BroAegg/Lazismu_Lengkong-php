@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AdminUserController extends Controller
 {
@@ -74,7 +75,7 @@ class AdminUserController extends Controller
 
     public function destroy(User $user)
     {
-        if ($user->id === auth()->id()) {
+        if ($user->id === Auth::id()) {
             return back()->withErrors(['error' => 'Tidak bisa menghapus akun sendiri.']);
         }
 

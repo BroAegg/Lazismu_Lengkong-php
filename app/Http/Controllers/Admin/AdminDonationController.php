@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Donation;
 use App\Enums\DonationStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminDonationController extends Controller
 {
@@ -49,7 +50,7 @@ class AdminDonationController extends Controller
         $donation = Donation::findOrFail($id);
         $donation->update([
             'status' => $request->status === 'verified' ? DonationStatus::VERIFIED : DonationStatus::FAILED,
-            'verified_by' => auth()->id(),
+            'verified_by' => Auth::id(),
             'verified_at' => now(),
             'notes' => $request->notes,
         ]);
