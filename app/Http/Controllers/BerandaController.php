@@ -16,18 +16,18 @@ class BerandaController extends Controller
             'total_donatur' => Donation::where('status', 'VERIFIED')
                 ->selectRaw('COUNT(DISTINCT COALESCE(donor_id, donor_email)) as count')
                 ->value('count'),
-            'total_program' => Program::where('active', true)->count(),
+            'total_program' => Program::where('is_active', true)->count(),
             'total_tersalurkan' => Donation::where('status', 'VERIFIED')->sum('net_amount'),
         ];
 
         $featuredPrograms = Program::with('pillar')
-            ->active()
-            ->featured()
+            ->where('is_active', true)
+            ->where('is_featured', true)
             ->latest()
             ->take(6)
             ->get();
 
-        $categories = DonationCategory::where('active', true)->orderBy('order')->get();
+        $categories = DonationCategory::where('is_active', true)->orderBy('order')->get();
 
         $recentDonations = Donation::where('status', 'VERIFIED')
             ->latest()
