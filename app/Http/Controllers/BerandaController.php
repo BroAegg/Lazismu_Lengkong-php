@@ -27,7 +27,7 @@ class BerandaController extends Controller
             ->take(6)
             ->get();
 
-        $categories = DonationCategory::where('is_active', true)->orderBy('order')->get();
+        $categories = DonationCategory::where('is_active', true)->orderBy('sort_order')->get();
 
         $recentDonations = Donation::where('status', 'VERIFIED')
             ->latest()
