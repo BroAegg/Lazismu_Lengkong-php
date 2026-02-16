@@ -1,52 +1,288 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🕌 LAZISMU Lengkong - Sistem Manajemen Donasi
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=flat&logo=laravel)
+![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=flat&logo=php)
+![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=flat&logo=mysql)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.x-06B6D4?style=flat&logo=tailwindcss)
+![Alpine.js](https://img.shields.io/badge/Alpine.js-3.x-8BC0D0?style=flat&logo=alpinedotjs)
 
-## About Laravel
+> **Sistem Manajemen Zakat, Infaq, Sedekah & Wakaf berbasis web untuk LAZISMU (Lembaga Amil Zakat Infaq dan Sedekah Muhammadiyah) Cabang Lengkong, Kota Bandung.**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Dibangun dengan Laravel 12 dan mengikuti **standar akuntansi PSAK 109** untuk pelaporan keuangan lembaga amil zakat.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 📋 Daftar Isi
 
-## Learning Laravel
+- [Fitur Utama](#-fitur-utama)
+- [Quick Start](#-quick-start)
+- [Akun Testing](#-akun-testing)
+- [Struktur Database](#-struktur-database)
+- [Role & Permission](#-role--permission)
+- [URL Routes](#-url-routes)
+- [Tech Stack](#-tech-stack)
+- [Dokumentasi](#-dokumentasi)
+- [Deployment](#-deployment)
+- [Developer](#-developer)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ✨ Fitur Utama
 
-## Laravel Sponsors
+### 🎁 Untuk Donatur
+- ✅ **Donasi Tanpa Login** - Guest dapat berdonasi langsung tanpa registrasi
+- ✅ **Dashboard Personal** - Tracking riwayat donasi lengkap dengan statistik
+- ✅ **Multi Kategori** - Zakat (Mal, Fitrah, Penghasilan), Infaq, Sedekah, Wakaf
+- ✅ **Invoice Otomatis** - Generate invoice format `LZM-YYYYMMDD-XXXX`
+- ✅ **Program Donasi** - Lihat dan dukung program-program pilihan
+- ✅ **Progress Real-time** - Monitor pencapaian target program
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 👨‍💼 Untuk Admin
+- ✅ **Verifikasi Donasi** - Workflow approve/reject dengan catatan
+- ✅ **Manajemen Program** - CRUD program dengan upload gambar
+- ✅ **Manajemen User** - Kelola user dengan 5 tingkat role
+- ✅ **Laporan PSAK 109** - Generate laporan keuangan sesuai standar
+- ✅ **Export PDF** - Download laporan dalam format PDF
+- ✅ **Role-Based Access** - Kontrol akses berdasarkan jabatan
+- ✅ **Filter & Search** - Cari donasi berdasarkan status, kategori, nama
 
-### Premium Partners
+### ⚙️ Sistem
+- ✅ **6 Dana PSAK 109** - Zakat, Infaq/Sedekah, Dana Amil, Dana Non-Halal, DSKL, APBN
+- ✅ **8 Asnaf** - Fakir, Miskin, Amil, Mualaf, Riqab, Gharim, Sabilillah, Ibnu Sabil
+- ✅ **Amil Calculation** - Otomatis hitung amil 12.5% untuk zakat (0% lainnya)
+- ✅ **Responsive Design** - Mobile-friendly dengan bottom navigation
+- ✅ **Authentication** - Laravel Breeze dengan custom branded UI
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 🚀 Quick Start
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Persyaratan Sistem
+```bash
+PHP >= 8.2
+Composer >= 2.0
+MySQL >= 8.0
+Node.js >= 18.x
+Git
+```
 
-## Code of Conduct
+### Instalasi
+
+```bash
+# 1. Clone repository
+git clone https://github.com/yourusername/lazismulengkong.git
+cd lazismulengkong
+
+# 2. Install dependencies
+composer install
+npm install
+
+# 3. Setup environment
+cp .env.example .env
+php artisan key:generate
+
+# 4. Konfigurasi database di .env
+# DB_DATABASE=lazismu_lengkong
+# DB_USERNAME=root
+# DB_PASSWORD=
+
+# 5. Migrate dan seed database
+php artisan migrate --seed
+
+# 6. Link storage untuk upload
+php artisan storage:link
+
+# 7. Build assets
+npm run build
+
+# 8. Jalankan server
+php artisan serve
+```
+
+**Akses aplikasi:** `http://127.0.0.1:8000`
+
+---
+
+## 👥 Akun Testing
+
+### 🔑 Admin (Kepala Kantor)
+```
+Email    : kepala@lazismulengkong.org
+Password : password123
+Akses    : Full admin access
+```
+
+### 🔑 Staff Administrasi
+```
+Email    : admin@lazismulengkong.org
+Password : password123
+Akses    : Donation, user management, reports
+```
+
+### 🔑 Fund Rising
+```
+Email    : fundraising@lazismulengkong.org
+Password : password123
+Akses    : Donation, programs
+```
+
+### 🔑 Staff Pelayanan
+```
+Email    : pelayanan@lazismulengkong.org
+Password : password123
+Akses    : Donation verification
+```
+
+### 🔑 Donatur Regular
+```
+Email    : ahmad@example.com
+Password : password123
+Akses    : User dashboard
+```
+
+---
+
+## 📊 Struktur Database
+
+### Core Tables (15 Tables)
+```
+users                    - User accounts dengan role-based access
+donations                - Transaksi donasi dengan invoice tracking
+programs                 - Program donasi dan penggalangan dana
+donation_categories      - Kategori dan sub-kategori donasi
+pillars                  - Pilar program (5M Muhammadiyah)
+settings                 - Konfigurasi sistem (nisab, bank, contact)
+distributions            - Penyaluran dana ke asnaf
+amil_distributions       - Pembagian dana amil
+donation_distributions   - Relasi donasi ke distribusi
+donation_program         - Relasi many-to-many donasi-program
+```
+
+📖 **Detail lengkap:** [ARCHITECTURE.md](ARCHITECTURE.md)
+
+---
+
+## 🔐 Role & Permission
+
+| Role | Dashboard | Donasi | Program | Users | Reports |
+|------|:---------:|:------:|:-------:|:-----:|:-------:|
+| **Kepala Kantor** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Administrasi** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Fund Rising** | ✅ | ✅ | ✅ | ❌ | ❌ |
+| **Staff Pelayanan** | ✅ | ✅ | ✅ | ❌ | ❌ |
+| **Donatur** | 👤 User Dashboard | View Only | View Only | ❌ | ❌ |
+
+---
+
+## 📱 URL Routes
+
+### Public Routes
+```
+/                       - Homepage dengan statistik real-time
+/program                - Daftar program donasi
+/program/{slug}         - Detail program
+/donasi                 - Form donasi (guest allowed)
+/donasi/sukses/{invoice}- Payment success page
+```
+
+### Authentication
+```
+/login                  - Custom branded login page
+/register               - Registrasi donatur baru
+/logout                 - Logout user
+/password/reset         - Reset password
+```
+
+### User Dashboard
+```
+/dashboard              - Personal donation stats
+/profile                - Edit profile & password
+```
+
+### Admin Panel
+```
+/admin/dashboard        - Admin statistics overview
+/admin/donasi           - Donation management list
+/admin/donasi/{id}      - Verify/reject donation detail
+/admin/donasi/{id}/verify   - POST verify donation
+/admin/donasi/{id}/reject   - POST reject donation
+/admin/program          - Program CRUD
+/admin/users            - User management (restricted)
+/admin/laporan          - PSAK 109 reports
+/admin/laporan/pdf      - Export PDF report
+```
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+- **Laravel 12.x** - PHP Framework
+- **MySQL 8.0+** - Database
+- **Laravel Breeze** - Authentication scaffolding
+- **DomPDF** - PDF generation for reports
+
+### Frontend
+- **Blade Templates** - Server-side rendering
+- **TailwindCSS 3.x** - Utility-first CSS
+- **Alpine.js 3.x** - Lightweight JavaScript framework
+- **Vite** - Frontend tooling & bundler
+
+### Libraries
+- **barryvdh/laravel-dompdf** - PDF export
+- **Laravel Enums** - Type-safe status management
+- **Intervention Image** - Image processing (future)
+
+---
+
+## 📖 Dokumentasi
+
+- 📘 [**ARCHITECTURE.md**](ARCHITECTURE.md) - Arsitektur sistem, ERD, business flow
+- 📗 [**INSTALLATION.md**](INSTALLATION.md) - Panduan instalasi detail *(coming soon)*
+- 📙 [**USER_GUIDE.md**](USER_GUIDE.md) - Panduan untuk donatur *(coming soon)*
+- 📕 [**ADMIN_GUIDE.md**](ADMIN_GUIDE.md) - Panduan untuk admin *(coming soon)*
+- 📔 [**DEMO_GUIDE.md**](DEMO_GUIDE.md) - Panduan demo presentasi
+- 📓 [**LAZISMU_LENGKONG.md**](LAZISMU_LENGKONG.md) - Dokumentasi lengkap project
+
+---
+
+## 🚀 Deployment
+
+### Production Checklist
+- [ ] Set `APP_ENV=production` dan `APP_DEBUG=false` di `.env`
+- [ ] Configure production database credentials
+- [ ] Run `php artisan config:cache`
+- [ ] Run `php artisan route:cache`
+- [ ] Run `php artisan view:cache`
+- [ ] Run `php artisan storage:link`
+- [ ] Setup queue worker dengan supervisor
+- [ ] Configure automated backup system
+- [ ] Setup SSL certificate (HTTPS)
+- [ ] Configure CDN for static assets
+- [ ] Setup error monitoring (Sentry/Bugsnag)
+
+📖 **Detail lengkap:** [INSTALLATION.md](INSTALLATION.md)
+
+---
+
+## 📄 License
+
+**Proprietary** - LAZISMU Muhammadiyah Cabang Lengkong, Kota Bandung
+
+---
+
+## 👨‍💻 Developer
+
+Dikembangkan dengan ❤️ untuk **LAZISMU Lengkong**, Kota Bandung
+
+**Version:** 1.0.0  
+**Last Updated:** Februari 2026  
+**Laravel:** 12.x  
+**PHP:** 8.2+
+
+---
+
+## 🤝 Contributing
 
 In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
