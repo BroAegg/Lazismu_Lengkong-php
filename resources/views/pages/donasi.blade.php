@@ -1,33 +1,287 @@
-@extends('layouts.admin')
+<!DOCTYPE html>
+<html lang="id">
 
-@section('title', 'Donasi - Lazismu Lengkong')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selesaikan Donasi - Lazismu Lengkong</title>
 
-@section('content')
-{{-- Mobile Header --}}
-<div class="lg:hidden sticky top-0 bg-white z-40 px-5 py-4 flex items-center justify-between border-b border-gray-100">
-    <a href="{{ route('dashboard') }}" class="text-gray-600"><i class="fas fa-arrow-left"></i></a>
-    <h1 class="font-bold text-dark-500">Isi Nominal Donasi</h1>
-    <span class="px-2 py-1 bg-green-100 text-green-600 text-xs font-bold rounded-full"><i class="fas fa-lock mr-1"></i> Aman</span>
-</div>
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
 
-<div class="flex flex-col lg:flex-row gap-8">
-    {{-- Desktop Sidebar: Campaign Summary --}}
-    @if(isset($program))
-    <div class="hidden lg:block lg:w-1/3">
-        <div class="sticky top-32 bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden">
-            <img src="{{ $program->image ? asset('storage/' . $program->image) : 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400' }}" alt="{{ $program->title }}" class="w-full h-40 object-cover">
-            <div class="p-5">
-                <span class="px-3 py-1 bg-green-100 text-green-600 text-xs font-bold rounded-full">{{ $program->pillar?->name ?? 'Program' }}</span>
-                <h3 class="font-bold text-dark-500 mt-3">{{ $program->title }}</h3>
-                <p class="text-sm text-gray-500 mt-2">{{ Str::limit($program->description, 100) }}</p>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lato:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#F7941D', light: '#FFB347', dark: '#E67E22' },
+                        secondary: { DEFAULT: '#00A651', light: '#2ECC71', dark: '#27AE60' },
+                        dark: { DEFAULT: '#1A1A2E', light: '#2D2D44' },
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 4px 20px rgba(0, 0, 0, 0.05)',
+                        'nav': '0 -4px 20px rgba(0,0,0,0.05)',
+                        'floating': '0 8px 30px rgba(0,0,0,0.12)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans antialiased pb-32 lg:pb-12">
+
+    <!-- Desktop Navbar -->
+    <nav class="hidden lg:block fixed top-0 left-0 right-0 bg-white shadow-sm z-50 py-4">
+        <div class="container mx-auto px-5 flex items-center justify-between max-w-[1200px]">
+            <a href="{{ route('beranda') }}" class="flex flex-col items-center gap-1 group relative">
+                <img src="{{ asset('assets/images/lazismuasli.png') }}" alt="Lazismu Logo" class="h-10 w-auto">
+                <span class="text-[0.625rem] font-normal tracking-wide text-gray-500 logo-text-sub"
+                    style="font-family: 'Lato', sans-serif;">lengkong</span>
+            </a>
+
+            <ul class="flex items-center gap-8">
+                <li><a href="{{ route('beranda') }}"
+                        class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Beranda</a></li>
+                <li><a href="{{ route('program.index') }}"
+                        class="text-sm font-medium text-primary transition-colors font-bold">Program</a></li>
+                <li><a href="{{ route('kalkulator') }}"
+                        class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Kalkulator</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header (Mobile Only) -->
+    <header class="bg-white shadow-sm sticky top-0 z-40 lg:hidden">
+        <div class="px-5 py-4 flex items-center gap-4 max-w-lg mx-auto">
+            <a href="javascript:history.back()" class="text-gray-500 hover:text-primary transition-colors">
+                <i class="fas fa-arrow-left text-lg"></i>
+            </a>
+            <h1 class="text-lg font-bold text-dark flex-grow">Isi Nominal Donasi</h1>
+            <span class="text-xs text-green-600 font-bold bg-green-50 px-2 py-1 rounded-lg border border-green-100"><i
+                    class="fas fa-shield-alt mr-1"></i>Aman</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="p-5 w-full mx-auto lg:max-w-[1200px] lg:pt-32 lg:flex lg:gap-12 lg:items-start">
+
+        <!-- Desktop Left Side: Campaign Summary -->
+        <div class="hidden lg:block w-1/3 sticky top-32">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80"
+                    class="w-full h-48 object-cover" alt="Program">
+                <div class="p-6">
+                    <span class="text-xs font-bold text-primary mb-2 block uppercase tracking-wider">Sedekah
+                        Makanan</span>
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 leading-tight">Bantu Sediakan Makanan Bergizi untuk
+                        Santri Yatim & Dhuafa</h2>
+
+                    <div class="flex items-center gap-2 text-sm text-gray-500 mb-6">
+                        <i class="fas fa-map-marker-alt text-primary"></i> Lengkong, Kota Bandung
+                    </div>
+
+                    <div class="p-4 bg-orange-50 rounded-xl border border-primary/20">
+                        <p class="text-sm text-gray-600 italic">"Barangsiapa yang memberi makan orang yang lapar, maka
+                            Allah akan memberinya makan dari buah-buahan surga."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 text-center text-sm text-gray-400">
+                <i class="fas fa-lock mr-1"></i> Pembayaran Anda terenkripsi dan aman.
             </div>
         </div>
-    </div>
-    @endif
 
-    {{-- Donation Form --}}
-    <div class="{{ isset($program) ? 'lg:w-2/3' : 'w-full max-w-2xl mx-auto' }}">
-        @livewire('donation-form', ['program' => $program ?? null, 'categories' => $categories, 'paymentMethods' => $paymentMethods])
+        <!-- Mobile Campaign Summary (Small) -->
+        <div class="flex gap-4 mb-6 lg:hidden max-w-lg mx-auto">
+            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=150&q=80"
+                class="w-20 h-20 object-cover rounded-xl" alt="Program">
+            <div>
+                <span class="text-xs text-primary font-bold">Sedekah Makanan Bergizi</span>
+                <h2 class="text-sm font-bold text-gray-800 leading-snug mt-1">Bantu Makanan Bergizi untuk Santri Yatim
+                </h2>
+            </div>
+        </div>
+
+        <!-- Donation Form (Right Side Desktop) -->
+        <form action="{{ route('payment-success') }}" method="POST" class="space-y-6 w-full lg:w-2/3 lg:max-w-2xl">
+            @csrf
+
+            <!-- Nominal Section -->
+            <div class="bg-white p-5 lg:p-8 rounded-2xl shadow-card border border-gray-100">
+                <label class="block text-sm font-bold text-gray-700 mb-4 text-base">Pilih Nominal Donasi</label>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+                    <button type="button" onclick="selectAmount(50000)"
+                        class="amount-btn border border-gray-200 rounded-xl p-3 text-center hover:border-primary hover:bg-orange-50 transition-all focus:ring-2 ring-primary/20">
+                        <span class="block text-sm font-bold text-gray-800">Rp 50rb</span>
+                    </button>
+                    <button type="button" onclick="selectAmount(100000)"
+                        class="amount-btn border border-gray-200 rounded-xl p-3 text-center hover:border-primary hover:bg-orange-50 transition-all focus:ring-2 ring-primary/20 bg-orange-50 border-primary ring-2 ring-primary/20">
+                        <span class="block text-sm font-bold text-primary">Rp 100rb</span>
+                    </button>
+                    <button type="button" onclick="selectAmount(200000)"
+                        class="amount-btn border border-gray-200 rounded-xl p-3 text-center hover:border-primary hover:bg-orange-50 transition-all focus:ring-2 ring-primary/20">
+                        <span class="block text-sm font-bold text-gray-800">Rp 200rb</span>
+                    </button>
+                    <button type="button" onclick="selectAmount(500000)"
+                        class="amount-btn border border-gray-200 rounded-xl p-3 text-center hover:border-primary hover:bg-orange-50 transition-all focus:ring-2 ring-primary/20">
+                        <span class="block text-sm font-bold text-gray-800">Rp 500rb</span>
+                    </button>
+                </div>
+
+                <div class="relative">
+                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">Rp</span>
+                    <input type="number" id="customAmount"
+                        class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl font-bold text-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                        placeholder="Nominal Lainnya" value="100000">
+                </div>
+                <p class="text-xs text-gray-400 mt-2 ml-1">Minimal donasi Rp 10.000</p>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="bg-white p-5 lg:p-8 rounded-2xl shadow-card border border-gray-100">
+                <label class="block text-sm font-bold text-gray-700 mb-4 text-base">Metode Pembayaran</label>
+
+                <div class="space-y-3">
+                    <!-- QRIS -->
+                    <label
+                        class="flex items-center gap-4 p-4 border border-primary bg-orange-50 rounded-xl cursor-pointer transition-all hover:bg-orange-100/50">
+                        <input type="radio" name="payment"
+                            class="w-5 h-5 text-primary focus:ring-primary border-gray-300" checked>
+                        <div class="flex-grow">
+                            <span class="block font-bold text-sm text-gray-800">Qris (GoPay / OVO / Dana)</span>
+                            <span class="text-xs text-gray-500">Cepat & Otomatis</span>
+                        </div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/1200px-Logo_QRIS.svg.png"
+                            class="h-6 w-auto" alt="QRIS">
+                    </label>
+
+                    <!-- Bank Transfer -->
+                    <label
+                        class="flex items-center gap-4 p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all">
+                        <input type="radio" name="payment"
+                            class="w-5 h-5 text-primary focus:ring-primary border-gray-300">
+                        <div class="flex-grow">
+                            <span class="block font-bold text-sm text-gray-800">Transfer Bank</span>
+                            <span class="text-xs text-gray-500">BSI, Mandiri, BCA, BRI</span>
+                        </div>
+                        <i class="fas fa-university text-gray-400"></i>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Donator Info (Optional if logged in) -->
+            <div class="bg-white p-5 lg:p-8 rounded-2xl shadow-card border border-gray-100">
+                <div class="flex justify-between items-center mb-4">
+                    <label class="block text-sm font-bold text-gray-700 text-base">Data Donatur</label>
+                    <a href="{{ route('login') }}" class="text-xs font-bold text-primary hover:underline">Masuk</a>
+                </div>
+
+                <div class="space-y-4">
+                    <input type="text"
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all"
+                        placeholder="Nama Lengkap (Opsional)">
+                    <input type="email"
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all"
+                        placeholder="Email atau WhatsApp (Penting)">
+
+                    <div class="flex items-center gap-2 mt-2">
+                        <input type="checkbox" id="anonim"
+                            class="w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary">
+                        <label for="anonim" class="text-sm text-gray-600 cursor-pointer">Sembunyikan nama saya (Hamba
+                            Allah)</label>
+                    </div>
+                </div>
+
+                <!-- Doa -->
+                <div class="mt-4 pt-4 border-t border-gray-100">
+                    <textarea
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all h-24 resize-none"
+                        placeholder="Tulis doa atau harapan Anda di sini..."></textarea>
+                </div>
+            </div>
+
+            <!-- Desktop Submit Button (Inside Form) -->
+            <div class="hidden lg:block">
+                <button type="button" onclick="processDonation()"
+                    class="w-full bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-orange-glow hover:-translate-y-1 transition-all flex justify-between px-8 items-center text-lg">
+                    <span class="font-medium opacity-90">Lanjut Pembayaran</span>
+                    <span class="font-bold" id="totalBtnDesktop">Rp 100.000</span>
+                </button>
+            </div>
+
+        </form>
+
+    </main>
+
+    <!-- Bottom Bar (Mobile Only) -->
+    <div
+        class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.1)] p-5 z-50 max-w-lg mx-auto pb-safe lg:hidden">
+        <button onclick="processDonation()"
+            class="w-full bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold py-3.5 rounded-xl shadow-lg hover:shadow-orange-glow hover:-translate-y-1 transition-all flex justify-between px-6 items-center">
+            <span class="text-sm font-normal opacity-90">Lanjut Pembayaran</span>
+            <span class="text-lg" id="totalBtnMobile">Rp 100.000</span>
+        </button>
     </div>
-</div>
-@endsection
+
+    <style>
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom, 1rem);
+        }
+    </style>
+
+    <script>
+        function selectAmount(amount) {
+            // Reset styles
+            document.querySelectorAll('.amount-btn').forEach(btn => {
+                btn.classList.remove('bg-orange-50', 'border-primary', 'ring-2', 'ring-primary/20');
+                btn.querySelector('span').classList.remove('text-primary');
+                btn.querySelector('span').classList.add('text-gray-800');
+            });
+
+            document.getElementById('customAmount').value = amount;
+            updateTotal(amount);
+        }
+
+        const customInput = document.getElementById('customAmount');
+        customInput.addEventListener('input', (e) => {
+            updateTotal(e.target.value);
+        });
+
+        function updateTotal(val) {
+            const formatted = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(val);
+            document.getElementById('totalBtnMobile').innerText = formatted;
+            document.getElementById('totalBtnDesktop').innerText = formatted;
+        }
+
+        // Init
+        updateTotal(100000);
+
+        function processDonation() {
+            // Simulate processing
+            const btns = document.querySelectorAll('button[onclick="processDonation()"]');
+            btns.forEach(btn => {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin mx-auto"></i>';
+                btn.disabled = true;
+            });
+
+            setTimeout(() => {
+                window.location.href = '{{ route('payment-success') }}';
+            }, 1500);
+        }
+    </script>
+</body>

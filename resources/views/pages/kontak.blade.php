@@ -1,61 +1,163 @@
 @extends('layouts.app')
 
-@section('title', 'Kontak - Lazismu Lengkong')
+@section('title', 'Lazismu Lengkong | Zakat, Infaq & Sedekah untuk Warga Lengkong')
 
 @section('content')
-<section class="relative bg-dark-500 pt-40 pb-20 overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1600')"></div>
-    <div class="relative container mx-auto px-5 max-w-[1200px] text-center">
-        <span class="inline-block px-4 py-2 bg-primary-500/20 text-primary-300 rounded-full text-sm font-semibold mb-4 border border-primary-500/30">SILATURAHMI</span>
-        <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Hubungi Kami</h1>
-        <p class="text-white/70 max-w-lg mx-auto">Kami siap membantu konsultasi zakat dan kebutuhan Anda</p>
+<!-- Mobile Menu Backdrop -->
+    <div class="fixed inset-0 bg-black/50 z-[55] opacity-0 invisible transition-all duration-300 lg:hidden"
+        id="menuBackdrop"></div>
+
+    <!-- Mobile Menu (Outside nav to avoid backdrop-blur inheritance) -->
+    <div class="fixed top-0 right-[-100%] w-[85%] max-w-[320px] h-screen bg-white shadow-2xl flex flex-col items-start px-8 pt-24 pb-10 gap-2 transition-all duration-500 lg:hidden z-[100]"
+        id="mobileMenu">
+        <div class="w-full flex justify-between items-center mb-10">
+            <span class="text-xs font-bold text-gray-400 tracking-widest uppercase">Menu Navigasi</span>
+            <button id="closeMenu" class="text-gray-400 hover:text-primary"><i
+                    class="fas fa-times text-xl"></i></button>
+        </div>
+        <a href="#beranda"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Beranda <i
+                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
+        <a href="#kalkulator"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Kalkulator <i
+                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
+        <a href="#program"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Program <i
+                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
+        <a href="#tentang"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Tentang Kami <i
+                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
+        <a href="#kontak"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Kontak <i class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
+
+        <a href="{{ route('login') }}"
+            class="w-full flex items-center justify-center gap-2 px-6 py-3 mt-4 text-gray-600 font-semibold rounded-xl border border-gray-200 hover:bg-gray-50 hover:text-primary transition-all mobile-nav-link">
+            <i class="fas fa-sign-in-alt"></i> Masuk Akun
+        </a>
+
+        <a href="#donasi"
+            class="btn-primary w-full flex items-center justify-center gap-2 px-6 py-4 mt-2 text-white font-bold rounded-xl shadow-lg shadow-orange-200 mobile-nav-link">
+            <i class="fas fa-heart"></i> Donasi Sekarang
+        </a>
     </div>
-</section>
 
-<section id="kontak" class="py-20 bg-white" data-aos="fade-up">
-    <div class="container mx-auto px-5 max-w-[1200px]">
-        <div class="grid lg:grid-cols-2 gap-12 items-start">
-            <div>
-                <span class="inline-block px-4 py-2 bg-primary-500/10 text-primary-500 rounded-full text-sm font-semibold mb-4">Kantor Layanan</span>
-                <h2 class="text-3xl font-bold text-dark-500 mb-4">Butuh Konsultasi Zakat?</h2>
-                <p class="text-gray-600 mb-8 leading-relaxed">Hubungi kami melalui kontak di bawah ini. Tim kami siap membantu Anda.</p>
+    <!-- Hero Section -->
+    <!-- Page Header -->
+    <section class="relative pt-40 pb-20 bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0 bg-no-repeat bg-center bg-cover opacity-30" style="background-image: url('{{ asset('assets/images/hero-bg.png') }}')">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-gray-900/50 via-gray-900/80 to-gray-900"></div>
+        <div class="container mx-auto px-5 relative z-10 text-center max-w-[1200px]">
+            <span
+                class="inline-block px-4 py-1 rounded-full bg-primary/20 text-[#FFB347] text-sm font-bold border border-primary/30 mb-6"
+                data-aos="fade-up">SILATURAHMI</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6" data-aos="fade-up" data-aos-delay="100">
+                Hubungi Kami</h1>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                Ada pertanyaan atau ingin berkonsultasi seputar ZIS? Tim kami siap membantu Anda dengan sepenuh hati.
+            </p>
+        </div>
+    </section>
 
-                <div class="space-y-4">
-                    <div class="flex items-start gap-4 p-5 bg-gray-50 rounded-2xl">
-                        <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center shrink-0"><i class="fas fa-map-marker-alt text-primary-500"></i></div>
-                        <div>
-                            <h4 class="font-bold text-dark-500 mb-1">Kantor Layanan</h4>
-                            <p class="text-sm text-gray-600">Jl. Buah Batu No. 59, Kec. Lengkong, Kota Bandung, Jawa Barat (Gedung Dakwah Muhammadiyah)</p>
+    <!-- Contact Section -->
+    <section class="py-24 bg-[#FAFAFA]" id="kontak">
+        <div class="container mx-auto px-5 max-w-[1200px]">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <span
+                        class="inline-block px-4 py-2 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white text-sm font-semibold rounded-full mb-4">Hubungi
+                        Kami</span>
+                    <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold text-[#1A1A2E] mb-6 leading-tight">Butuh
+                        Konsultasi Zakat?</h2>
+                    <p class="text-lg text-gray-600 mb-10">
+                        Tim Lazismu Lengkong siap membantu Anda menghitung zakat, menjawab pertanyaan seputar program,
+                        atau menjemput donasi Anda.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div
+                            class="flex items-start gap-6 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:border-primary/50 transition-colors">
+                            <div
+                                class="w-12 h-12 bg-orange-50 text-primary rounded-xl flex items-center justify-center text-xl shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E] text-lg mb-1">Kantor Layanan</strong>
+                                <p class="text-gray-600">Jl. Buah Batu No. 59, Kec. Lengkong, Kota Bandung, Jawa Barat
+                                    40262</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-start gap-4 p-5 bg-gray-50 rounded-2xl">
-                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center shrink-0"><i class="fab fa-whatsapp text-green-500 text-xl"></i></div>
-                        <div>
-                            <h4 class="font-bold text-dark-500 mb-1">WhatsApp Center</h4>
-                            <p class="text-sm text-gray-600">+62 812-3456-7890 (24 Jam)</p>
+
+                        <div
+                            class="flex items-start gap-6 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:border-primary/50 transition-colors">
+                            <div
+                                class="w-12 h-12 bg-green-50 text-green-600 rounded-xl flex items-center justify-center text-xl shrink-0">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E] text-lg mb-1">WhatsApp Center</strong>
+                                <p class="text-gray-600">+62 812-3456-7890 (Layanan 24 Jam)</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-start gap-4 p-5 bg-gray-50 rounded-2xl">
-                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center shrink-0"><i class="fas fa-clock text-blue-500"></i></div>
-                        <div>
-                            <h4 class="font-bold text-dark-500 mb-1">Jam Operasional</h4>
-                            <p class="text-sm text-gray-600">Senin - Jumat: 08.00 - 16.00 WIB<br>Sabtu: 08.00 - 12.00 WIB</p>
+
+                        <div
+                            class="flex items-start gap-6 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:border-primary/50 transition-colors">
+                            <div
+                                class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl shrink-0">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E] text-lg mb-1">Jam Operasional</strong>
+                                <p class="text-gray-600">Senin - Jumat: 08.00 - 16.00 WIB</p>
+                                <p class="text-gray-600">Sabtu: 08.00 - 12.00 WIB</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="relative rounded-2xl overflow-hidden shadow-card h-[400px]">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.798!2d107.6261!3d-6.9175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTUnMDMuMCJTIDEwN8KwMzcnMzQuMCJF!5e0!3m2!1sen!2sid!4v1" width="100%" height="100%" style="border:0; filter:grayscale(100%); transition: filter 0.3s;" allowfullscreen loading="lazy" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(100%)'"></iframe>
-                <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 flex items-center gap-3">
-                    <img src="{{ asset('assets/images/lazismuasli.png') }}" alt="Logo" class="h-8 w-auto">
-                    <div>
-                        <p class="font-bold text-dark-500 text-sm">Lokasi Lazismu Lengkong</p>
-                        <p class="text-xs text-gray-500">Gedung Dakwah Muhammadiyah</p>
+                <div class="h-[500px] bg-gray-200 rounded-[24px] overflow-hidden shadow-2xl relative group"
+                    data-aos="fade-left">
+                    <!-- Placeholder for Map -->
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15843.07827668631!2d107.6180556!3d-6.927500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e62c12345678%3A0x1234567890abcdef!2sKecamatan%20Lengkong%2C%20Kota%20Bandung%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1625555555555!5m2!1sid!2sid"
+                        class="w-full h-full border-0 grayscale group-hover:grayscale-0 transition-all duration-700"
+                        allowfullscreen="" loading="lazy"></iframe>
+
+                    <div
+                        class="absolute bottom-6 left-6 right-6 p-4 bg-white/90 backdrop-blur-md rounded-xl shadow-lg border border-white/20">
+                        <div class="flex items-center gap-3">
+                            <img src="{{ asset('assets/images/logo-lazismu.png') }}" class="h-8"
+                                onerror="this.style.display='none'">
+                            <span class="text-sm font-bold text-[#1A1A2E]">Lokasi Lazismu Lengkong</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- Floating Buttons -->
+    <a href="https://wa.me/6281234567890" target="_blank"
+        class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_4px_12px_rgba(37,211,102,0.4)] hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(37,211,102,0.6)] transition-all animate-bounce-slow"
+        aria-label="Chat WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <button id="backToTop"
+        class="fixed bottom-24 right-6 z-40 w-10 h-10 bg-white text-[#1A1A2E] border border-gray-200 rounded-full flex items-center justify-center text-lg shadow-lg opacity-0 invisible hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+        aria-label="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Footer -->
 @endsection

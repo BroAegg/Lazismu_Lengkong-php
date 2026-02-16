@@ -1,264 +1,755 @@
 @extends('layouts.app')
 
-@section('title', 'Beranda - Lazismu Lengkong')
+@section('title', 'Lazismu Lengkong | Zakat, Infaq & Sedekah untuk Warga Lengkong')
 
 @section('content')
-{{-- ═══════════════════════════════════════════ --}}
-{{-- HERO SECTION with Swiper --}}
-{{-- ═══════════════════════════════════════════ --}}
-<section id="beranda" class="relative min-h-screen overflow-hidden">
-    <div class="swiper hero-swiper h-screen">
-        <div class="swiper-wrapper">
-            {{-- Slide 1 --}}
-            <div class="swiper-slide relative">
-                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1585036156171-384164a8c055?w=1600')"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-dark-500/90 via-dark-500/70 to-transparent"></div>
-                <div class="relative z-10 flex items-center h-full">
-                    <div class="container mx-auto px-5 max-w-[1200px]">
-                        <div class="max-w-xl" data-aos="fade-right">
-                            <span class="inline-block px-4 py-2 bg-primary-500/20 text-primary-300 rounded-full text-sm font-semibold mb-4 border border-primary-500/30">
-                                <i class="fas fa-mosque mr-1"></i> Lembaga Amil Zakat Nasional
-                            </span>
-                            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-                                Bersama <span class="text-primary-500">Lazismu</span>, Salurkan Kebaikan
-                            </h1>
-                            <p class="text-lg text-white/70 mb-8 leading-relaxed">
-                                Menghimpun dan menyalurkan dana ZISKA secara profesional, transparan, dan amanah untuk umat.
-                            </p>
-                            <a href="{{ route('donasi') }}" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-500 to-accent-500 text-white font-bold rounded-xl shadow-orange-glow hover:-translate-y-1 transition-all text-lg">
-                                <i class="fas fa-heart"></i> Donasi Sekarang
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{-- Slide 2 --}}
-            <div class="swiper-slide relative">
-                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600')"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-dark-500/90 via-dark-500/70 to-transparent"></div>
-                <div class="relative z-10 flex items-center h-full">
-                    <div class="container mx-auto px-5 max-w-[1200px]">
-                        <div class="max-w-xl">
-                            <span class="inline-block px-4 py-2 bg-secondary-500/20 text-secondary-300 rounded-full text-sm font-semibold mb-4 border border-secondary-500/30">
-                                <i class="fas fa-calculator mr-1"></i> Kalkulator Zakat
-                            </span>
-                            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-                                Hitung <span class="text-secondary-500">Zakat</span> Anda dengan Mudah
-                            </h1>
-                            <p class="text-lg text-white/70 mb-8 leading-relaxed">
-                                Gunakan kalkulator zakat kami untuk menghitung kewajiban zakat Anda secara akurat.
-                            </p>
-                            <a href="{{ route('kalkulator') }}" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary-500 to-secondary-600 text-white font-bold rounded-xl shadow-lg hover:-translate-y-1 transition-all text-lg">
-                                <i class="fas fa-calculator"></i> Hitung Sekarang
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{-- Slide 3 --}}
-            <div class="swiper-slide relative">
-                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1600')"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-dark-500/90 via-dark-500/70 to-transparent"></div>
-                <div class="relative z-10 flex items-center h-full">
-                    <div class="container mx-auto px-5 max-w-[1200px]">
-                        <div class="max-w-xl">
-                            <span class="inline-block px-4 py-2 bg-primary-500/20 text-primary-300 rounded-full text-sm font-semibold mb-4 border border-primary-500/30">
-                                <i class="fas fa-hands-helping mr-1"></i> Program Kebaikan
-                            </span>
-                            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-                                Berbagi untuk <span class="text-primary-500">Sesama</span>
-                            </h1>
-                            <p class="text-lg text-white/70 mb-8 leading-relaxed">
-                                Setiap kebaikan yang diberikan akan kembali berlipat ganda. Mari berbagi.
-                            </p>
-                            <a href="{{ route('program.index') }}" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-500 to-accent-500 text-white font-bold rounded-xl shadow-orange-glow hover:-translate-y-1 transition-all text-lg">
-                                <i class="fas fa-arrow-right"></i> Lihat Program
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- Mobile Menu Backdrop -->
+    <div class="fixed inset-0 bg-black/50 z-[55] opacity-0 invisible transition-all duration-300 lg:hidden"
+        id="menuBackdrop"></div>
+
+    <!-- Mobile Menu (Outside nav to avoid backdrop-blur inheritance) -->
+    <div class="fixed top-0 right-[-100%] w-[85%] max-w-[320px] h-screen bg-white shadow-2xl flex flex-col items-start px-8 pt-24 pb-10 gap-2 transition-all duration-500 lg:hidden z-[100]"
+        id="mobileMenu">
+        <div class="w-full flex justify-between items-center mb-10">
+            <span class="text-xs font-bold text-gray-400 tracking-widest uppercase">Menu Navigasi</span>
+            <button id="closeMenu" class="text-gray-400 hover:text-primary"><i
+                    class="fas fa-times text-xl"></i></button>
         </div>
-    </div>
+        <a href="#beranda"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Beranda <i
+                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
+        <a href="#kalkulator"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Kalkulator <i
+                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
+        <a href="#program"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Program <i
+                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
+        <a href="#tentang"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Tentang Kami <i
+                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
+        <a href="#kontak"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Kontak <i class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
 
-    {{-- Stats Bar (Desktop) --}}
-    <div class="hidden lg:block absolute bottom-12 right-12 z-20 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 p-6 w-[280px]">
-        <div class="space-y-4">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-primary-500/20 rounded-lg flex items-center justify-center"><i class="fas fa-coins text-primary-500"></i></div>
-                <div><p class="text-xs text-white/60">Total Terkumpul</p><p class="text-lg font-bold text-white count-up" data-target="{{ $stats['total_donasi'] ?? 0 }}">Rp 0</p></div>
-            </div>
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-secondary-500/20 rounded-lg flex items-center justify-center"><i class="fas fa-users text-secondary-500"></i></div>
-                <div><p class="text-xs text-white/60">Total Donatur</p><p class="text-lg font-bold text-white count-up" data-target="{{ $stats['total_donatur'] ?? 0 }}">0</p></div>
-            </div>
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center"><i class="fas fa-hand-holding-heart text-blue-400"></i></div>
-                <div><p class="text-xs text-white/60">Program Aktif</p><p class="text-lg font-bold text-white count-up" data-target="{{ $stats['total_program'] ?? 0 }}">0</p></div>
-            </div>
-        </div>
-    </div>
+        <a href="{{ route('login') }}"
+            class="w-full flex items-center justify-center gap-2 px-6 py-3 mt-4 text-gray-600 font-semibold rounded-xl border border-gray-200 hover:bg-gray-50 hover:text-primary transition-all mobile-nav-link">
+            <i class="fas fa-sign-in-alt"></i> Masuk Akun
+        </a>
 
-    {{-- Stats (Mobile) --}}
-    <div class="lg:hidden absolute bottom-0 left-0 right-0 z-20 bg-white/10 backdrop-blur-lg border-t border-white/20 px-4 py-4">
-        <div class="grid grid-cols-3 gap-3 text-center">
-            <div><p class="text-lg font-bold text-white count-up" data-target="{{ $stats['total_donasi'] ?? 0 }}">0</p><p class="text-[0.65rem] text-white/60">Terkumpul</p></div>
-            <div><p class="text-lg font-bold text-white count-up" data-target="{{ $stats['total_donatur'] ?? 0 }}">0</p><p class="text-[0.65rem] text-white/60">Donatur</p></div>
-            <div><p class="text-lg font-bold text-white count-up" data-target="{{ $stats['total_program'] ?? 0 }}">0</p><p class="text-[0.65rem] text-white/60">Program</p></div>
-        </div>
-    </div>
-
-    {{-- Wave Divider --}}
-    <div class="absolute bottom-0 left-0 right-0 z-10">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,64L60,58.7C120,53,240,43,360,48C480,53,600,75,720,80C840,85,960,75,1080,64C1200,53,1320,43,1380,37.3L1440,32L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z" fill="white"/>
-        </svg>
-    </div>
-</section>
-
-{{-- ═══════════════════════════════════════════ --}}
-{{-- KALKULATOR TEASER --}}
-{{-- ═══════════════════════════════════════════ --}}
-<section class="py-20 bg-white" data-aos="fade-up">
-    <div class="container mx-auto px-5 max-w-[1200px]">
-        <div class="bg-gradient-to-br from-dark-500 to-[#2d2d4e] rounded-3xl p-8 md:p-12 flex flex-col lg:flex-row items-center gap-8 overflow-hidden relative">
-            <div class="lg:w-1/2 z-10">
-                <div class="w-14 h-14 bg-primary-500/20 rounded-2xl flex items-center justify-center mb-6">
-                    <i class="fas fa-calculator text-primary-500 text-2xl"></i>
-                </div>
-                <h2 class="text-3xl font-bold text-white mb-4">Hitung Zakat Anda</h2>
-                <p class="text-white/70 mb-6 leading-relaxed">Tidak yakin berapa zakat yang harus dibayarkan? Gunakan kalkulator zakat kami untuk menghitung secara akurat berdasarkan harta dan penghasilan Anda.</p>
-                <a href="{{ route('kalkulator') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-500 to-accent-500 text-white font-bold rounded-xl shadow-orange-glow hover:-translate-y-1 transition-all">
-                    <i class="fas fa-calculator"></i> Hitung Sekarang
-                </a>
-            </div>
-            <div class="lg:w-1/2 relative">
-                <div class="bg-white/5 rounded-2xl p-6 border border-white/10 backdrop-blur-sm">
-                    <div class="flex items-center gap-2 mb-4"><div class="w-3 h-3 rounded-full bg-red-400"></div><div class="w-3 h-3 rounded-full bg-yellow-400"></div><div class="w-3 h-3 rounded-full bg-green-400"></div></div>
-                    <div class="space-y-3">
-                        <div class="h-4 bg-white/10 rounded w-3/4"></div>
-                        <div class="h-4 bg-white/10 rounded w-1/2"></div>
-                        <div class="h-8 bg-primary-500/30 rounded w-full mt-4"></div>
-                        <div class="h-4 bg-white/10 rounded w-2/3"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- ═══════════════════════════════════════════ --}}
-{{-- AUTHORITY / TRUST TEASER --}}
-{{-- ═══════════════════════════════════════════ --}}
-<section class="py-20 bg-gray-50" data-aos="fade-up">
-    <div class="container mx-auto px-5 max-w-[1200px]">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <div class="relative">
-                <div class="rounded-3xl overflow-hidden shadow-card">
-                    <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=600" alt="Lazismu Community" class="w-full h-[400px] object-cover">
-                </div>
-                <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-primary-500/20 rounded-2xl -z-10 rotate-12"></div>
-            </div>
-            <div>
-                <span class="inline-block px-4 py-2 bg-primary-500/10 text-primary-500 rounded-full text-sm font-semibold mb-4">
-                    <i class="fas fa-shield-alt mr-1"></i> Amanah & Transparan
-                </span>
-                <h2 class="text-3xl md:text-4xl font-bold text-dark-500 mb-4">Lembaga Zakat Terpercaya</h2>
-                <p class="text-gray-600 mb-6 leading-relaxed">Lazismu Lengkong bernaung di bawah Muhammadiyah, mengelola dana ZISKA dengan prinsip syariah, akuntabilitas, dan transparansi penuh sesuai PSAK 109.</p>
-                <ul class="space-y-3 mb-8">
-                    <li class="flex items-center gap-3"><i class="fas fa-check-circle text-secondary-500"></i><span class="text-gray-700">Terdaftar di Kementerian Agama RI</span></li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check-circle text-secondary-500"></i><span class="text-gray-700">Audit syariah & keuangan berkala</span></li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check-circle text-secondary-500"></i><span class="text-gray-700">Laporan keuangan transparan & real-time</span></li>
-                </ul>
-                <a href="{{ route('tentang-kami') }}" class="text-primary-500 font-semibold hover:text-primary-600 transition-colors">
-                    Pelajari Sejarah Kami <i class="fas fa-arrow-right ml-1"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- ═══════════════════════════════════════════ --}}
-{{-- FEATURED PROGRAMS --}}
-{{-- ═══════════════════════════════════════════ --}}
-<section id="program" class="py-20 bg-white" data-aos="fade-up">
-    <div class="container mx-auto px-5 max-w-[1200px]">
-        <div class="text-center mb-12">
-            <span class="inline-block px-4 py-2 bg-primary-500/10 text-primary-500 rounded-full text-sm font-semibold mb-4">
-                PROGRAM KEBAIKAN
-            </span>
-            <h2 class="text-3xl md:text-4xl font-bold text-dark-500">Salurkan Lewat Program Kami</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            @forelse($featuredPrograms as $program)
-            <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-card hover:shadow-lg hover:-translate-y-1 transition-all group">
-                <div class="relative h-48 overflow-hidden">
-                    <img src="{{ $program->image ? asset('storage/' . $program->image) : 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400' }}" alt="{{ $program->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute top-3 left-3">
-                        <span class="px-3 py-1 bg-white/90 text-xs font-bold rounded-full" style="color: {{ $program->pillar?->color ?? '#F7941D' }}">
-                            {{ $program->pillar?->name ?? 'Program' }}
-                        </span>
-                    </div>
-                </div>
-                <div class="p-5">
-                    <h3 class="font-bold text-dark-500 mb-2 line-clamp-2">{{ $program->title }}</h3>
-                    <p class="text-sm text-gray-500 mb-4 line-clamp-2">{{ $program->description }}</p>
-                    @if($program->target_amount > 0)
-                    <div class="mb-3">
-                        <div class="flex justify-between text-xs mb-1">
-                            <span class="text-gray-500">Terkumpul</span>
-                            <span class="font-bold text-primary-500">{{ $program->progress_percent }}%</span>
-                        </div>
-                        <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-primary-500 to-accent-500 rounded-full" style="width: {{ $program->progress_percent }}%"></div>
-                        </div>
-                    </div>
-                    @endif
-                    <a href="{{ route('program.show', $program->slug) }}" class="block w-full text-center py-2.5 bg-gray-50 text-gray-700 font-semibold rounded-xl hover:bg-primary-500 hover:text-white transition-colors text-sm">
-                        Donasi Sekarang
-                    </a>
-                </div>
-            </div>
-            @empty
-            <div class="col-span-full text-center py-12">
-                <i class="fas fa-heart text-4xl text-gray-300 mb-4"></i>
-                <p class="text-gray-500">Belum ada program tersedia saat ini.</p>
-            </div>
-            @endforelse
-        </div>
-
-        <div class="text-center mt-10">
-            <a href="{{ route('program.index') }}" class="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary-500 text-primary-500 font-bold rounded-xl hover:bg-primary-500 hover:text-white transition-all">
-                Lihat Semua Program <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
-</section>
-
-{{-- ═══════════════════════════════════════════ --}}
-{{-- DONATION CTA --}}
-{{-- ═══════════════════════════════════════════ --}}
-<section class="py-20 bg-gradient-to-r from-primary-500 to-accent-500" data-aos="fade-up">
-    <div class="container mx-auto px-5 max-w-[1200px] text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Siap Berbagi Kebaikan?</h2>
-        <p class="text-white/80 mb-8 max-w-lg mx-auto">Setiap rupiah yang Anda donasikan akan menjadi penolong bagi saudara kita yang membutuhkan.</p>
-        <a href="{{ route('donasi') }}" class="inline-flex items-center gap-2 px-10 py-4 bg-white text-primary-500 font-bold rounded-xl shadow-lg hover:-translate-y-1 transition-all text-lg">
+        <a href="#donasi"
+            class="btn-primary w-full flex items-center justify-center gap-2 px-6 py-4 mt-2 text-white font-bold rounded-xl shadow-lg shadow-orange-200 mobile-nav-link">
             <i class="fas fa-heart"></i> Donasi Sekarang
         </a>
     </div>
-</section>
-@endsection
 
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        new Swiper('.hero-swiper', {
-            effect: 'fade',
-            loop: true,
-            autoplay: { delay: 6000, disableOnInteraction: false },
-            speed: 1000,
-        });
-    });
-</script>
-@endpush
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center overflow-hidden pt-20 bg-gray-900" id="beranda">
+        <!-- Swiper Container -->
+        <div class="swiper mySwiper w-full h-full absolute inset-0 z-0">
+            <div class="swiper-wrapper">
+
+                <!-- Slide 1: Ramadan (Spiritual Hook) -->
+                <div class="swiper-slide relative">
+                    <!-- Background Image -->
+                    <div class="absolute inset-0 bg-no-repeat bg-center bg-cover" style="background-image: url('{{ asset('assets/images/hero-bg.png') }}')">
+                    </div>
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-gray-900/85"></div>
+
+                    <!-- Content -->
+                    <div class="container mx-auto px-5 h-full flex items-center relative z-10 max-w-[1200px]">
+                        <div class="w-full lg:w-2/3">
+                            <span
+                                class="inline-block px-4 py-1 rounded-full bg-primary/20 text-[#FFB347] text-sm font-bold border border-primary/30 mb-6">RAMADAN
+                                1447 H</span>
+                            <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-white leading-[1.15] mb-6">
+                                Ramadan Berkah, <br> <span class="text-[#FFB347]">Dampak Nyata.</span>
+                            </h1>
+                            <p class="text-lg text-white/80 mb-8 leading-relaxed max-w-2xl">
+                                Sucikan harta, sempurnakan ibadah. Lihat seberapa besar keberkahan yang bisa Anda
+                                salurkan!
+                            </p>
+                            <div class="flex flex-wrap gap-4 mb-20">
+                                <a href="#kalkulator"
+                                    class="px-8 py-4 bg-gradient-primary rounded-xl text-white font-bold text-lg shadow-orange-glow hover:shadow-orange-glow-hover hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 group/btn">
+                                    <i
+                                        class="fas fa-calculator text-white/90 group-hover/btn:scale-110 transition-transform"></i>
+                                    Hitung Dampak Kebaikan
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Pendidikan (Future Hook) -->
+                <div class="swiper-slide relative">
+                    <!-- Background Image -->
+                    <div
+                        class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&q=80')] bg-no-repeat bg-center bg-cover">
+                    </div>
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/80 to-transparent">
+                    </div>
+
+                    <!-- Content -->
+                    <div class="container mx-auto px-5 h-full flex items-center relative z-10 max-w-[1200px]">
+                        <div class="w-full lg:w-2/3">
+                            <span
+                                class="inline-block px-4 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm font-bold border border-blue-500/30 mb-6">BEASISWA
+                                SANG SURYA</span>
+                            <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-white leading-[1.15] mb-6">
+                                Mimpi Mereka <br> <span class="text-blue-400">Tak Boleh Putus Sekolah.</span>
+                            </h1>
+                            <p class="text-lg text-white/80 mb-8 leading-relaxed max-w-2xl">
+                                Ratusan siswa dhuafa di Lengkong terancam putus sekolah. Zakat Anda adalah jembatan masa
+                                depan mereka untuk terus berprestasi.
+                            </p>
+                            <div class="flex flex-wrap gap-4 mb-20">
+                                <a href="#donasi"
+                                    class="px-8 py-4 bg-blue-600 rounded-xl text-white font-bold text-lg shadow-lg hover:bg-blue-500 hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
+                                    <i class="fas fa-graduation-cap"></i> Bantu Beasiswa
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3: LKSA Taman Harapan (Flagship Hook) -->
+                <div class="swiper-slide relative">
+                    <!-- Background Image -->
+                    <div
+                        class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&q=80')] bg-no-repeat bg-center bg-cover">
+                    </div>
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#1A1A2E]/90 via-[#1A1A2E]/80 to-transparent">
+                    </div>
+
+                    <!-- Content -->
+                    <div class="container mx-auto px-5 h-full flex items-center relative z-10 max-w-[1200px]">
+                        <div class="w-full lg:w-2/3">
+                            <span
+                                class="inline-block px-4 py-1 rounded-full bg-primary/20 text-[#FFB347] text-sm font-bold border border-primary/30 mb-6">PROGRAM
+                                UNGGULAN</span>
+                            <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-white leading-[1.15] mb-6">
+                                Bantu Mereka <br> <span class="text-primary">Bertahan Hidup.</span>
+                            </h1>
+                            <p class="text-lg text-white/80 mb-8 leading-relaxed max-w-2xl">
+                                Infaq dan sedekah Anda adalah <strong>nafas</strong> bagi puluhan <strong>anak Yatim dan
+                                    Dhuafa</strong> di Panti Taman Harapan.
+                                Pastikan mereka menjalani Ramadhan di panti tertua Muhammadiyah ini dengan penuh
+                                kebahagiaan.
+                            </p>
+                            <div class="flex flex-wrap gap-4 mb-20">
+                                <a href="#donasi"
+                                    class="px-8 py-4 bg-gradient-primary rounded-xl text-white font-bold text-lg shadow-orange-glow hover:shadow-orange-glow-hover hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
+                                    <i class="fas fa-hand-holding-heart"></i> Santuni Panti
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Swiper Navigation -->
+            <div class="swiper-button-next !text-white/50 hover:!text-white transition-colors"></div>
+            <div class="swiper-button-prev !text-white/50 hover:!text-white transition-colors"></div>
+
+            <!-- Swiper Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Static Wave Divider Region (Overlaying the Swiper) -->
+        <div class="absolute bottom-0 left-0 right-0 pointer-events-none leading-none z-20">
+            <!-- Stats Bar - Tablet/Desktop -->
+            <div class="container mx-auto px-5 max-w-[1200px] mb-8 hidden md:block relative z-30">
+                <div class="flex justify-end">
+                    <div
+                        class="flex gap-8 text-white/80 border-t border-white/10 pt-5 pb-5 backdrop-blur-md bg-black/20 rounded-xl px-8 pointer-events-auto hover:bg-black/30 transition-all duration-300 shadow-lg">
+                        <div class="text-center">
+                            <strong class="block text-white text-2xl font-bold count-up" data-target="1450"
+                                data-suffix="+">0</strong>
+                            <span class="text-sm">Donatur</span>
+                        </div>
+                        <div class="text-center border-l border-white/20 pl-8">
+                            <strong class="block text-white text-2xl font-bold count-up" data-target="500"
+                                data-suffix="+">0</strong>
+                            <span class="text-sm">Penerima</span>
+                        </div>
+                        <div class="text-center border-l border-white/20 pl-8">
+                            <strong class="block text-white text-2xl font-bold count-up" data-target="2.5"
+                                data-prefix="Rp " data-suffix=" M" data-decimal="true">0</strong>
+                            <span class="text-sm">Tersalurkan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Bar - Mobile Only -->
+            <div class="md:hidden relative z-30 pointer-events-auto">
+                <div class="stats-card-mobile">
+                    <div class="stats-item-mobile">
+                        <strong class="count-up" data-target="1450" data-suffix="+">0</strong>
+                        <span>Donatur</span>
+                    </div>
+                    <div class="stats-item-mobile border-l border-white/10">
+                        <strong class="count-up" data-target="500" data-suffix="+">0</strong>
+                        <span>Penerima</span>
+                    </div>
+                    <div class="stats-item-mobile border-l border-white/10">
+                        <strong class="count-up" data-target="2.5" data-suffix="M" data-decimal="true">0</strong>
+                        <span>Salur</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wave Divider -->
+            <svg class="w-full h-[30px] sm:h-[60px] md:h-[100px] text-[#FAFAFA] fill-current" viewBox="0 0 1440 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,58.7C960,64,1056,64,1152,58.7C1248,53,1344,43,1392,37.3L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z">
+                </path>
+            </svg>
+        </div>
+    </section>
+
+
+
+    <!-- Calculator Section -->
+    <!-- Calculator Teaser Section -->
+    <section class="py-20 bg-white" id="kalkulator">
+        <div class="container mx-auto px-5 max-w-[1200px]">
+            <div class="bg-gradient-to-br from-[#1A1A2E] to-[#2D2D44] rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden shadow-2xl"
+                data-aos="fade-up">
+                <!-- Background Decoration -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/20 rounded-full blur-3xl -ml-20 -mb-20">
+                </div>
+
+                <div class="relative z-10 flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2 text-center lg:text-left">
+                        <span
+                            class="inline-block px-4 py-2 bg-white/10 text-[#FFB347] text-sm font-bold rounded-full mb-6 border border-white/10">
+                            <i class="fas fa-calculator mr-2"></i>Kalkulator Zakat
+                        </span>
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
+                            Sudah Tahu Berapa <span class="text-primary">Zakat Anda?</span>
+                        </h2>
+                        <p class="text-lg text-white/80 mb-8 leading-relaxed">
+                            Jangan ragu. Gunakan alat bantu hitung kami untuk mengetahui kewajiban zakat maal atau
+                            profesi Anda dengan akurat sesuai nisab. Hanya butuh 1 menit.
+                        </p>
+                        <a href="{{ route('kalkulator') }}"
+                            class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold rounded-xl shadow-lg hover:shadow-orange-glow transition-all hover:-translate-y-1">
+                            Hitung Sekarang <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="lg:w-1/2 flex justify-center">
+                        <img src="{{ asset('assets/images/calculator-mockup.png') }}" alt="Ilustrasi Kalkulator"
+                            class="w-full max-w-md drop-shadow-2xl" onerror="this.style.display='none';">
+                        <!-- Fallback Icon if image missing -->
+                        <div
+                            class="text-[10rem] text-white/10 absolute right-10 top-1/2 -translate-y-1/2 hidden lg:block">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authority & Trust Teaser Section -->
+    <section class="py-24 bg-[#FAFAFA]" id="tentang">
+        <div class="container mx-auto px-5 max-w-[1200px]">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- Image/Visual Side -->
+                <div class="lg:w-1/2 relative" data-aos="fade-right">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-orange-100 rounded-full blur-3xl opacity-60">
+                    </div>
+                    <div
+                        class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white transform rotate-3 hover:rotate-0 transition-all duration-500">
+                        <img src="{{ asset('assets/images/about-collage.png') }}" alt="Lazismu Lengkong Activity" class="w-full h-auto"
+                            onerror="this.src='https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&q=80'">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
+                            <p class="text-white font-bold text-lg"><i
+                                    class="fas fa-map-marker-alt text-primary mr-2"></i>Kecamatan Lengkong, Kota Bandung
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Side -->
+                <div class="lg:w-1/2" data-aos="fade-left">
+                    <span
+                        class="inline-block px-4 py-2 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white text-sm font-semibold rounded-full mb-6">
+                        Mengapa Lazismu Lengkong?
+                    </span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-[#1A1A2E] mb-6 leading-tight">
+                        Amanah yang Berakar, <br><span class="text-primary">Dampak yang Melebar.</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Kami bukan sekadar penyalur, kami adalah pengelola ekosistem kebaikan di bawah naungan
+                        Muhammadiyah Lengkong. Dari <strong>Panti Asuhan Taman Harapan</strong> yang bersejarah hingga
+                        puluhan sekolah yang mencerahkan bangsa.
+                    </p>
+
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-4 group">
+                            <div
+                                class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Terdaftar & Diawasi Kemenag RI</span>
+                        </li>
+                        <li class="flex items-center gap-4 group">
+                            <div
+                                class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Audit Syariah & Keuangan Transparan</span>
+                        </li>
+                        <li class="flex items-center gap-4 group">
+                            <div
+                                class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Bagian dari Persyarikatan Muhammadiyah</span>
+                        </li>
+                    </ul>
+
+                    <a href="{{ route('tentang-kami') }}"
+                        class="inline-flex items-center text-primary font-bold text-lg hover:underline underline-offset-4 decoration-2">
+                        Pelajari Sejarah Kami <i class="fas fa-arrow-right ml-2 animate-bounce-slow text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="py-24 bg-white" id="program">
+        <div class="container mx-auto px-5 max-w-[1200px]">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span
+                    class="inline-block px-4 py-2 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white text-sm font-semibold rounded-full mb-4">Pilih
+                    Paket Kebaikan Anda</span>
+                <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold text-[#1A1A2E] mb-4 leading-tight">Program
+                    Ramadan 1447 H</h2>
+                <p class="text-lg text-gray-600 max-w-[700px] mx-auto">
+                    Berbagai pilihan program untuk menyalurkan zakat, infaq, dan sedekah Anda
+                    sesuai dengan fokus kebaikan yang diinginkan.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Zakat Maal -->
+                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div
+                        class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-gray-50 group-hover:bg-orange-50/30 transition-colors">
+                        <div
+                            class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-xl">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <span class="px-3 py-1 bg-gray-200 text-gray-600 text-xs font-bold rounded-full">Wajib</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
+                            Zakat Maal Digital</h3>
+                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
+                            Pembersih harta untuk kesucian jiwa. Hitung otomatis dan salurkan
+                            langsung untuk operasional Panti Taman Harapan.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-xs text-gray-400 block mb-1">Mulai dari</span>
+                            <strong class="text-xl text-[#1A1A2E]">2.5% x Harta</strong>
+                        </div>
+                        <a href="#donasi"
+                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
+                            <i class="fas fa-calculator"></i> Hitung & Bayar
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kado Lebaran Yatim -->
+                <div class="bg-white rounded-2xl shadow-[0_15px_40px_rgba(247,148,29,0.15)] lg:-translate-y-2 border-2 border-primary/20 flex flex-col overflow-hidden relative"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary to-accent"></div>
+                    <div class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-orange-50/30">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-primary to-accent text-white rounded-xl shadow-lg shadow-orange-200 flex items-center justify-center text-xl">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <span
+                            class="px-3 py-1 bg-red-100 text-red-600 text-xs font-bold rounded-full flex items-center gap-1"><i
+                                class="fas fa-fire"></i> Populer</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
+                            Kado Lebaran Yatim</h3>
+                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
+                            Kebahagiaan di hari Fitri untuk adik-adik di LKSA Taman Harapan.
+                            Paket lengkap baju baru, sepatu, dan THR.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-xs text-gray-400 block mb-1">Per Paket</span>
+                            <strong class="text-2xl text-primary">Rp 350.000</strong>
+                        </div>
+
+                        <!-- Progress -->
+                        <div class="mb-6">
+                            <div class="flex justify-between text-xs font-bold mb-2">
+                                <span class="text-gray-600">34 dari 50 paket</span>
+                                <span class="text-primary">68%</span>
+                            </div>
+                            <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-primary to-accent w-[68%] rounded-full"></div>
+                            </div>
+                        </div>
+
+                        <a href="#donasi"
+                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
+                            <i class="fas fa-heart"></i> Donasi Sekarang
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Beasiswa Sang Surya -->
+                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-gray-50 group-hover:bg-orange-50/30 transition-colors">
+                        <div
+                            class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-xl">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <span
+                            class="px-3 py-1 bg-blue-100 text-blue-600 text-xs font-bold rounded-full">Pendidikan</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
+                            Beasiswa Sang Surya</h3>
+                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
+                            Patungan bantu SPP & alat tulis siswa SD/SMP/SMA Muhammadiyah Lengkong
+                            yang kurang mampu.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-xs text-gray-400 block mb-1">Per Siswa/Bulan</span>
+                            <strong class="text-xl text-[#1A1A2E]">Rp 250.000</strong>
+                        </div>
+                        <a href="#donasi"
+                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
+                            <i class="fas fa-graduation-cap"></i> Jadi Donatur
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Iftar On The Road -->
+                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <div
+                        class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-gray-50 group-hover:bg-orange-50/30 transition-colors">
+                        <div
+                            class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-xl">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <span
+                            class="px-3 py-1 bg-green-100 text-green-600 text-xs font-bold rounded-full">Ramadan</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
+                            Iftar On The Road</h3>
+                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
+                            Paket buka puasa sehat untuk pekerja sektor informal Lengkong:
+                            ojol, pedagang kaki lima, dan pemulung.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-xs text-gray-400 block mb-1">Per Paket</span>
+                            <strong class="text-xl text-[#1A1A2E]">Rp 25.000</strong>
+                        </div>
+                        <a href="#donasi"
+                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
+                            <i class="fas fa-box-open"></i> Sumbang Paket
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="py-24 bg-[#FAFAFA] relative overflow-hidden">
+        <div class="container mx-auto px-5 max-w-[1200px] relative z-20">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span
+                    class="inline-block px-4 py-2 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white text-sm font-semibold rounded-full mb-4">Testimoni</span>
+                <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold text-[#1A1A2E] mb-4 leading-tight">Apa Kata
+                    Mereka?</h2>
+                <p class="text-lg text-gray-600 max-w-[700px] mx-auto">
+                    Anda tidak sendirian. Ribuan warga Bandung telah mempercayakan ZIS-nya melalui Lazismu Lengkong.
+                </p>
+            </div>
+
+            <!-- Testimonial Marquee Slider -->
+            <div class="overflow-hidden mb-20" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex gap-8 animate-scroll hover:[animation-play-state:paused] py-4">
+                    <!-- Card 1 -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Zakat di sini praktis banget, laporannya masuk ke WA, dan aku tau
+                                uangnya dipake buat sekolahin adik-adik di panti yang keren itu."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">Dinda Pratiwi</strong>
+                                <span class="text-sm text-gray-500">Karyawan Swasta</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Dari dulu keluarga kami percaya pada Taman Harapan.
+                                Amanah dan akarnya kuat. Sudah 3 generasi berzakat di sini."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">H. Bambang S.</strong>
+                                <span class="text-sm text-gray-500">Tokoh Masyarakat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Alhamdulillah, melalui Lazismu Lengkong, modal usaha saya terbantu
+                                sehingga bisa tetap berjualan di masa sulit."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">Ibu Siti Aminah</strong>
+                                <span class="text-sm text-gray-500">Pedagang Kecil</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Senang zakat di Lazismu Lengkong karena kantornya dekat,
+                                sejarah Pantinya jelas, dan laporannya transparan banget."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">Kang Firman</strong>
+                                <span class="text-sm text-gray-500">Alumni SMA Muh 4</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DUPLICATE Cards for seamless loop -->
+                    <!-- Card 1 Duplicate -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Zakat di sini praktis banget, laporannya masuk ke WA, dan aku tau
+                                uangnya dipake buat sekolahin adik-adik di panti yang keren itu."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">Dinda Pratiwi</strong>
+                                <span class="text-sm text-gray-500">Karyawan Swasta</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 Duplicate -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Dari dulu keluarga kami percaya pada Taman Harapan.
+                                Amanah dan akarnya kuat. Sudah 3 generasi berzakat di sini."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">H. Bambang S.</strong>
+                                <span class="text-sm text-gray-500">Tokoh Masyarakat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 Duplicate -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Alhamdulillah, melalui Lazismu Lengkong, modal usaha saya terbantu
+                                sehingga bisa tetap berjualan di masa sulit."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">Ibu Siti Aminah</strong>
+                                <span class="text-sm text-gray-500">Pedagang Kecil</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 Duplicate -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Senang zakat di Lazismu Lengkong karena kantornya dekat,
+                                sejarah Pantinya jelas, dan laporannya transparan banget."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">Kang Firman</strong>
+                                <span class="text-sm text-gray-500">Alumni SMA Muh 4</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- Donation CTA Section -->
+    <section class="py-24 bg-white" id="donasi">
+        <div class="container mx-auto px-5 max-w-[1200px]">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span
+                    class="inline-block px-4 py-2 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white text-sm font-semibold rounded-full mb-4">
+                    Tunaikan Sekarang
+                </span>
+                <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold text-[#1A1A2E] mb-4 leading-tight">
+                    Sempurnakan Ibadah, Mulai Dampak Nyata
+                </h2>
+                <p class="text-lg text-gray-600 max-w-[700px] mx-auto mb-10">
+                    Ramadan hanya 30 hari, namun dampak di Taman Harapan bertahan selamanya. Berapapun angka Anda, bagi
+                    mereka itu adalah doa yang terkabul.
+                </p>
+
+                <a href="{{ route('donasi') }}"
+                    class="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold text-xl rounded-2xl shadow-xl shadow-orange-200 hover:shadow-orange-glow hover:-translate-y-1 transition-all duration-300">
+                    <i class="fas fa-heart"></i> Donasi Sekarang
+                </a>
+
+                <p class="mt-6 text-sm text-gray-500 font-medium">
+                    <i class="fas fa-shield-alt text-primary mr-1"></i> Transaksi Aman, Transparan & Sesuai Syariah
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <!-- Floating Buttons -->
+    <a href="https://wa.me/6281234567890" target="_blank"
+        class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_4px_12px_rgba(37,211,102,0.4)] hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(37,211,102,0.6)] transition-all animate-bounce-slow"
+        aria-label="Chat WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <button id="backToTop"
+        class="fixed bottom-24 right-6 z-40 w-10 h-10 bg-white text-[#1A1A2E] border border-gray-200 rounded-full flex items-center justify-center text-lg shadow-lg opacity-0 invisible hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+        aria-label="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Footer -->
+@endsection

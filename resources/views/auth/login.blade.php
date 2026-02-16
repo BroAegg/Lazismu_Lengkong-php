@@ -1,77 +1,235 @@
-@extends('layouts.auth')
+<!DOCTYPE html>
+<html lang="id">
 
-@section('title', 'Masuk - Lazismu Lengkong')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk - Lazismu Lengkong</title>
+    <meta name="description"
+        content="Masuk ke akun Lazismu Lengkong Anda untuk mengelola donasi dan melihat dampak kebaikan Anda.">
 
-@section('form')
-<div class="w-full max-w-md mx-auto">
-    <h3 class="text-2xl font-bold text-dark-500 mb-2">Masuk untuk mulai tolong-menolong sesama</h3>
-    <p class="text-gray-500 mb-8">Selamat datang kembali! Silakan masuk ke akun Anda.</p>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
 
-    @if($errors->any())
-    <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
-        @foreach($errors->all() as $error)
-        <p class="text-sm text-red-600"><i class="fas fa-exclamation-circle mr-1"></i> {{ $error }}</p>
-        @endforeach
-    </div>
-    @endif
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
 
-    @if(session('success'))
-    <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
-        <p class="text-sm text-green-600"><i class="fas fa-check-circle mr-1"></i> {{ session('success') }}</p>
-    </div>
-    @endif
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <form method="POST" action="{{ route('login.attempt') }}" class="space-y-5">
-        @csrf
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Email atau No. HP</label>
-            <div class="relative">
-                <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                <input type="text" name="credential" value="{{ old('credential') }}" required
-                       class="w-full pl-11 pr-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all"
-                       placeholder="email@contoh.com atau 08xxxxxxxxxx">
-            </div>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#F7941D',
+                            light: '#FFB347',
+                            dark: '#E67E22',
+                        },
+                        secondary: {
+                            DEFAULT: '#00A651',
+                            light: '#2ECC71',
+                            dark: '#27AE60',
+                        },
+                        dark: {
+                            DEFAULT: '#1A1A2E',
+                            light: '#2D2D44',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        arabic: ['Amiri', 'serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-sans antialiased bg-gray-50 text-gray-800 h-screen overflow-hidden flex">
+
+    <!-- Left Side - Emotional Hook (Desktop Only) -->
+    <div class="hidden lg:flex w-1/2 bg-[#1A1A2E] relative items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&q=80" alt="Anak-anak Panti"
+                class="w-full h-full object-cover opacity-60">
         </div>
 
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-            <div class="relative" x-data="{ show: false }">
-                <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                <input :type="show ? 'text' : 'password'" name="password" required
-                       class="w-full pl-11 pr-12 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all"
-                       placeholder="Masukkan password">
-                <button type="button" @click="show = !show" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                    <i :class="show ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+        <!-- Overlay Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A2E] via-transparent to-[#1A1A2E]/50 z-10"></div>
+
+        <!-- Content -->
+        <div class="relative z-20 max-w-lg px-8 text-center text-white">
+            <div class="mb-8 flex justify-center">
+                <div
+                    class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20">
+                    <i class="fas fa-heart text-3xl text-primary"></i>
+                </div>
+            </div>
+            <h2 class="text-4xl font-extrabold mb-4 leading-tight">
+                Selamat Datang, <br>
+                <span class="text-primary">Pahlawan Kebaikan.</span>
+            </h2>
+            <p class="text-lg text-white/80 leading-relaxed max-w-md mx-auto">
+                "Setiap langkah kecil log in Anda adalah harapan besar bagi mereka yang menanti uluran tangan."
+            </p>
+
+            <!-- Testimonial Tiny -->
+            <div
+                class="mt-12 flex items-center gap-4 bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/5 mx-auto w-fit transition-transform hover:scale-105 duration-300">
+                <div class="flex -space-x-3">
+                    <img class="w-10 h-10 rounded-full border-2 border-[#1A1A2E]"
+                        src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                    <img class="w-10 h-10 rounded-full border-2 border-[#1A1A2E]"
+                        src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                    <img class="w-10 h-10 rounded-full border-2 border-[#1A1A2E]"
+                        src="https://randomuser.me/api/portraits/men/85.jpg" alt="User">
+                </div>
+                <div class="text-left">
+                    <p class="text-sm font-bold text-white">1,200+ Donatur</p>
+                    <p class="text-xs text-gray-300">Bergabung bulan ini</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Side - Login Form -->
+    <div class="w-full lg:w-1/2 h-full bg-white relative overflow-y-auto custom-scrollbar">
+        <!-- Decoration -->
+        <div
+            class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none">
+        </div>
+
+        <div class="min-h-full flex flex-col justify-center items-center p-8 md:p-12 relative z-10 w-full">
+            <div class="w-full max-w-md space-y-6 animate-fade-in">
+                <!-- Header (Title Only) -->
+                <div class="mb-4">
+                    <h3 class="text-2xl font-bold text-gray-900 leading-tight">Masuk untuk mulai tolong-menolong sesama
+                    </h3>
+                </div>
+
+                <!-- Form -->
+                <form action="{{ route('login.attempt') }}" method="POST" class="space-y-5">
+                    @csrf
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1 ml-1">Email / No.
+                            Handphone</label>
+                        <div class="relative group">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i
+                                    class="fas fa-envelope text-gray-400 group-focus-within:text-primary transition-colors"></i>
+                            </div>
+                            <input type="text" id="email" name="email" required
+                                class="pl-11 w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder-gray-400 text-gray-800"
+                                placeholder="Email atau Nomor HP">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-1 ml-1">
+                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                            <a href="{{ route('password.request') }}"
+                                class="text-xs font-semibold text-primary hover:text-orange-600 transition-colors">Lupa
+                                Password?</a>
+                        </div>
+                        <div class="relative group">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i
+                                    class="fas fa-lock text-gray-400 group-focus-within:text-primary transition-colors"></i>
+                            </div>
+                            <input type="password" id="password" name="password" required
+                                class="pl-11 w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder-gray-400 text-gray-800"
+                                placeholder="••••••••">
+                            <button type="button" onclick="togglePassword()"
+                                class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
+                                <i class="fas fa-eye" id="toggleIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember Me -->
+                    <div class="flex items-center ml-1">
+                        <input id="remember-me" name="remember" type="checkbox"
+                            class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded cursor-pointer">
+                        <label for="remember-me"
+                            class="ml-2 block text-sm text-gray-500 cursor-pointer select-none">Ingat saya</label>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold py-3.5 rounded-xl shadow-lg shadow-orange-200 hover:shadow-orange-glow hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2 group">
+                        <span>Masuk</span>
+                        <i class="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </form>
+
+                <!-- Footer Link -->
+                <p class="text-center text-gray-600 text-sm">
+                    Belum punya akun?
+                    <a href="{{ route('register') }}"
+                        class="font-bold text-primary hover:text-orange-600 transition-colors hover:underline decoration-2 underline-offset-2">Daftar</a>
+                </p>
+
+                <!-- Divider -->
+                <div class="relative flex py-2 items-center">
+                    <div class="flex-grow border-t border-gray-200"></div>
+                    <span class="flex-shrink-0 mx-4 text-gray-400 text-xs text-gray-500 font-medium">Atau lebih
+                        cepat</span>
+                    <div class="flex-grow border-t border-gray-200"></div>
+                </div>
+
+                <!-- Social Login -->
+                <button
+                    class="w-full flex items-center justify-center gap-3 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300 text-gray-700 font-medium py-3 px-4 rounded-xl transition-all duration-300 group shadow-sm">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg"
+                        class="w-5 h-5 group-hover:scale-110 transition-transform" alt="Google">
+                    <span>Masuk dengan Google</span>
                 </button>
+
+                <div class="pt-6 border-t border-gray-100 flex justify-center gap-6 text-xs text-gray-400">
+                    <a href="{{ route('kebijakan-privasi') }}" class="hover:text-gray-600 transition-colors">Kebijakan Privasi</a>
+                    <a href="{{ route('syarat-ketentuan') }}" class="hover:text-gray-600 transition-colors">Syarat & Ketentuan</a>
+                    <a href="{{ route('bantuan') }}" class="hover:text-gray-600 transition-colors">Bantuan</a>
+                </div>
             </div>
         </div>
-
-        <div class="flex items-center justify-between">
-            <label class="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" name="remember" class="w-4 h-4 text-primary-500 border-gray-300 rounded focus:ring-primary-500">
-                <span class="text-sm text-gray-600">Ingat saya</span>
-            </label>
-            <a href="{{ route('password.request') }}" class="text-sm text-primary-500 hover:text-primary-600 font-medium">Lupa Password?</a>
-        </div>
-
-        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-primary-500 to-accent-500 text-white font-bold rounded-xl shadow-orange-glow hover:-translate-y-0.5 transition-all">
-            Masuk
-        </button>
-    </form>
-
-    <p class="text-center text-sm text-gray-500 mt-6">
-        Belum punya akun? <a href="{{ route('register') }}" class="text-primary-500 font-semibold hover:text-primary-600">Daftar</a>
-    </p>
-
-    <div class="flex items-center gap-3 my-6">
-        <div class="flex-1 h-px bg-gray-200"></div>
-        <span class="text-xs text-gray-400">Atau lebih cepat</span>
-        <div class="flex-1 h-px bg-gray-200"></div>
     </div>
 
-    <button class="w-full py-3.5 bg-white border border-gray-200 rounded-xl flex items-center justify-center gap-3 font-medium text-gray-700 hover:bg-gray-50 transition-all text-sm" disabled>
-        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5">
-        Masuk dengan Google <span class="text-xs text-gray-400">(Segera)</span>
-    </button>
-</div>
-@endsection
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const icon = document.getElementById('toggleIcon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+    </script>
+</body>
+
+</html>

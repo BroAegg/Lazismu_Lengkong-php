@@ -1,68 +1,237 @@
-@extends('layouts.admin')
+<!DOCTYPE html>
+<html lang="id">
 
-@section('title', 'Pengaturan Akun - Lazismu Lengkong')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akun Saya - Lazismu Lengkong</title>
 
-@section('content')
-<h1 class="text-xl font-bold text-dark-500 mb-6">Pengaturan Akun</h1>
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
 
-@if(session('success'))
-<div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
-    <p class="text-sm text-green-600"><i class="fas fa-check-circle mr-1"></i> {{ session('success') }}</p>
-</div>
-@endif
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lato:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-{{-- Profile Form --}}
-<div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-6">
-    <h2 class="font-bold text-dark-500 mb-4">Edit Profil</h2>
-    <form method="POST" action="{{ route('akun.update') }}" class="space-y-4">
-        @csrf @method('PUT')
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
-                <input type="text" name="name" value="{{ old('name', auth()->user()->name) }}" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none">
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input type="email" name="email" value="{{ old('email', auth()->user()->email) }}" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none">
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">No. HP</label>
-                <input type="text" name="phone" value="{{ old('phone', auth()->user()->phone) }}" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none">
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
-                <input type="text" name="address" value="{{ old('address', auth()->user()->address) }}" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none">
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#F7941D', light: '#FFB347', dark: '#E67E22' },
+                        dark: { DEFAULT: '#1A1A2E', light: '#2D2D44' },
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 4px 20px rgba(0, 0, 0, 0.05)',
+                        'nav': '0 -4px 20px rgba(0,0,0,0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans pb-24 lg:pb-0 antialiased">
+
+    <!-- Desktop Navbar -->
+    <nav class="hidden lg:block fixed top-0 left-0 right-0 bg-white shadow-sm z-50 py-4">
+        <div class="container mx-auto px-5 flex items-center justify-between max-w-[1200px]">
+            <a href="{{ route('beranda') }}" class="flex flex-col items-center gap-1 group relative">
+                <img src="{{ asset('assets/images/lazismuasli.png') }}" alt="Lazismu Logo" class="h-10 w-auto">
+                <span class="text-[0.625rem] font-normal tracking-wide text-gray-500 logo-text-sub"
+                    style="font-family: 'Lato', sans-serif;">lengkong</span>
+            </a>
+
+            <ul class="flex items-center gap-8">
+                <li><a href="{{ route('beranda') }}"
+                        class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Beranda</a></li>
+                <li><a href="{{ route('program.index') }}"
+                        class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Program</a></li>
+                <li><a href="{{ route('kalkulator') }}"
+                        class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Kalkulator</a>
+                </li>
+                <li><a href="{{ route('donasi') }}"
+                        class="bg-primary text-white px-5 py-2 rounded-lg font-bold shadow-lg hover:shadow-orange-200 transition-all text-sm">Donasi
+                        Sekarang</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-40 lg:hidden">
+        <div class="px-6 py-4 flex items-center justify-between">
+            <h1 class="text-xl font-bold text-dark">Akun Saya</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main
+        class="p-6 lg:p-0 max-w-md mx-auto w-full lg:max-w-[1200px] lg:pt-32 lg:pb-12 lg:flex lg:gap-12 lg:items-start">
+
+        <!-- Desktop Left Side (Welcome Text) -->
+        <div class="hidden lg:block w-1/2 sticky top-32">
+            <h1 class="text-4xl font-extrabold text-[#1A1A2E] mb-4 leading-tight">
+                Bergabunglah dalam <br>Gerakan Kebaikan.
+            </h1>
+            <p class="text-lg text-gray-500 mb-8 leading-relaxed max-w-md">
+                Kelola donasi, pantau riwayat kebaikan, dan dapatkan laporan transparan dalam satu dashboard
+                terintegrasi.
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 max-w-md">
+                <div class="p-4 bg-white rounded-xl border border-gray-100 shadow-sm flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-primary"><i
+                            class="fas fa-hand-holding-heart"></i></div>
+                    <span class="font-bold text-sm text-gray-700">Donasi Mudah</span>
+                </div>
+                <div class="p-4 bg-white rounded-xl border border-gray-100 shadow-sm flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-500"><i
+                            class="fas fa-file-invoice"></i></div>
+                    <span class="font-bold text-sm text-gray-700">Laporan Rutin</span>
+                </div>
+                <div class="p-4 bg-white rounded-xl border border-gray-100 shadow-sm flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-500"><i
+                            class="fas fa-calculator"></i></div>
+                    <span class="font-bold text-sm text-gray-700">Kalkulator Zakat</span>
+                </div>
+                <div class="p-4 bg-white rounded-xl border border-gray-100 shadow-sm flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-500"><i
+                            class="fas fa-history"></i></div>
+                    <span class="font-bold text-sm text-gray-700">Riwayat Tercatat</span>
+                </div>
             </div>
         </div>
-        <button type="submit" class="px-6 py-3 bg-gradient-to-r from-primary-500 to-accent-500 text-white font-bold rounded-xl hover:-translate-y-0.5 transition-all">
-            Simpan Perubahan
-        </button>
-    </form>
-</div>
 
-{{-- Password Form --}}
-<div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-    <h2 class="font-bold text-dark-500 mb-4">Ubah Password</h2>
-    <form method="POST" action="{{ route('akun.password') }}" class="space-y-4">
-        @csrf @method('PUT')
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Password Lama</label>
-            <input type="password" name="current_password" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none">
-            @error('current_password') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Password Baru</label>
-                <input type="password" name="password" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none">
+        <!-- Right Side / Mobile Content (Cards) -->
+        <div class="w-full lg:w-1/2 lg:max-w-md mx-auto">
+            <!-- Login CTA Card -->
+            <div class="bg-white rounded-2xl p-6 shadow-card mb-6 text-center border border-gray-100">
+                <div
+                    class="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center mx-auto mb-4 text-primary text-2xl">
+                    <i class="fas fa-user-lock"></i>
+                </div>
+                <h2 class="text-lg font-bold text-dark mb-2">Masuk untuk Kemudahan Donasi</h2>
+                <p class="text-sm text-gray-500 mb-6 leading-relaxed">
+                    Pantau riwayat kebaikanmu dan nikmati kemudahan zakat, infaq, dan sedekah dalam satu genggaman.
+                </p>
+
+                <a href="{{ route('login') }}"
+                    class="block w-full bg-primary text-white font-bold py-3 rounded-xl shadow-lg shadow-orange-100 hover:shadow-orange-200 hover:-translate-y-0.5 transition-all mb-3">
+                    Masuk Sekarang
+                </a>
+                <p class="text-sm text-gray-500">
+                    Belum punya akun? <a href="{{ route('register') }}" class="text-primary font-bold hover:underline">Daftar</a>
+                </p>
             </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi</label>
-                <input type="password" name="password_confirmation" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none">
+
+            <!-- Menu List -->
+            <div class="bg-white rounded-2xl shadow-card overflow-hidden border border-gray-100">
+                <!-- Bantuan -->
+                <a href="{{ route('bantuan') }}"
+                    class="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 transition-colors group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <span class="font-medium text-gray-700">Pusat Bantuan</span>
+                    </div>
+                    <i
+                        class="fas fa-chevron-right text-gray-300 text-sm group-hover:text-primary transition-colors"></i>
+                </a>
+
+                <!-- Tentang -->
+                <a href="{{ route('tentang-kami') }}"
+                    class="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 transition-colors group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-green-50 text-green-500 flex items-center justify-center">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <span class="font-medium text-gray-700">Tentang Lazismu</span>
+                    </div>
+                    <i
+                        class="fas fa-chevron-right text-gray-300 text-sm group-hover:text-primary transition-colors"></i>
+                </a>
+
+                <!-- Legal group -->
+                <a href="{{ route('syarat-ketentuan') }}"
+                    class="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 transition-colors group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-gray-50 text-gray-500 flex items-center justify-center">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <span class="font-medium text-gray-700">Syarat & Ketentuan</span>
+                    </div>
+                    <i
+                        class="fas fa-chevron-right text-gray-300 text-sm group-hover:text-primary transition-colors"></i>
+                </a>
+
+                <a href="{{ route('kebijakan-privasi') }}"
+                    class="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-gray-50 text-gray-500 flex items-center justify-center">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <span class="font-medium text-gray-700">Kebijakan Privasi</span>
+                    </div>
+                    <i
+                        class="fas fa-chevron-right text-gray-300 text-sm group-hover:text-primary transition-colors"></i>
+                </a>
+            </div>
+
+            <!-- App Version -->
+            <div class="mt-8 text-center lg:text-left lg:ml-2">
+                <p class="text-xs text-gray-300">Versi 1.0.0 • Lazismu Lengkong</p>
             </div>
         </div>
-        <button type="submit" class="px-6 py-3 bg-dark-500 text-white font-bold rounded-xl hover:-translate-y-0.5 transition-all">
-            Ubah Password
-        </button>
-    </form>
-</div>
-@endsection
+
+    </main>
+
+    <!-- Bottom Navigation Bar (Mobile Only) -->
+    <div
+        class="fixed bottom-0 left-0 right-0 bg-white shadow-nav z-50 px-6 py-3 flex lg:hidden justify-between items-center border-t border-gray-100 pb-safe">
+        <a href="{{ route('beranda') }}"
+            class="flex flex-col items-center gap-1 text-gray-400 group hover:text-primary transition-colors">
+            <i class="fas fa-home text-xl mb-0.5 group-hover:scale-110 transition-transform"></i>
+            <span class="text-[0.65rem] font-medium">Beranda</span>
+        </a>
+        <a href="{{ route('program.index') }}"
+            class="flex flex-col items-center gap-1 text-gray-400 group hover:text-primary transition-colors">
+            <i class="fas fa-hand-holding-heart text-xl mb-0.5 group-hover:scale-110 transition-transform"></i>
+            <span class="text-[0.65rem] font-medium">Program</span>
+        </a>
+
+        <!-- Center Donasi Button -->
+        <div class="relative -top-8">
+            <a href="{{ route('donasi') }}"
+                class="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white shadow-lg shadow-orange-200 hover:shadow-orange-glow transform hover:-translate-y-1 transition-all duration-300 ring-4 ring-white border border-orange-100">
+                <i class="fas fa-heart text-2xl"></i>
+            </a>
+            <span class="absolute -bottom-6 w-full text-center text-[0.65rem] font-bold text-gray-800">Donasi</span>
+        </div>
+
+        <a href="{{ route('kalkulator') }}"
+            class="flex flex-col items-center gap-1 text-gray-400 group hover:text-primary transition-colors">
+            <i class="fas fa-calculator text-xl mb-0.5 group-hover:scale-110 transition-transform"></i>
+            <span class="text-[0.65rem] font-medium">Hitung</span>
+        </a>
+
+        <a href="{{ route('akun') }}" class="flex flex-col items-center gap-1 text-primary group transition-colors">
+            <i class="fas fa-user text-xl mb-0.5 group-hover:scale-110 transition-transform"></i>
+            <span class="text-[0.65rem] font-medium">Akun</span>
+        </a>
+    </div>
+
+    <style>
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom, 1rem);
+        }
+    </style>
+</body>

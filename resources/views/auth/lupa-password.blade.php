@@ -1,45 +1,168 @@
-@extends('layouts.auth')
+<!DOCTYPE html>
+<html lang="id">
 
-@section('title', 'Lupa Password - Lazismu Lengkong')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lupa Kata Sandi - Lazismu Lengkong</title>
+    <meta name="description" content="Atur ulang kata sandi akun Lazismu Lengkong Anda.">
 
-@section('form')
-<div class="w-full max-w-md mx-auto">
-    <h3 class="text-2xl font-bold text-dark-500 mb-2">Lupa Password?</h3>
-    <p class="text-gray-500 mb-8">Masukkan email Anda dan kami akan mengirimkan link untuk reset password.</p>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
 
-    @if(session('success'))
-    <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
-        <p class="text-sm text-green-600"><i class="fas fa-check-circle mr-1"></i> {{ session('success') }}</p>
-    </div>
-    @endif
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
 
-    @if($errors->any())
-    <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
-        @foreach($errors->all() as $error)
-        <p class="text-sm text-red-600"><i class="fas fa-exclamation-circle mr-1"></i> {{ $error }}</p>
-        @endforeach
-    </div>
-    @endif
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <form method="POST" action="{{ route('password.email') }}" class="space-y-5">
-        @csrf
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-            <div class="relative">
-                <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                <input type="email" name="email" value="{{ old('email') }}" required
-                       class="w-full pl-11 pr-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all"
-                       placeholder="email@contoh.com">
-            </div>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#F7941D',
+                            light: '#FFB347',
+                            dark: '#E67E22',
+                        },
+                        secondary: {
+                            DEFAULT: '#00A651',
+                            light: '#2ECC71',
+                            dark: '#27AE60',
+                        },
+                        dark: {
+                            DEFAULT: '#1A1A2E',
+                            light: '#2D2D44',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        arabic: ['Amiri', 'serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-sans antialiased bg-gray-50 text-gray-800 h-screen overflow-hidden flex">
+
+    <!-- Left Side - Emotional Hook (Desktop Only) -->
+    <div class="hidden lg:flex w-1/2 bg-[#1A1A2E] relative items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1920&q=80"
+                alt="Bantuan Kemanusiaan" class="w-full h-full object-cover opacity-60">
         </div>
 
-        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-primary-500 to-accent-500 text-white font-bold rounded-xl shadow-orange-glow hover:-translate-y-0.5 transition-all">
-            Kirim Link Reset
-        </button>
-    </form>
+        <!-- Overlay Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A2E] via-transparent to-[#1A1A2E]/50 z-10"></div>
 
-    <p class="text-center text-sm text-gray-500 mt-6">
-        <a href="{{ route('login') }}" class="text-primary-500 font-semibold hover:text-primary-600"><i class="fas fa-arrow-left mr-1"></i> Kembali ke Masuk</a>
-    </p>
-</div>
-@endsection
+        <!-- Content -->
+        <div class="relative z-20 max-w-lg px-8 text-center text-white">
+            <div class="mb-8 flex justify-center">
+                <div
+                    class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20">
+                    <i class="fas fa-key text-3xl text-primary"></i>
+                </div>
+            </div>
+            <h2 class="text-4xl font-extrabold mb-4 leading-tight">
+                Jangan Khawatir, <br>
+                <span class="text-primary">Kami Bantu.</span>
+            </h2>
+            <p class="text-lg text-white/80 leading-relaxed max-w-md mx-auto">
+                "Kembali akses akun Anda untuk terus menyebarkan kebaikan dan manfaat bagi sesama."
+            </p>
+        </div>
+    </div>
+
+    <!-- Right Side - Forgot Password Form -->
+    <div class="w-full lg:w-1/2 h-full bg-white relative overflow-y-auto custom-scrollbar">
+        <!-- Decoration -->
+        <div
+            class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none">
+        </div>
+
+        <!-- Back Button (Mobile) -->
+        <div class="absolute top-6 left-6 z-20 lg:hidden">
+            <a href="{{ route('login') }}" class="flex items-center gap-2 text-gray-500 hover:text-primary transition-colors">
+                <i class="fas fa-arrow-left"></i>
+                <span class="text-sm font-medium">Kembali</span>
+            </a>
+        </div>
+
+        <div class="min-h-full flex flex-col justify-center items-center p-8 md:p-12 relative z-10 w-full">
+            <div class="w-full max-w-md space-y-6 animate-fade-in">
+                <!-- Header -->
+                <div class="mb-2 text-center lg:text-left">
+                    <h3 class="text-2xl font-bold text-gray-900 leading-tight mb-2">Lupa Kata Sandi?</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Masukkan alamat email yang terdaftar. Kami akan mengirimkan tautan untuk mengatur ulang kata
+                        sandi Anda.
+                    </p>
+                </div>
+
+                <!-- Form -->
+                <form action="{{ route('password.email') }}" method="POST" class="space-y-5">
+                    @csrf
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1 ml-1">Email
+                            Terdaftar</label>
+                        <div class="relative group">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i
+                                    class="fas fa-envelope text-gray-400 group-focus-within:text-primary transition-colors"></i>
+                            </div>
+                            <input type="email" id="email" name="email" required
+                                class="pl-11 w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder-gray-400 text-gray-800"
+                                placeholder="nama@email.com">
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold py-3.5 rounded-xl shadow-lg shadow-orange-200 hover:shadow-orange-glow hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2 group">
+                        <span>Kirim Instruksi</span>
+                        <i class="fas fa-paper-plane text-sm group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </form>
+
+                <!-- Footer Link -->
+                <div class="text-center mt-8">
+                    <a href="{{ route('login') }}"
+                        class="inline-flex items-center gap-2 text-gray-500 hover:text-primary transition-colors font-medium text-sm group">
+                        <i class="fas fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform"></i>
+                        Kembali ke Halaman Masuk
+                    </a>
+                </div>
+
+                <!-- Help Links -->
+                <div class="pt-8 border-t border-gray-100 flex justify-center gap-6 text-xs text-gray-400 mt-8">
+                    <a href="{{ route('bantuan') }}" class="hover:text-gray-600 transition-colors">Butuh Bantuan?</a>
+                    <a href="{{ route('kontak') }}" class="hover:text-gray-600 transition-colors">Hubungi Kami</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

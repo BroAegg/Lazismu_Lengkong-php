@@ -1,88 +1,259 @@
-@extends('layouts.auth')
+<!DOCTYPE html>
+<html lang="id">
 
-@section('title', 'Daftar - Lazismu Lengkong')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar - Lazismu Lengkong</title>
+    <meta name="description" content="Bergabung dengan Lazismu Lengkong. Mulai perjalanan kebaikan Anda hari ini.">
 
-@section('form')
-<div class="w-full max-w-md mx-auto">
-    <h3 class="text-2xl font-bold text-dark-500 mb-2">Daftar untuk menebar kebaikan</h3>
-    <p class="text-gray-500 mb-8">Mulai jejak kebaikan Anda bersama Lazismu Lengkong.</p>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
 
-    @if($errors->any())
-    <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
-        @foreach($errors->all() as $error)
-        <p class="text-sm text-red-600"><i class="fas fa-exclamation-circle mr-1"></i> {{ $error }}</p>
-        @endforeach
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#F7941D',
+                            light: '#FFB347',
+                            dark: '#E67E22',
+                        },
+                        secondary: {
+                            DEFAULT: '#00A651',
+                            light: '#2ECC71',
+                            dark: '#27AE60',
+                        },
+                        dark: {
+                            DEFAULT: '#1A1A2E',
+                            light: '#2D2D44',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        arabic: ['Amiri', 'serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-sans antialiased bg-gray-50 text-gray-800 h-screen overflow-hidden flex">
+
+    <!-- Left Side - Register Hook (Desktop Only) -->
+    <div class="hidden lg:flex w-1/2 bg-[#1A1A2E] relative items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=1920&q=80" alt="Kebahagiaan Berbagi"
+                class="w-full h-full object-cover opacity-60">
+        </div>
+
+        <!-- Overlay Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A2E] via-transparent to-[#1A1A2E]/50 z-10"></div>
+
+        <!-- Content -->
+        <div class="relative z-20 max-w-lg px-8 text-center text-white">
+            <div class="mb-8 flex justify-center">
+                <div
+                    class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20">
+                    <i class="fas fa-hand-holding-heart text-3xl text-primary"></i>
+                </div>
+            </div>
+            <h2 class="text-4xl font-extrabold mb-4 leading-tight">
+                Mulai Jejak <br>
+                <span class="text-primary">Kebaikanmu.</span>
+            </h2>
+            <p class="text-lg text-white/80 leading-relaxed max-w-md mx-auto">
+                "Bergabunglah dengan ribuan orang baik lainnya. Satu akun untuk mudahkan zakat, infaq, dan pantau
+                dampakmu."
+            </p>
+
+            <!-- Trust Badge -->
+            <div class="mt-12 flex items-center justify-center gap-6 opacity-80">
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-shield-alt text-2xl mb-2 text-green-400"></i>
+                    <span class="text-xs font-semibold tracking-wider uppercase">Amanah</span>
+                </div>
+                <div class="w-px h-8 bg-white/20"></div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-search-dollar text-2xl mb-2 text-blue-400"></i>
+                    <span class="text-xs font-semibold tracking-wider uppercase">Transparan</span>
+                </div>
+                <div class="w-px h-8 bg-white/20"></div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-check-circle text-2xl mb-2 text-yellow-400"></i>
+                    <span class="text-xs font-semibold tracking-wider uppercase">Terverifikasi</span>
+                </div>
+            </div>
+        </div>
     </div>
-    @endif
 
-    <form method="POST" action="{{ route('register.store') }}" class="space-y-5">
-        @csrf
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
-            <div class="relative">
-                <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                <input type="text" name="name" value="{{ old('name') }}" required
-                       class="w-full pl-11 pr-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all"
-                       placeholder="Masukkan nama lengkap">
-            </div>
+    <!-- Right Side - Register Form -->
+    <div class="w-full lg:w-1/2 h-full bg-white relative overflow-y-auto custom-scrollbar">
+        <!-- Decoration -->
+        <div
+            class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none">
         </div>
 
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-            <div class="relative">
-                <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                <input type="email" name="email" value="{{ old('email') }}" required
-                       class="w-full pl-11 pr-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all"
-                       placeholder="email@contoh.com">
-            </div>
-        </div>
+        <div class="min-h-full flex flex-col justify-center items-center p-8 md:p-12 relative z-10 w-full">
+            <div class="w-full max-w-md space-y-6 animate-fade-in">
+                <!-- Header -->
+                <div class="mb-4">
+                    <h3 class="text-2xl font-bold text-gray-900 leading-tight">Daftar untuk menebar kebaikan</h3>
+                </div>
 
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">No. HP (Opsional)</label>
-            <div class="relative">
-                <i class="fas fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                <input type="text" name="phone" value="{{ old('phone') }}"
-                       class="w-full pl-11 pr-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all"
-                       placeholder="08xxxxxxxxxx">
-            </div>
-        </div>
+                <!-- Form -->
+                <form action="{{ route('register.store') }}" method="POST" class="space-y-4">
+                    @csrf
+                    <!-- Nama Lengkap -->
+                    <div>
+                        <label for="fullname" class="block text-sm font-medium text-gray-700 mb-1 ml-1">Nama
+                            Lengkap</label>
+                        <div class="relative group">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i
+                                    class="fas fa-user text-gray-400 group-focus-within:text-primary transition-colors"></i>
+                            </div>
+                            <input type="text" id="fullname" name="name" required
+                                class="pl-11 w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder-gray-400 text-gray-800"
+                                placeholder="Contoh: Ahmad Dahlan">
+                        </div>
+                    </div>
 
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-            <div class="relative" x-data="{ show: false }">
-                <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                <input :type="show ? 'text' : 'password'" name="password" required
-                       class="w-full pl-11 pr-12 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all"
-                       placeholder="Minimal 8 karakter">
-                <button type="button" @click="show = !show" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                    <i :class="show ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                    <!-- Email / HP -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1 ml-1">Email / No.
+                            Handphone</label>
+                        <div class="relative group">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i
+                                    class="fas fa-envelope text-gray-400 group-focus-within:text-primary transition-colors"></i>
+                            </div>
+                            <input type="text" id="email" name="email" required
+                                class="pl-11 w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder-gray-400 text-gray-800"
+                                placeholder="nama@email.com">
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1 ml-1">Password</label>
+                        <div class="relative group">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i
+                                    class="fas fa-lock text-gray-400 group-focus-within:text-primary transition-colors"></i>
+                            </div>
+                            <input type="password" id="password" name="password" required
+                                class="pl-11 w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder-gray-400 text-gray-800"
+                                placeholder="••••••••">
+                            <button type="button" onclick="togglePassword()"
+                                class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
+                                <i class="fas fa-eye" id="toggleIcon"></i>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1 ml-1">Minimal 8 karakter.</p>
+                    </div>
+
+                    <!-- Terms Check -->
+                    <div class="flex items-start ml-1 mt-2">
+                        <input id="terms" type="checkbox" required
+                            class="h-4 w-4 mt-0.5 text-primary focus:ring-primary border-gray-300 rounded cursor-pointer">
+                        <label for="terms" class="ml-2 block text-sm text-gray-500 cursor-pointer select-none">
+                            Saya menyetujui <a href="{{ route('syarat-ketentuan') }}" class="text-primary hover:underline">Syarat
+                                & Ketentuan</a>
+                            serta <a href="{{ route('kebijakan-privasi') }}" class="text-primary hover:underline">Kebijakan
+                                Privasi</a> Lazismu
+                            Lengkong.
+                        </label>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold py-3.5 rounded-xl shadow-lg shadow-orange-200 hover:shadow-orange-glow hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2 group mt-4">
+                        <span>Daftar Sekarang</span>
+                        <i class="fas fa-user-plus text-sm group-hover:scale-110 transition-transform"></i>
+                    </button>
+                </form>
+
+                <!-- Footer Link -->
+                <p class="text-center text-gray-600 text-sm">
+                    Sudah punya akun?
+                    <a href="{{ route('login') }}"
+                        class="font-bold text-primary hover:text-orange-600 transition-colors hover:underline decoration-2 underline-offset-2">Masuk
+                        Disini</a>
+                </p>
+
+                <!-- Divider -->
+                <div class="relative flex py-2 items-center">
+                    <div class="flex-grow border-t border-gray-200"></div>
+                    <span class="flex-shrink-0 mx-4 text-gray-400 text-xs text-gray-500 font-medium">Atau daftar
+                        dengan</span>
+                    <div class="flex-grow border-t border-gray-200"></div>
+                </div>
+
+                <!-- Social Register -->
+                <button
+                    class="w-full flex items-center justify-center gap-3 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300 text-gray-700 font-medium py-3 px-4 rounded-xl transition-all duration-300 group shadow-sm">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg"
+                        class="w-5 h-5 group-hover:scale-110 transition-transform" alt="Google">
+                    <span>Daftar dengan Google</span>
                 </button>
+
+                <div class="pt-6 border-t border-gray-100 flex flex-col items-center gap-2">
+                    <div class="flex gap-4 text-xs text-gray-400">
+                        <a href="{{ route('kebijakan-privasi') }}" class="hover:text-gray-600 transition-colors">Kebijakan
+                            Privasi</a>
+                        <a href="{{ route('syarat-ketentuan') }}" class="hover:text-gray-600 transition-colors">Syarat &
+                            Ketentuan</a>
+                        <a href="{{ route('bantuan') }}" class="hover:text-gray-600 transition-colors">Bantuan</a>
+                    </div>
+                    <p class="text-[0.65rem] text-gray-300">&copy; 2026 Lazismu Lengkong.</p>
+                </div>
             </div>
-            <p class="text-xs text-gray-400 mt-1">Minimal 8 karakter</p>
         </div>
+    </div>
 
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Konfirmasi Password</label>
-            <div class="relative">
-                <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                <input type="password" name="password_confirmation" required
-                       class="w-full pl-11 pr-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all"
-                       placeholder="Ulangi password">
-            </div>
-        </div>
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const icon = document.getElementById('toggleIcon');
 
-        <div class="flex items-start gap-2">
-            <input type="checkbox" name="terms" required class="w-4 h-4 mt-0.5 text-primary-500 border-gray-300 rounded focus:ring-primary-500">
-            <span class="text-sm text-gray-600">Saya menyetujui <a href="{{ route('syarat-ketentuan') }}" class="text-primary-500 font-medium">Syarat & Ketentuan</a> dan <a href="{{ route('kebijakan-privasi') }}" class="text-primary-500 font-medium">Kebijakan Privasi</a></span>
-        </div>
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+    </script>
+</body>
 
-        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-primary-500 to-accent-500 text-white font-bold rounded-xl shadow-orange-glow hover:-translate-y-0.5 transition-all">
-            Daftar Sekarang
-        </button>
-    </form>
-
-    <p class="text-center text-sm text-gray-500 mt-6">
-        Sudah punya akun? <a href="{{ route('login') }}" class="text-primary-500 font-semibold hover:text-primary-600">Masuk Disini</a>
-    </p>
-</div>
-@endsection
+</html>
