@@ -170,8 +170,20 @@
         backdrop-filter: blur(10px);
         box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
     }
+    /* Logo scrolled state */
+    #navbar.scrolled .logo-img {
+        filter: brightness(0) invert(0);
+    }
+    #navbar.scrolled .logo-text-sub {
+        color: #1A1A2E;
+    }
+    /* Nav link active state */
     .nav-link.active::after {
         width: 100%;
+    }
+    /* Mobile nav link hover */
+    .mobile-nav-link:hover {
+        color: #F7941D;
     }
 </style>
 @endpush

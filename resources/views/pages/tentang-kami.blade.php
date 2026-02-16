@@ -290,7 +290,7 @@
                 <a href="{{ route('kontak') }}"
                     class="px-8 py-3 bg-primary text-white font-bold rounded-xl hover:bg-primary-dark transition-all">Hubungi
                     Kami</a>
-                <a href="{{ route('program.index') }}"
+                <a href="{{ route('program') }}"
                     class="px-8 py-3 bg-white/10 text-white font-bold rounded-xl hover:bg-white/20 transition-all backdrop-blur-sm">Lihat
                     Program</a>
             </div>
