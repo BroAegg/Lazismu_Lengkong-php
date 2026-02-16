@@ -176,17 +176,17 @@
                     <div
                         class="flex gap-8 text-white/80 border-t border-white/10 pt-5 pb-5 backdrop-blur-md bg-black/20 rounded-xl px-8 pointer-events-auto hover:bg-black/30 transition-all duration-300 shadow-lg">
                         <div class="text-center">
-                            <strong class="block text-white text-2xl font-bold count-up" data-target="1450"
+                            <strong class="block text-white text-2xl font-bold count-up" data-target="{{ $stats['total_donatur'] }}"
                                 data-suffix="+">0</strong>
                             <span class="text-sm">Donatur</span>
                         </div>
                         <div class="text-center border-l border-white/20 pl-8">
-                            <strong class="block text-white text-2xl font-bold count-up" data-target="500"
+                            <strong class="block text-white text-2xl font-bold count-up" data-target="{{ $stats['total_mustahik'] }}"
                                 data-suffix="+">0</strong>
                             <span class="text-sm">Penerima</span>
                         </div>
                         <div class="text-center border-l border-white/20 pl-8">
-                            <strong class="block text-white text-2xl font-bold count-up" data-target="2.5"
+                            <strong class="block text-white text-2xl font-bold count-up" data-target="{{ number_format($stats['total_donasi'] / 1000000, 1, '.', '') }}"
                                 data-prefix="Rp " data-suffix=" M" data-decimal="true">0</strong>
                             <span class="text-sm">Tersalurkan</span>
                         </div>
@@ -198,15 +198,15 @@
             <div class="md:hidden relative z-30 pointer-events-auto">
                 <div class="stats-card-mobile">
                     <div class="stats-item-mobile">
-                        <strong class="count-up" data-target="1450" data-suffix="+">0</strong>
+                        <strong class="count-up" data-target="{{ $stats['total_donatur'] }}" data-suffix="+">0</strong>
                         <span>Donatur</span>
                     </div>
                     <div class="stats-item-mobile border-l border-white/10">
-                        <strong class="count-up" data-target="500" data-suffix="+">0</strong>
+                        <strong class="count-up" data-target="{{ $stats['total_mustahik'] }}" data-suffix="+">0</strong>
                         <span>Penerima</span>
                     </div>
                     <div class="stats-item-mobile border-l border-white/10">
-                        <strong class="count-up" data-target="2.5" data-suffix="M" data-decimal="true">0</strong>
+                        <strong class="count-up" data-target="{{ number_format($stats['total_donasi'] / 1000000, 1, '.', '') }}" data-suffix="M" data-decimal="true">0</strong>
                         <span>Salur</span>
                     </div>
                 </div>
