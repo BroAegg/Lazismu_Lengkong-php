@@ -3,54 +3,6 @@
 @section('title', 'Lazismu Lengkong | Zakat, Infaq & Sedekah untuk Warga Lengkong')
 
 @section('content')
-<!-- Mobile Menu Backdrop -->
-    <div class="fixed inset-0 bg-black/50 z-[55] opacity-0 invisible transition-all duration-300 lg:hidden"
-        id="menuBackdrop"></div>
-
-    <!-- Mobile Menu (Outside nav to avoid backdrop-blur inheritance) -->
-    <div class="fixed top-0 right-[-100%] w-[85%] max-w-[320px] h-screen bg-white shadow-2xl flex flex-col items-start px-8 pt-24 pb-10 gap-2 transition-all duration-500 lg:hidden z-[100]"
-        id="mobileMenu">
-        <div class="w-full flex justify-between items-center mb-10">
-            <span class="text-xs font-bold text-gray-400 tracking-widest uppercase">Menu Navigasi</span>
-            <button id="closeMenu" class="text-gray-400 hover:text-primary"><i
-                    class="fas fa-times text-xl"></i></button>
-        </div>
-        <a href="#beranda"
-            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
-            Beranda <i
-                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
-        </a>
-        <a href="#kalkulator"
-            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
-            Kalkulator <i
-                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
-        </a>
-        <a href="#program"
-            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
-            Program <i
-                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
-        </a>
-        <a href="#tentang"
-            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
-            Tentang Kami <i
-                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
-        </a>
-        <a href="#kontak"
-            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
-            Kontak <i class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
-        </a>
-
-        <a href="{{ route('login') }}"
-            class="w-full flex items-center justify-center gap-2 px-6 py-3 mt-4 text-gray-600 font-semibold rounded-xl border border-gray-200 hover:bg-gray-50 hover:text-primary transition-all mobile-nav-link">
-            <i class="fas fa-sign-in-alt"></i> Masuk Akun
-        </a>
-
-        <a href="#donasi"
-            class="btn-primary w-full flex items-center justify-center gap-2 px-6 py-4 mt-2 text-white font-bold rounded-xl shadow-lg shadow-orange-200 mobile-nav-link">
-            <i class="fas fa-heart"></i> Donasi Sekarang
-        </a>
-    </div>
-
     <!-- Hero Section -->
     <!-- Page Header -->
     <section class="relative pt-40 pb-20 bg-gray-900 overflow-hidden">

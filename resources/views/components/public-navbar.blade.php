@@ -157,6 +157,11 @@
 <style>
     .btn-primary {
         background: linear-gradient(135deg, #F7941D 0%, #F15A24 100%);
+        box-shadow: 0 4px 15px rgba(247, 148, 29, 0.4);
+    }
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(247, 148, 29, 0.5);
     }
     .text-primary {
         color: #F7941D;
@@ -164,20 +169,34 @@
     .bg-primary {
         background-color: #F7941D;
     }
-    /* Navbar scrolled state */
+    /* Navbar scrolled state - WHITE background, not dark */
     #navbar.scrolled {
-        background: rgba(26, 26, 46, 0.95);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        background: white !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
     }
-    /* Logo scrolled state */
+    /* Logo scrolled state - REMOVE filter (show original colors) */
     #navbar.scrolled .logo-img {
-        filter: brightness(0) invert(0);
+        filter: none !important;
     }
     #navbar.scrolled .logo-text-sub {
-        color: #1A1A2E;
+        color: #6B7280 !important; /* text-gray-500 */
+    }
+    #navbar.scrolled .toggle-bar {
+        background: #1A1A2E !important;
+    }
+    /* Nav links scrolled state - DARK text */
+    #navbar.scrolled .nav-link {
+        color: #1A1A2E !important;
+    }
+    #navbar.scrolled .nav-link:hover {
+        color: #F7941D !important;
     }
     /* Nav link active state */
+    .nav-link.active {
+        color: #F7941D !important;
+    }
     .nav-link.active::after {
         width: 100%;
     }

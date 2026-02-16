@@ -312,146 +312,104 @@
                     class="inline-block px-4 py-2 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white text-sm font-semibold rounded-full mb-4">Pilih
                     Paket Kebaikan Anda</span>
                 <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold text-[#1A1A2E] mb-4 leading-tight">Program
-                    Ramadan 1447 H</h2>
+                    Unggulan</h2>
                 <p class="text-lg text-gray-600 max-w-[700px] mx-auto">
                     Berbagai pilihan program untuk menyalurkan zakat, infaq, dan sedekah Anda
                     sesuai dengan fokus kebaikan yang diinginkan.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Zakat Maal -->
-                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100"
-                    data-aos="fade-up" data-aos-delay="100">
-                    <div
-                        class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-gray-50 group-hover:bg-orange-50/30 transition-colors">
-                        <div
-                            class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-xl">
-                            <i class="fas fa-hand-holding-usd"></i>
-                        </div>
-                        <span class="px-3 py-1 bg-gray-200 text-gray-600 text-xs font-bold rounded-full">Wajib</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
-                            Zakat Maal Digital</h3>
-                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
-                            Pembersih harta untuk kesucian jiwa. Hitung otomatis dan salurkan
-                            langsung untuk operasional Panti Taman Harapan.
-                        </p>
-                        <div class="mb-6">
-                            <span class="text-xs text-gray-400 block mb-1">Mulai dari</span>
-                            <strong class="text-xl text-[#1A1A2E]">2.5% x Harta</strong>
-                        </div>
-                        <a href="#donasi"
-                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
-                            <i class="fas fa-calculator"></i> Hitung & Bayar
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Kado Lebaran Yatim -->
-                <div class="bg-white rounded-2xl shadow-[0_15px_40px_rgba(247,148,29,0.15)] lg:-translate-y-2 border-2 border-primary/20 flex flex-col overflow-hidden relative"
-                    data-aos="fade-up" data-aos-delay="200">
+            @if($featuredPrograms->count() > 0)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($featuredPrograms as $index => $program)
+                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100 {{ $index === 0 ? 'lg:col-span-1 border-2 border-primary/20 shadow-[0_15px_40px_rgba(247,148,29,0.15)]' : '' }}"
+                    data-aos="fade-up" data-aos-delay="{{ ($index + 1) * 100 }}">
+                    
+                    @if($index === 0)
                     <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary to-accent"></div>
-                    <div class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-orange-50/30">
-                        <div
-                            class="w-12 h-12 bg-gradient-to-br from-primary to-accent text-white rounded-xl shadow-lg shadow-orange-200 flex items-center justify-center text-xl">
-                            <i class="fas fa-gift"></i>
+                    @endif
+                    
+                    <div class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start {{ $index === 0 ? 'bg-orange-50/30' : 'bg-gray-50 group-hover:bg-orange-50/30' }} transition-colors">
+                        <div class="w-12 h-12 {{ $index === 0 ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg shadow-orange-200' : 'bg-white text-primary shadow-sm' }} rounded-xl flex items-center justify-center text-xl">
+                            <i class="fas fa-hand-holding-heart"></i>
                         </div>
-                        <span
-                            class="px-3 py-1 bg-red-100 text-red-600 text-xs font-bold rounded-full flex items-center gap-1"><i
-                                class="fas fa-fire"></i> Populer</span>
+                        @if($index === 0)
+                        <span class="px-3 py-1 bg-red-100 text-red-600 text-xs font-bold rounded-full flex items-center gap-1">
+                            <i class="fas fa-fire"></i> Populer
+                        </span>
+                        @else
+                        <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">
+                            {{ $program->pillar->name ?? 'Program' }}
+                        </span>
+                        @endif
                     </div>
+                    
                     <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
-                            Kado Lebaran Yatim</h3>
-                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
-                            Kebahagiaan di hari Fitri untuk adik-adik di LKSA Taman Harapan.
-                            Paket lengkap baju baru, sepatu, dan THR.
+                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors line-clamp-2 min-h-[3.5rem]">
+                            {{ $program->title }}
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed line-clamp-3">
+                            {{ $program->description }}
                         </p>
+                        
+                        @if($program->target_amount)
                         <div class="mb-6">
-                            <span class="text-xs text-gray-400 block mb-1">Per Paket</span>
-                            <strong class="text-2xl text-primary">Rp 350.000</strong>
+                            <span class="text-xs text-gray-400 block mb-1">Target Donasi</span>
+                            <strong class="text-xl {{ $index === 0 ? 'text-primary' : 'text-[#1A1A2E]' }}">
+                                Rp {{ number_format($program->target_amount, 0, ',', '.') }}
+                            </strong>
                         </div>
-
-                        <!-- Progress -->
+                        
+                        @if($program->collected_amount > 0)
                         <div class="mb-6">
                             <div class="flex justify-between text-xs font-bold mb-2">
-                                <span class="text-gray-600">34 dari 50 paket</span>
-                                <span class="text-primary">68%</span>
+                                <span class="text-gray-600">
+                                    Rp {{ number_format($program->collected_amount, 0, ',', '.') }} terkumpul
+                                </span>
+                                <span class="text-primary">
+                                    {{ $program->target_amount > 0 ? round(($program->collected_amount / $program->target_amount) * 100) : 0 }}%
+                                </span>
                             </div>
                             <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-primary to-accent w-[68%] rounded-full"></div>
+                                <div class="h-full bg-gradient-to-r from-primary to-accent rounded-full" 
+                                     style="width: {{ $program->target_amount > 0 ? min(($program->collected_amount / $program->target_amount) * 100, 100) : 0 }}%"></div>
                             </div>
                         </div>
-
-                        <a href="#donasi"
+                        @endif
+                        @endif
+                        
+                        <a href="{{ route('program.show', $program->slug) }}"
                             class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
                             <i class="fas fa-heart"></i> Donasi Sekarang
                         </a>
                     </div>
                 </div>
-
-                <!-- Beasiswa Sang Surya -->
-                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100"
-                    data-aos="fade-up" data-aos-delay="300">
-                    <div
-                        class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-gray-50 group-hover:bg-orange-50/30 transition-colors">
-                        <div
-                            class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-xl">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <span
-                            class="px-3 py-1 bg-blue-100 text-blue-600 text-xs font-bold rounded-full">Pendidikan</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
-                            Beasiswa Sang Surya</h3>
-                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
-                            Patungan bantu SPP & alat tulis siswa SD/SMP/SMA Muhammadiyah Lengkong
-                            yang kurang mampu.
-                        </p>
-                        <div class="mb-6">
-                            <span class="text-xs text-gray-400 block mb-1">Per Siswa/Bulan</span>
-                            <strong class="text-xl text-[#1A1A2E]">Rp 250.000</strong>
-                        </div>
-                        <a href="#donasi"
-                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
-                            <i class="fas fa-graduation-cap"></i> Jadi Donatur
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Iftar On The Road -->
-                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100"
-                    data-aos="fade-up" data-aos-delay="400">
-                    <div
-                        class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-gray-50 group-hover:bg-orange-50/30 transition-colors">
-                        <div
-                            class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-xl">
-                            <i class="fas fa-utensils"></i>
-                        </div>
-                        <span
-                            class="px-3 py-1 bg-green-100 text-green-600 text-xs font-bold rounded-full">Ramadan</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
-                            Iftar On The Road</h3>
-                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
-                            Paket buka puasa sehat untuk pekerja sektor informal Lengkong:
-                            ojol, pedagang kaki lima, dan pemulung.
-                        </p>
-                        <div class="mb-6">
-                            <span class="text-xs text-gray-400 block mb-1">Per Paket</span>
-                            <strong class="text-xl text-[#1A1A2E]">Rp 25.000</strong>
-                        </div>
-                        <a href="#donasi"
-                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
-                            <i class="fas fa-box-open"></i> Sumbang Paket
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
+            
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="{{ route('program') }}" 
+                   class="inline-flex items-center gap-2 px-8 py-3 border-2 border-primary text-primary font-bold rounded-xl hover:bg-primary hover:text-white transition-all">
+                    Lihat Semua Program <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            @else
+            <div class="text-center py-20">
+                <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-box-open text-4xl text-gray-400"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Belum Ada Program</h3>
+                <p class="text-gray-600 mb-8">Program unggulan akan ditampilkan di sini setelah ditambahkan melalui CMS.</p>
+                @auth
+                    @if(auth()->user()->role !== 'USER')
+                    <a href="{{ route('admin.program.create') }}" 
+                       class="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white font-bold rounded-xl hover:shadow-lg hover:shadow-orange-200 transition-all">
+                        <i class="fas fa-plus"></i> Tambah Program Pertama
+                    </a>
+                    @endif
+                @endauth
+            </div>
+            @endif
         </div>
     </section>
 
@@ -723,46 +681,6 @@
 
 @push('scripts')
 <script>
-    // Navbar scroll behavior
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-    
-    // Mobile Menu Toggle
-    const menuBtn = document.getElementById('menuBtn');
-    const closeMenu = document.getElementById('closeMenu');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuBackdrop = document.getElementById('menuBackdrop');
-    
-    if (menuBtn) {
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.style.right = '0';
-            menuBackdrop.style.opacity = '1';
-            menuBackdrop.style.visibility = 'visible';
-        });
-    }
-    
-    if (closeMenu) {
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.style.right = '-100%';
-            menuBackdrop.style.opacity = '0';
-            menuBackdrop.style.visibility = 'invisible';
-        });
-    }
-    
-    if (menuBackdrop) {
-        menuBackdrop.addEventListener('click', () => {
-            mobileMenu.style.right = '-100%';
-            menuBackdrop.style.opacity = '0';
-            menuBackdrop.style.visibility = 'invisible';
-        });
-    }
-    
     // Swiper Initialization
     if (typeof Swiper !== 'undefined') {
         const swiper = new Swiper(".mySwiper", {
@@ -814,12 +732,6 @@
                     behavior: 'smooth',
                     block: 'start'
                 });
-                // Close mobile menu if open
-                if (mobileMenu) {
-                    mobileMenu.style.right = '-100%';
-                    menuBackdrop.style.opacity = '0';
-                    menuBackdrop.style.visibility = 'invisible';
-                }
             }
         });
     });
