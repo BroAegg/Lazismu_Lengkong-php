@@ -101,6 +101,25 @@
         <!-- Alpine.js -->
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         
+        <style>
+            /* Global overflow fix */
+            html {
+                overflow-x: hidden !important;
+                width: 100%;
+                max-width: 100vw;
+            }
+            body {
+                overflow-x: hidden !important;
+                width: 100%;
+                max-width: 100vw;
+                position: relative;
+            }
+            * {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        </style>
+        
         @stack('styles')
     </head>
     <body class="font-sans antialiased">

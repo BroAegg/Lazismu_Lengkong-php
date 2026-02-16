@@ -20,6 +20,12 @@ use Illuminate\Support\Facades\Route;
 // ══════════════════════════════════════════════════════
 
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+
+// Test HTML Reference (exact copy for comparison)
+Route::get('/test-html', function () {
+    return view('pages.test-html');
+});
+
 Route::get('/kalkulator-zakat', [KalkulatorController::class, 'index'])->name('kalkulator');
 Route::get('/program', [ProgramController::class, 'index'])->name('program');
 Route::get('/program/{slug}', [ProgramController::class, 'show'])->name('program.show');

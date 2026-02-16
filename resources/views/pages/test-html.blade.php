@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Lazismu Lengkong - Lembaga Amil Zakat Infaq Sedekah Muhammadiyah Kecamatan Lengkong, Kota Bandung. Tunaikan zakat, infaq dan sedekah Anda untuk warga Lengkong.">
+    <meta name="keywords"
+        content="lazismu, zakat, infaq, sedekah, lengkong, bandung, muhammadiyah, panti taman harapan, ramadan">
+    <meta name="author" content="Aegner & Revan - Lazismu Lengkong">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lazismulengkong.org/">
+    <meta property="og:title" content="Lazismu Lengkong - Zakat Untuk Tetangga Terdekat">
+    <meta property="og:description"
+        content="Tunaikan zakat, infaq dan sedekah Anda untuk warga Kecamatan Lengkong & Kota Bandung melalui Lazismu Lengkong.">
+    <meta property="og:image" content="../assets/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://lazismulengkong.org/">
+    <meta property="twitter:title" content="Lazismu Lengkong - Zakat Untuk Tetangga Terdekat">
+    <meta property="twitter:description"
+        content="Tunaikan zakat, infaq dan sedekah Anda untuk warga Kecamatan Lengkong & Kota Bandung.">
+
+    <title>Lazismu Lengkong | Zakat, Infaq & Sedekah untuk Warga Lengkong</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#F7941D',
+                            light: '#FFB347',
+                            dark: '#E67E22',
+                        },
+                        secondary: {
+                            DEFAULT: '#00A651',
+                            light: '#2ECC71',
+                            dark: '#27AE60',
+                        },
+                        accent: {
+                            DEFAULT: '#F15A24',
+                            light: '#FF7043',
+                        },
+                        dark: {
+                            DEFAULT: '#1A1A2E',
+                            light: '#2D2D44',
+                        },
+                        light: '#FAFAFA',
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        arabic: ['Amiri', 'serif'],
+                    },
+                    borderRadius: {
+                        'xl': '12px',
+                        '2xl': '16px',
+                        '3xl': '24px',
+                    },
+                    boxShadow: {
+                        'sm': '0 2px 4px rgba(0, 0, 0, 0.05)',
+                        'DEFAULT': '0 4px 6px rgba(0, 0, 0, 0.1)',
+                        'md': '0 8px 16px rgba(0, 0, 0, 0.1)',
+                        'lg': '0 16px 32px rgba(0, 0, 0, 0.15)',
+                        'xl': '0 24px 48px rgba(0, 0, 0, 0.2)',
+                        'card': '0 10px 40px rgba(0, 0, 0, 0.05)',
+                        'card-hover': '0 15px 50px rgba(247, 148, 29, 0.12)',
+                        'orange-glow': '0 4px 15px rgba(247, 148, 29, 0.4)',
+                        'orange-glow-hover': '0 6px 20px rgba(247, 148, 29, 0.5)',
+                    },
+                    backgroundImage: {
+                        'gradient-primary': 'linear-gradient(135deg, #F7941D 0%, #F15A24 100%)',
+                        'gradient-card': 'linear-gradient(135deg, rgba(247, 148, 29, 0.1) 0%, rgba(241, 90, 36, 0.1) 100%)',
+                        'gradient-dark': 'linear-gradient(135deg, #1A1A2E 0%, #2D2D44 100%)',
+                        'gradient-hero': 'linear-gradient(135deg, rgba(26, 26, 46, 0.92) 0%, rgba(45, 45, 68, 0.88) 50%, rgba(61, 30, 109, 0.85) 100%)',
+                    },
+                    animation: {
+                        'float': 'float 4s ease-in-out infinite',
+                        'float-fast': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scroll': 'scroll 30s linear infinite',
+                        'fade-in': 'fadeIn 0.3s ease-out forwards',
+                        'bounce-slow': 'bounce 2s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* ============================================ */
+        /* OVERFLOW FIX - CRITICAL                      */
+        /* ============================================ */
+
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            overflow-x: hidden !important;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        body {
+            overflow-x: hidden !important;
+            width: 100%;
+            max-width: 100vw;
+            position: relative;
+        }
+
+        /* Container Width Fix - Mobile Only */
+        @media (max-width: 1024px) {
+            .container {
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            section {
+                overflow-x: hidden;
+            }
+
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FAFAFA;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #F7941D;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E67E22;
+        }
+
+        /* Navbar scrolled state */
+        #navbar.scrolled {
+            background: white !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding-top: 0.75rem !important;
+            padding-bottom: 0.75rem !important;
+        }
+
+        #navbar.scrolled .logo-img {
+            filter: none !important;
+        }
+
+        #navbar.scrolled .logo-text-sub {
+            color: #6B7280 !important;
+            /* text-gray-500 */
+        }
+
+        #navbar.scrolled .toggle-bar {
+            background: #1A1A2E !important;
+        }
+
+        #navbar.scrolled .nav-link {
+            color: #1A1A2E !important;
+        }
+
+        #navbar.scrolled .nav-link:hover {
+            color: #F7941D !important;
+        }
+
+        ::selection {
+            background: rgba(247, 148, 29, 0.2);
+            color: #F7941D;
+        }
+
+        /* Utility for Text Gradients that Tailwind doesn't support easily inline with specific stops */
+        .text-gradient {
+            background: linear-gradient(135deg, #F7941D 0%, #F15A24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Primary Button Utility - Restored from original design */
+        .btn-primary {
+            background: linear-gradient(135deg, #F7941D 0%, #F15A24 100%);
+            box-shadow: 0 4px 15px rgba(247, 148, 29, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(247, 148, 29, 0.5);
+        }
+
+        /* Nav Link Active State */
+        .nav-link.active {
+            color: #F7941D !important;
+            /* Force primary color when active */
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+            /* Show underline */
+        }
+
+        /* ============================================ */
+        /* GLOBAL RESPONSIVE FIXES                      */
+        /* ============================================ */
+
+        /* Hero Height Fix for Mobile Browser Chrome */
+        #beranda {
+            min-height: 100vh;
+            min-height: 100svh;
+        }
+
+        @media (max-width: 768px) {
+            .logo-container {
+                gap: 0.25rem;
+            }
+
+            .logo-img {
+                height: 2.25rem;
+            }
+
+            .logo-text-sub {
+                font-size: 0.55rem !important;
+            }
+        }
+
+        /* Swiper Navigation Mobile */
+        @media (max-width: 640px) {
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: none !important;
+                /* Hide arrows on mobile to save space */
+            }
+
+            .swiper-pagination {
+                bottom: 120px !important;
+                /* Move above the mobile stats */
+            }
+        }
+
+        /* Stats Bar Responsive */
+        .stats-card-mobile {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            width: 100%;
+            max-width: 100vw;
+            gap: 0.75rem;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 0.5rem;
+            text-align: center;
+        }
+
+        .stats-item-mobile strong {
+            display: block;
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .stats-item-mobile span {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Form Steps Mobile */
+        @media (max-width: 480px) {
+            .step-indicator {
+                width: 1.5rem !important;
+                height: 1.5rem !important;
+                font-size: 0.75rem !important;
+            }
+        }
+
+        /* Swiper Customization - Restored */
+        .swiper-pagination {
+            bottom: 120px !important;
+            left: 50% !important;
+            transform: translateX(-50%);
+            width: auto !important;
+            z-index: 15;
+        }
+
+        @media (max-width: 1024px) {
+            .swiper-pagination {
+                bottom: 80px !important;
+            }
+        }
+
+        .swiper-pagination-bullet {
+            background: white;
+            opacity: 0.5;
+            width: 10px;
+            height: 10px;
+            transition: all 0.3s;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #F7941D;
+            opacity: 1;
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            color: #F7941D;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-800 bg-white overflow-x-hidden antialiased pb-20 lg:pb-0">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 bg-transparent backdrop-blur-sm"
+        id="navbar">
+        <div class="container mx-auto px-5 flex items-center justify-between max-w-[1200px]">
+            <a href="#" class="flex flex-col items-center gap-1 group relative logo-container">
+                <!-- Logo Image (already contains LAZISMU text) -->
+                <img src="/assets/images/lazismuasli.png" alt="Lazismu Logo"
+                    class="h-10 w-auto transition-all duration-300 logo-img filter brightness-0 invert">
+
+                <!-- Lengkong text below logo -->
+                <span
+                    class="text-[0.625rem] font-normal tracking-wide text-white/70 logo-text-sub transition-colors duration-300"
+                    style="font-family: 'Lato', sans-serif;">
+                    lengkong
+                </span>
+            </a>
+
+            <!-- Hamburger Menu Hidden (Replaced by Bottom Nav) -->
+            <button class="hidden flex flex-col gap-[5px] p-2" id="navbarToggleHidden" aria-label="Toggle navigation"
+                style="display: none;">
+                <span class="w-[25px] h-[3px] bg-white rounded-sm transition-all toggle-bar"></span>
+                <span class="w-[25px] h-[3px] bg-white rounded-sm transition-all toggle-bar"></span>
+                <span class="w-[25px] h-[3px] bg-white rounded-sm transition-all toggle-bar"></span>
+            </button>
+
+            <ul class="hidden lg:flex items-center gap-8" id="navbarMenu">
+                <li><a href="index.html"
+                        class="text-[0.9375rem] font-medium text-white/90 hover:text-white relative py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full nav-link active">Beranda</a>
+                </li>
+                <li><a href="kalkulator.html"
+                        class="text-[0.9375rem] font-medium text-white/90 hover:text-white relative py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full nav-link">Kalkulator
+                        Zakat</a></li>
+                <li><a href="program.html"
+                        class="text-[0.9375rem] font-medium text-white/90 hover:text-white relative py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full nav-link">Program</a>
+                </li>
+                <li><a href="tentang-kami.html"
+                        class="text-[0.9375rem] font-medium text-white/90 hover:text-white relative py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full nav-link">Tentang
+                        Kami</a></li>
+                <li><a href="kontak.html"
+                        class="text-[0.9375rem] font-medium text-white/90 hover:text-white relative py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full nav-link">Kontak</a>
+                </li>
+                <li><a href="login.html"
+                        class="px-5 py-2.5 text-white/90 hover:text-white font-medium hover:scale-105 transition-transform nav-link">Masuk</a>
+                </li>
+                <li><a href="donasi.html"
+                        class="btn-primary flex items-center justify-center gap-2 px-6 py-2.5 text-white font-semibold rounded-lg transition-transform hover:-translate-y-0.5">Donasi
+                        Sekarang</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Backdrop -->
+    <div class="fixed inset-0 bg-black/50 z-[55] opacity-0 invisible transition-all duration-300 lg:hidden"
+        id="menuBackdrop"></div>
+
+    <!-- Mobile Menu (Outside nav to avoid backdrop-blur inheritance) -->
+    <div class="fixed top-0 right-[-100%] w-[85%] max-w-[320px] h-screen bg-white shadow-2xl flex flex-col items-start px-8 pt-24 pb-10 gap-2 transition-all duration-500 lg:hidden z-[100]"
+        id="mobileMenu">
+        <div class="w-full flex justify-between items-center mb-10">
+            <span class="text-xs font-bold text-gray-400 tracking-widest uppercase">Menu Navigasi</span>
+            <button id="closeMenu" class="text-gray-400 hover:text-primary"><i
+                    class="fas fa-times text-xl"></i></button>
+        </div>
+        <a href="#beranda"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Beranda <i
+                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
+        <a href="#kalkulator"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Kalkulator <i
+                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
+        <a href="#program"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Program <i
+                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
+        <a href="#tentang"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Tentang Kami <i
+                class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
+        <a href="#kontak"
+            class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group mobile-nav-link">
+            Kontak <i class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary transition-colors"></i>
+        </a>
+
+        <a href="login.html"
+            class="w-full flex items-center justify-center gap-2 px-6 py-3 mt-4 text-gray-600 font-semibold rounded-xl border border-gray-200 hover:bg-gray-50 hover:text-primary transition-all mobile-nav-link">
+            <i class="fas fa-sign-in-alt"></i> Masuk Akun
+        </a>
+
+        <a href="#donasi"
+            class="btn-primary w-full flex items-center justify-center gap-2 px-6 py-4 mt-2 text-white font-bold rounded-xl shadow-lg shadow-orange-200 mobile-nav-link">
+            <i class="fas fa-heart"></i> Donasi Sekarang
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center overflow-hidden pt-20 bg-gray-900" id="beranda">
+        <!-- Swiper Container -->
+        <div class="swiper mySwiper w-full h-full absolute inset-0 z-0">
+            <div class="swiper-wrapper">
+
+                <!-- Slide 1: Ramadan (Spiritual Hook) -->
+                <div class="swiper-slide relative">
+                    <!-- Background Image -->
+                    <div class="absolute inset-0 bg-[url('assets/images/hero-bg.png')] bg-no-repeat bg-center bg-cover">
+                    </div>
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-gray-900/85"></div>
+
+                    <!-- Content -->
+                    <div class="container mx-auto px-5 h-full flex items-center relative z-10 max-w-[1200px]">
+                        <div class="w-full lg:w-2/3">
+                            <span
+                                class="inline-block px-4 py-1 rounded-full bg-primary/20 text-[#FFB347] text-sm font-bold border border-primary/30 mb-6">RAMADAN
+                                1447 H</span>
+                            <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-white leading-[1.15] mb-6">
+                                Ramadan Berkah, <br> <span class="text-[#FFB347]">Dampak Nyata.</span>
+                            </h1>
+                            <p class="text-lg text-white/80 mb-8 leading-relaxed max-w-2xl">
+                                Sucikan harta, sempurnakan ibadah. Lihat seberapa besar keberkahan yang bisa Anda
+                                salurkan!
+                            </p>
+                            <div class="flex flex-wrap gap-4 mb-20">
+                                <a href="#kalkulator"
+                                    class="px-8 py-4 bg-gradient-primary rounded-xl text-white font-bold text-lg shadow-orange-glow hover:shadow-orange-glow-hover hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 group/btn">
+                                    <i
+                                        class="fas fa-calculator text-white/90 group-hover/btn:scale-110 transition-transform"></i>
+                                    Hitung Dampak Kebaikan
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Pendidikan (Future Hook) -->
+                <div class="swiper-slide relative">
+                    <!-- Background Image -->
+                    <div
+                        class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&q=80')] bg-no-repeat bg-center bg-cover">
+                    </div>
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/80 to-transparent">
+                    </div>
+
+                    <!-- Content -->
+                    <div class="container mx-auto px-5 h-full flex items-center relative z-10 max-w-[1200px]">
+                        <div class="w-full lg:w-2/3">
+                            <span
+                                class="inline-block px-4 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm font-bold border border-blue-500/30 mb-6">BEASISWA
+                                SANG SURYA</span>
+                            <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-white leading-[1.15] mb-6">
+                                Mimpi Mereka <br> <span class="text-blue-400">Tak Boleh Putus Sekolah.</span>
+                            </h1>
+                            <p class="text-lg text-white/80 mb-8 leading-relaxed max-w-2xl">
+                                Ratusan siswa dhuafa di Lengkong terancam putus sekolah. Zakat Anda adalah jembatan masa
+                                depan mereka untuk terus berprestasi.
+                            </p>
+                            <div class="flex flex-wrap gap-4 mb-20">
+                                <a href="#donasi"
+                                    class="px-8 py-4 bg-blue-600 rounded-xl text-white font-bold text-lg shadow-lg hover:bg-blue-500 hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
+                                    <i class="fas fa-graduation-cap"></i> Bantu Beasiswa
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3: LKSA Taman Harapan (Flagship Hook) -->
+                <div class="swiper-slide relative">
+                    <!-- Background Image -->
+                    <div
+                        class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&q=80')] bg-no-repeat bg-center bg-cover">
+                    </div>
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#1A1A2E]/90 via-[#1A1A2E]/80 to-transparent">
+                    </div>
+
+                    <!-- Content -->
+                    <div class="container mx-auto px-5 h-full flex items-center relative z-10 max-w-[1200px]">
+                        <div class="w-full lg:w-2/3">
+                            <span
+                                class="inline-block px-4 py-1 rounded-full bg-primary/20 text-[#FFB347] text-sm font-bold border border-primary/30 mb-6">PROGRAM
+                                UNGGULAN</span>
+                            <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-white leading-[1.15] mb-6">
+                                Bantu Mereka <br> <span class="text-primary">Bertahan Hidup.</span>
+                            </h1>
+                            <p class="text-lg text-white/80 mb-8 leading-relaxed max-w-2xl">
+                                Infaq dan sedekah Anda adalah <strong>nafas</strong> bagi puluhan <strong>anak Yatim dan
+                                    Dhuafa</strong> di Panti Taman Harapan.
+                                Pastikan mereka menjalani Ramadhan di panti tertua Muhammadiyah ini dengan penuh
+                                kebahagiaan.
+                            </p>
+                            <div class="flex flex-wrap gap-4 mb-20">
+                                <a href="#donasi"
+                                    class="px-8 py-4 bg-gradient-primary rounded-xl text-white font-bold text-lg shadow-orange-glow hover:shadow-orange-glow-hover hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
+                                    <i class="fas fa-hand-holding-heart"></i> Santuni Panti
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Swiper Navigation -->
+            <div class="swiper-button-next !text-white/50 hover:!text-white transition-colors"></div>
+            <div class="swiper-button-prev !text-white/50 hover:!text-white transition-colors"></div>
+
+            <!-- Swiper Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Static Wave Divider Region (Overlaying the Swiper) -->
+        <div class="absolute bottom-0 left-0 right-0 pointer-events-none leading-none z-20">
+            <!-- Stats Bar - Tablet/Desktop -->
+            <div class="container mx-auto px-5 max-w-[1200px] mb-8 hidden md:block relative z-30">
+                <div class="flex justify-end">
+                    <div
+                        class="flex gap-8 text-white/80 border-t border-white/10 pt-5 pb-5 backdrop-blur-md bg-black/20 rounded-xl px-8 pointer-events-auto hover:bg-black/30 transition-all duration-300 shadow-lg">
+                        <div class="text-center">
+                            <strong class="block text-white text-2xl font-bold count-up" data-target="1450"
+                                data-suffix="+">0</strong>
+                            <span class="text-sm">Donatur</span>
+                        </div>
+                        <div class="text-center border-l border-white/20 pl-8">
+                            <strong class="block text-white text-2xl font-bold count-up" data-target="500"
+                                data-suffix="+">0</strong>
+                            <span class="text-sm">Penerima</span>
+                        </div>
+                        <div class="text-center border-l border-white/20 pl-8">
+                            <strong class="block text-white text-2xl font-bold count-up" data-target="2.5"
+                                data-prefix="Rp " data-suffix=" M" data-decimal="true">0</strong>
+                            <span class="text-sm">Tersalurkan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Bar - Mobile Only -->
+            <div class="md:hidden relative z-30 pointer-events-auto">
+                <div class="stats-card-mobile">
+                    <div class="stats-item-mobile">
+                        <strong class="count-up" data-target="1450" data-suffix="+">0</strong>
+                        <span>Donatur</span>
+                    </div>
+                    <div class="stats-item-mobile border-l border-white/10">
+                        <strong class="count-up" data-target="500" data-suffix="+">0</strong>
+                        <span>Penerima</span>
+                    </div>
+                    <div class="stats-item-mobile border-l border-white/10">
+                        <strong class="count-up" data-target="2.5" data-suffix="M" data-decimal="true">0</strong>
+                        <span>Salur</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wave Divider -->
+            <svg class="w-full h-[30px] sm:h-[60px] md:h-[100px] text-[#FAFAFA] fill-current" viewBox="0 0 1440 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,58.7C960,64,1056,64,1152,58.7C1248,53,1344,43,1392,37.3L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z">
+                </path>
+            </svg>
+        </div>
+    </section>
+
+
+
+    <!-- Calculator Section -->
+    <!-- Calculator Teaser Section -->
+    <section class="py-20 bg-white" id="kalkulator">
+        <div class="container mx-auto px-5 max-w-[1200px]">
+            <div class="bg-gradient-to-br from-[#1A1A2E] to-[#2D2D44] rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden shadow-2xl"
+                data-aos="fade-up">
+                <!-- Background Decoration -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/20 rounded-full blur-3xl -ml-20 -mb-20">
+                </div>
+
+                <div class="relative z-10 flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2 text-center lg:text-left">
+                        <span
+                            class="inline-block px-4 py-2 bg-white/10 text-[#FFB347] text-sm font-bold rounded-full mb-6 border border-white/10">
+                            <i class="fas fa-calculator mr-2"></i>Kalkulator Zakat
+                        </span>
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
+                            Sudah Tahu Berapa <span class="text-primary">Zakat Anda?</span>
+                        </h2>
+                        <p class="text-lg text-white/80 mb-8 leading-relaxed">
+                            Jangan ragu. Gunakan alat bantu hitung kami untuk mengetahui kewajiban zakat maal atau
+                            profesi Anda dengan akurat sesuai nisab. Hanya butuh 1 menit.
+                        </p>
+                        <a href="kalkulator.html"
+                            class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold rounded-xl shadow-lg hover:shadow-orange-glow transition-all hover:-translate-y-1">
+                            Hitung Sekarang <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="lg:w-1/2 flex justify-center">
+                        <img src="/assets/images/calculator-mockup.png" alt="Ilustrasi Kalkulator"
+                            class="w-full max-w-md drop-shadow-2xl" onerror="this.style.display='none';">
+                        <!-- Fallback Icon if image missing -->
+                        <div
+                            class="text-[10rem] text-white/10 absolute right-10 top-1/2 -translate-y-1/2 hidden lg:block">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authority & Trust Teaser Section -->
+    <section class="py-24 bg-[#FAFAFA]" id="tentang">
+        <div class="container mx-auto px-5 max-w-[1200px]">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- Image/Visual Side -->
+                <div class="lg:w-1/2 relative" data-aos="fade-right">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-orange-100 rounded-full blur-3xl opacity-60">
+                    </div>
+                    <div
+                        class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white transform rotate-3 hover:rotate-0 transition-all duration-500">
+                        <img src="/assets/images/about-collage.png" alt="Lazismu Lengkong Activity" class="w-full h-auto"
+                            onerror="this.src='https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&q=80'">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
+                            <p class="text-white font-bold text-lg"><i
+                                    class="fas fa-map-marker-alt text-primary mr-2"></i>Kecamatan Lengkong, Kota Bandung
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Side -->
+                <div class="lg:w-1/2" data-aos="fade-left">
+                    <span
+                        class="inline-block px-4 py-2 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white text-sm font-semibold rounded-full mb-6">
+                        Mengapa Lazismu Lengkong?
+                    </span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-[#1A1A2E] mb-6 leading-tight">
+                        Amanah yang Berakar, <br><span class="text-primary">Dampak yang Melebar.</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Kami bukan sekadar penyalur, kami adalah pengelola ekosistem kebaikan di bawah naungan
+                        Muhammadiyah Lengkong. Dari <strong>Panti Asuhan Taman Harapan</strong> yang bersejarah hingga
+                        puluhan sekolah yang mencerahkan bangsa.
+                    </p>
+
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-4 group">
+                            <div
+                                class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Terdaftar & Diawasi Kemenag RI</span>
+                        </li>
+                        <li class="flex items-center gap-4 group">
+                            <div
+                                class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Audit Syariah & Keuangan Transparan</span>
+                        </li>
+                        <li class="flex items-center gap-4 group">
+                            <div
+                                class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Bagian dari Persyarikatan Muhammadiyah</span>
+                        </li>
+                    </ul>
+
+                    <a href="tentang-kami.html"
+                        class="inline-flex items-center text-primary font-bold text-lg hover:underline underline-offset-4 decoration-2">
+                        Pelajari Sejarah Kami <i class="fas fa-arrow-right ml-2 animate-bounce-slow text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="py-24 bg-white" id="program">
+        <div class="container mx-auto px-5 max-w-[1200px]">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span
+                    class="inline-block px-4 py-2 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white text-sm font-semibold rounded-full mb-4">Pilih
+                    Paket Kebaikan Anda</span>
+                <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold text-[#1A1A2E] mb-4 leading-tight">Program
+                    Ramadan 1447 H</h2>
+                <p class="text-lg text-gray-600 max-w-[700px] mx-auto">
+                    Berbagai pilihan program untuk menyalurkan zakat, infaq, dan sedekah Anda
+                    sesuai dengan fokus kebaikan yang diinginkan.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Zakat Maal -->
+                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div
+                        class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-gray-50 group-hover:bg-orange-50/30 transition-colors">
+                        <div
+                            class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-xl">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <span class="px-3 py-1 bg-gray-200 text-gray-600 text-xs font-bold rounded-full">Wajib</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
+                            Zakat Maal Digital</h3>
+                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
+                            Pembersih harta untuk kesucian jiwa. Hitung otomatis dan salurkan
+                            langsung untuk operasional Panti Taman Harapan.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-xs text-gray-400 block mb-1">Mulai dari</span>
+                            <strong class="text-xl text-[#1A1A2E]">2.5% x Harta</strong>
+                        </div>
+                        <a href="#donasi"
+                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
+                            <i class="fas fa-calculator"></i> Hitung & Bayar
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kado Lebaran Yatim -->
+                <div class="bg-white rounded-2xl shadow-[0_15px_40px_rgba(247,148,29,0.15)] lg:-translate-y-2 border-2 border-primary/20 flex flex-col overflow-hidden relative"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary to-accent"></div>
+                    <div class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-orange-50/30">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-primary to-accent text-white rounded-xl shadow-lg shadow-orange-200 flex items-center justify-center text-xl">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <span
+                            class="px-3 py-1 bg-red-100 text-red-600 text-xs font-bold rounded-full flex items-center gap-1"><i
+                                class="fas fa-fire"></i> Populer</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
+                            Kado Lebaran Yatim</h3>
+                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
+                            Kebahagiaan di hari Fitri untuk adik-adik di LKSA Taman Harapan.
+                            Paket lengkap baju baru, sepatu, dan THR.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-xs text-gray-400 block mb-1">Per Paket</span>
+                            <strong class="text-2xl text-primary">Rp 350.000</strong>
+                        </div>
+
+                        <!-- Progress -->
+                        <div class="mb-6">
+                            <div class="flex justify-between text-xs font-bold mb-2">
+                                <span class="text-gray-600">34 dari 50 paket</span>
+                                <span class="text-primary">68%</span>
+                            </div>
+                            <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-primary to-accent w-[68%] rounded-full"></div>
+                            </div>
+                        </div>
+
+                        <a href="#donasi"
+                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
+                            <i class="fas fa-heart"></i> Donasi Sekarang
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Beasiswa Sang Surya -->
+                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-gray-50 group-hover:bg-orange-50/30 transition-colors">
+                        <div
+                            class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-xl">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <span
+                            class="px-3 py-1 bg-blue-100 text-blue-600 text-xs font-bold rounded-full">Pendidikan</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
+                            Beasiswa Sang Surya</h3>
+                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
+                            Patungan bantu SPP & alat tulis siswa SD/SMP/SMA Muhammadiyah Lengkong
+                            yang kurang mampu.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-xs text-gray-400 block mb-1">Per Siswa/Bulan</span>
+                            <strong class="text-xl text-[#1A1A2E]">Rp 250.000</strong>
+                        </div>
+                        <a href="#donasi"
+                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
+                            <i class="fas fa-graduation-cap"></i> Jadi Donatur
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Iftar On The Road -->
+                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <div
+                        class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-gray-50 group-hover:bg-orange-50/30 transition-colors">
+                        <div
+                            class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-xl">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <span
+                            class="px-3 py-1 bg-green-100 text-green-600 text-xs font-bold rounded-full">Ramadan</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
+                            Iftar On The Road</h3>
+                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
+                            Paket buka puasa sehat untuk pekerja sektor informal Lengkong:
+                            ojol, pedagang kaki lima, dan pemulung.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-xs text-gray-400 block mb-1">Per Paket</span>
+                            <strong class="text-xl text-[#1A1A2E]">Rp 25.000</strong>
+                        </div>
+                        <a href="#donasi"
+                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
+                            <i class="fas fa-box-open"></i> Sumbang Paket
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="py-24 bg-[#FAFAFA] relative overflow-hidden">
+        <div class="container mx-auto px-5 max-w-[1200px] relative z-20">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span
+                    class="inline-block px-4 py-2 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white text-sm font-semibold rounded-full mb-4">Testimoni</span>
+                <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold text-[#1A1A2E] mb-4 leading-tight">Apa Kata
+                    Mereka?</h2>
+                <p class="text-lg text-gray-600 max-w-[700px] mx-auto">
+                    Anda tidak sendirian. Ribuan warga Bandung telah mempercayakan ZIS-nya melalui Lazismu Lengkong.
+                </p>
+            </div>
+
+            <!-- Testimonial Marquee Slider -->
+            <div class="overflow-hidden mb-20" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex gap-8 animate-scroll hover:[animation-play-state:paused] py-4">
+                    <!-- Card 1 -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Zakat di sini praktis banget, laporannya masuk ke WA, dan aku tau
+                                uangnya dipake buat sekolahin adik-adik di panti yang keren itu."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">Dinda Pratiwi</strong>
+                                <span class="text-sm text-gray-500">Karyawan Swasta</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Dari dulu keluarga kami percaya pada Taman Harapan.
+                                Amanah dan akarnya kuat. Sudah 3 generasi berzakat di sini."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">H. Bambang S.</strong>
+                                <span class="text-sm text-gray-500">Tokoh Masyarakat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Alhamdulillah, melalui Lazismu Lengkong, modal usaha saya terbantu
+                                sehingga bisa tetap berjualan di masa sulit."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">Ibu Siti Aminah</strong>
+                                <span class="text-sm text-gray-500">Pedagang Kecil</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Senang zakat di Lazismu Lengkong karena kantornya dekat,
+                                sejarah Pantinya jelas, dan laporannya transparan banget."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">Kang Firman</strong>
+                                <span class="text-sm text-gray-500">Alumni SMA Muh 4</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DUPLICATE Cards for seamless loop -->
+                    <!-- Card 1 Duplicate -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Zakat di sini praktis banget, laporannya masuk ke WA, dan aku tau
+                                uangnya dipake buat sekolahin adik-adik di panti yang keren itu."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">Dinda Pratiwi</strong>
+                                <span class="text-sm text-gray-500">Karyawan Swasta</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 Duplicate -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Dari dulu keluarga kami percaya pada Taman Harapan.
+                                Amanah dan akarnya kuat. Sudah 3 generasi berzakat di sini."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">H. Bambang S.</strong>
+                                <span class="text-sm text-gray-500">Tokoh Masyarakat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 Duplicate -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Alhamdulillah, melalui Lazismu Lengkong, modal usaha saya terbantu
+                                sehingga bisa tetap berjualan di masa sulit."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">Ibu Siti Aminah</strong>
+                                <span class="text-sm text-gray-500">Pedagang Kecil</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 Duplicate -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] shadow-xl w-[320px] border border-gray-100 shrink-0 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                        <div>
+                            <div
+                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary mb-8">
+                                <i class="fas fa-quote-left text-2xl"></i>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed italic text-lg">
+                                "Senang zakat di Lazismu Lengkong karena kantornya dekat,
+                                sejarah Pantinya jelas, dan laporannya transparan banget."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-8 border-t border-gray-100 mt-8">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-[#1A1A2E]">Kang Firman</strong>
+                                <span class="text-sm text-gray-500">Alumni SMA Muh 4</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- Donation CTA Section -->
+    <section class="py-24 bg-white" id="donasi">
+        <div class="container mx-auto px-5 max-w-[1200px]">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span
+                    class="inline-block px-4 py-2 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white text-sm font-semibold rounded-full mb-4">
+                    Tunaikan Sekarang
+                </span>
+                <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold text-[#1A1A2E] mb-4 leading-tight">
+                    Sempurnakan Ibadah, Mulai Dampak Nyata
+                </h2>
+                <p class="text-lg text-gray-600 max-w-[700px] mx-auto mb-10">
+                    Ramadan hanya 30 hari, namun dampak di Taman Harapan bertahan selamanya. Berapapun angka Anda, bagi
+                    mereka itu adalah doa yang terkabul.
+                </p>
+
+                <a href="donasi.html"
+                    class="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold text-xl rounded-2xl shadow-xl shadow-orange-200 hover:shadow-orange-glow hover:-translate-y-1 transition-all duration-300">
+                    <i class="fas fa-heart"></i> Donasi Sekarang
+                </a>
+
+                <p class="mt-6 text-sm text-gray-500 font-medium">
+                    <i class="fas fa-shield-alt text-primary mr-1"></i> Transaksi Aman, Transparan & Sesuai Syariah
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <!-- Floating Buttons -->
+    <a href="https://wa.me/6281234567890" target="_blank"
+        class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_4px_12px_rgba(37,211,102,0.4)] hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(37,211,102,0.6)] transition-all animate-bounce-slow"
+        aria-label="Chat WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <button id="backToTop"
+        class="fixed bottom-24 right-6 z-40 w-10 h-10 bg-white text-[#1A1A2E] border border-gray-200 rounded-full flex items-center justify-center text-lg shadow-lg opacity-0 invisible hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+        aria-label="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-[#1A1A2E] text-white pt-20 pb-10">
+        <div class="container mx-auto px-5 max-w-[1200px]">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Brand -->
+                <div>
+                    <a href="#" class="flex flex-col items-start gap-1 mb-6">
+                        <img src="/assets/images/lazismuasli.png" alt="Lazismu Logo"
+                            class="h-10 w-auto filter brightness-0 invert">
+                        <span class="text-[0.625rem] font-normal tracking-wide text-white/70 ml-1"
+                            style="font-family: 'Lato', sans-serif;">
+                            lengkong
+                        </span>
+                    </a>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Lembaga Amil Zakat Nasional tingkat Kantor Layanan (KL) di bawah naungan Muhammadiyah Lengkong.
+                        Menghimpun dan menyalurkan dana ZISKA secara profesional, transparan, dan amanah.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/5 hover:bg-[#F7941D] flex items-center justify-center transition-colors"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/5 hover:bg-[#F7941D] flex items-center justify-center transition-colors"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/5 hover:bg-[#F7941D] flex items-center justify-center transition-colors"><i
+                                class="fab fa-youtube"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/5 hover:bg-[#F7941D] flex items-center justify-center transition-colors"><i
+                                class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Tautan Cepat</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#beranda" class="text-gray-400 hover:text-[#F7941D] transition-colors">Beranda</a>
+                        </li>
+                        <li><a href="#program" class="text-gray-400 hover:text-[#F7941D] transition-colors">Program
+                                Kebaikan</a></li>
+                        <li><a href="#kalkulator"
+                                class="text-gray-400 hover:text-[#F7941D] transition-colors">Kalkulator Zakat</a></li>
+                        <li><a href="#tentang" class="text-gray-400 hover:text-[#F7941D] transition-colors">Laporan
+                                Transparansi</a></li>
+                        <li><a href="#kontak" class="text-gray-400 hover:text-[#F7941D] transition-colors">Hubungi
+                                Kami</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Kantor Layanan</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <i class="fas fa-map-marker-alt text-[#F7941D] mt-1"></i>
+                            <span class="text-gray-400">Jl. Buah Batu No. 59, Kec. Lengkong, Kota Bandung, Jawa Barat
+                                (Gedung Dakwah Muhammadiyah)</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i class="fas fa-phone text-[#F7941D]"></i>
+                            <span class="text-gray-400">+62 812-3456-7890</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i class="fas fa-envelope text-[#F7941D]"></i>
+                            <span class="text-gray-400">sapa@lazismulengkong.org</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Legalitas</h4>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-white/5 rounded-xl border border-white/10">
+                            <strong class="block text-[#F7941D] mb-1">SK Kemenag RI</strong>
+                            <span class="text-gray-400 text-sm">No. 730 Tahun 2016</span>
+                        </div>
+                        <div class="p-4 bg-white/5 rounded-xl border border-white/10">
+                            <strong class="block text-[#F7941D] mb-1">NPWP</strong>
+                            <span class="text-gray-400 text-sm">01.234.567.8-901.000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-white/10 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2026 Lazismu Lengkong. All rights reserved.
+                </p>
+                <div class="flex gap-6 text-sm text-gray-500">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            once: true,
+            duration: 800,
+        });
+
+        // ============================================
+        // COUNT UP ANIMATION
+        // ============================================
+        function animateCountUp() {
+            const counters = document.querySelectorAll('.count-up');
+
+            counters.forEach(counter => {
+                const target = parseFloat(counter.getAttribute('data-target'));
+                const prefix = counter.getAttribute('data-prefix') || '';
+                const suffix = counter.getAttribute('data-suffix') || '';
+                const isDecimal = counter.getAttribute('data-decimal') === 'true';
+                const duration = 2000; // 2 seconds
+                const startTime = performance.now();
+
+                function easeOutQuart(t) {
+                    return 1 - Math.pow(1 - t, 4);
+                }
+
+                function updateCounter(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const easedProgress = easeOutQuart(progress);
+                    const currentValue = target * easedProgress;
+
+                    if (isDecimal) {
+                        counter.textContent = prefix + currentValue.toFixed(1) + suffix;
+                    } else {
+                        counter.textContent = prefix + Math.floor(currentValue).toLocaleString('id-ID') + suffix;
+                    }
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    }
+                }
+
+                requestAnimationFrame(updateCounter);
+            });
+        }
+
+        // Trigger count animation after page loads
+        window.addEventListener('load', () => {
+            setTimeout(animateCountUp, 500); // Slight delay for smoother effect
+        });
+
+        // Navbar Logic
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuBackdrop = document.getElementById('menuBackdrop');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+        // New Trigger (Bottom Nav)
+        const mobileMenuTrigger = document.getElementById('mobileMenuTrigger');
+
+        function openMenuHandler() {
+            mobileMenu.style.right = '0';
+            menuBackdrop.classList.remove('invisible', 'opacity-0');
+            menuBackdrop.classList.add('visible', 'opacity-100');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeMenuHandler() {
+            mobileMenu.style.right = '-100%';
+            menuBackdrop.classList.add('invisible', 'opacity-0');
+            menuBackdrop.classList.remove('visible', 'opacity-100');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        if (mobileMenuTrigger) {
+            mobileMenuTrigger.addEventListener('click', openMenuHandler);
+        }
+
+        // Handle old Toggle if it still exists (or hidden one)
+        const oldToggle = document.getElementById('navbarToggleHidden');
+        if (oldToggle) {
+            oldToggle.addEventListener('click', openMenuHandler);
+        }
+
+        if (closeMenu) closeMenu.addEventListener('click', closeMenuHandler);
+        if (menuBackdrop) menuBackdrop.addEventListener('click', closeMenuHandler);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMenuHandler);
+        });
+
+
+        // Back to Top Logic
+        const bttBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                bttBtn.classList.remove('opacity-0', 'invisible');
+                bttBtn.classList.add('opacity-100', 'visible');
+            } else {
+                bttBtn.classList.add('opacity-0', 'invisible');
+                bttBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        bttBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+    </script>
+    <!-- Bottom Navigation Bar (Mobile Only) -->
+    <div
+        class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-[60] px-6 py-3 lg:hidden flex justify-between items-center border-t border-gray-100 pb-safe">
+        <a href="index.html" class="flex flex-col items-center gap-1 text-primary group">
+            <i class="fas fa-home text-xl mb-0.5 group-hover:scale-110 transition-transform"></i>
+            <span class="text-[0.65rem] font-medium">Beranda</span>
+        </a>
+        <a href="program.html"
+            class="flex flex-col items-center gap-1 text-gray-400 group hover:text-primary transition-colors">
+            <i class="fas fa-hand-holding-heart text-xl mb-0.5 group-hover:scale-110 transition-transform"></i>
+            <span class="text-[0.65rem] font-medium">Program</span>
+        </a>
+
+        <!-- Center Donasi Button -->
+        <div class="relative -top-8">
+            <a href="donasi.html"
+                class="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white shadow-lg shadow-orange-200 hover:shadow-orange-glow transform hover:-translate-y-1 transition-all duration-300 ring-4 ring-white border border-orange-100">
+                <i class="fas fa-heart text-2xl animate-pulse-slow"></i>
+            </a>
+            <span class="absolute -bottom-6 w-full text-center text-[0.65rem] font-bold text-gray-800">Donasi</span>
+        </div>
+
+        <a href="kalkulator.html"
+            class="flex flex-col items-center gap-1 text-gray-400 group hover:text-primary transition-colors">
+            <i class="fas fa-calculator text-xl mb-0.5 group-hover:scale-110 transition-transform"></i>
+            <span class="text-[0.65rem] font-medium">Hitung</span>
+        </a>
+        <a href="akun.html"
+            class="flex flex-col items-center gap-1 text-gray-400 group hover:text-primary transition-colors">
+            <i class="fas fa-user text-xl mb-0.5 group-hover:scale-110 transition-transform"></i>
+            <span class="text-[0.65rem] font-medium">Akun</span>
+        </a>
+    </div>
+
+    <style>
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom, 1rem);
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 0,
+            effect: "fade",
+            loop: true,
+            speed: 1000,
+            autoplay: {
+                delay: 6000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+
+    </script>
+</body>
+
+</html>
