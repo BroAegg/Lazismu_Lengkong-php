@@ -681,12 +681,12 @@ PHASE 1: Foundation (DONE ✓)
 ├─ Create seeders (realistic data) ✓
 └─ HTML → Blade conversion (21 files) ✓
 
-PHASE 2: Public Pages (85% DONE 🔥)
+PHASE 2: Public Pages (95% DONE 🔥)
 ├─ Beranda with dynamic stats ✓ (commit: d26df0b)
 ├─ Program list & detail ✓ (commit: f260dcc, 9471f8c)
 ├─ Donation form flow ✓ (commit: 1b467e6) - routing & success page
-├─ Form input binding (IN PROGRESS) - adding name attributes
-└─ Static pages (kontak, tentang)
+├─ Guest donation support ✓ (commit: 3189910) - email field & public routes
+└─ Static pages (kontak, tentang) - belum
 
 PHASE 3: Authentication
 ├─ Login/Register
@@ -712,22 +712,25 @@ PHASE 5: Enhancement
 ## 🎯 Current Progress (Feb 16, 2026)
 
 **Last Completed:**
-- Program listing page: Display 6 real programs from database with dynamic progress bars, pillar icons, and pagination
-- Program detail page: Show individual program with real donors list, collected amounts, and dynamic content rendering
-- Donation form routing: Fixed form action to proper controller, enhanced payment success page with invoice details
+- Guest donation support: Added email field to form, removed auth requirement from routes
+- Controller enhancement: Support both authenticated (pre-filled data) and guest donations
+- Form validation: require_without ensures either email or phone is provided
 
 **Currently Working On:**
-- Adding name attributes to form inputs (category_id, amount, donor_name, payment_method)
-- Dynamic category & program dropdowns from controller data
+- Testing end-to-end donation flow (form submission → invoice generation → payment success)
 
 **Next Priority:**
-1. Complete donation form input binding
-2. Test full donation flow (form → payment → success)
-3. User authentication (login/register)
+1. Test donation flow with different scenarios (guest vs authenticated, different payment methods)
+2. Implement payment gateway integration (QRIS & bank transfer)
+3. User authentication (login/register) for dashboard access
 4. User dashboard with donation history
 
 **Git Commits:**
 - `d26df0b` - Homepage stats integration
+- `f260dcc` - Program listing dynamic
+- `9471f8c` - Program detail dynamic
+- `1b467e6` - Donation form routing & success page
+- `3189910` - Guest donation support
 - `f260dcc` - Program listing dynamic
 - `9471f8c` - Program detail dynamic
 - `1b467e6` - Donation form route fix & payment success page
