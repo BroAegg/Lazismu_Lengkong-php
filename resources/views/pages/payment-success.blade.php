@@ -64,6 +64,39 @@
             <p class="text-gray-500">Donasi Anda sedang kami verifikasi.</p>
         </div>
 
+        <!-- Invoice Details -->
+        <div class="bg-white rounded-2xl shadow-card p-6 border border-gray-100 mb-6">
+            <h3 class="font-bold text-sm text-gray-700 mb-4 text-left">Detail Donasi</h3>
+            <div class="space-y-3">
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-500">Invoice</span>
+                    <span class="font-mono font-bold text-primary">{{ $donation->invoice_number }}</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-500">Kategori</span>
+                    <span class="font-bold text-gray-800">{{ $donation->category->name }}</span>
+                </div>
+                @if($donation->program)
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-500">Program</span>
+                    <span class="font-bold text-gray-800">{{ $donation->program->title }}</span>
+                </div>
+                @endif
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-500">Nominal</span>
+                    <span class="font-bold text-gray-800">Rp {{ number_format($donation->amount, 0, ',', '.') }}</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-500">Metode</span>
+                    <span class="font-bold text-gray-800">{{ str_replace('_', ' ', $donation->payment_method) }}</span>
+                </div>
+                <div class="flex justify-between text-sm pt-3 border-t">
+                    <span class="text-gray-500">Status</span>
+                    <span class="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs font-bold rounded-full">{{ $donation->status }}</span>
+                </div>
+            </div>
+        </div>
+
         <!-- Doa Card -->
         <div class="bg-white rounded-2xl shadow-card p-6 border border-green-100 relative overflow-hidden mb-6">
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-green-600"></div>
@@ -103,7 +136,7 @@
         </div>
 
         <p class="mt-8 text-xs text-center text-gray-400">
-            ID Transaksi: <span class="font-mono text-gray-500">TRX-8829-LENGKONG</span>
+            Dibuat pada: <span class="font-mono text-gray-500">{{ $donation->created_at->format('d M Y, H:i') }}</span>
         </p>
     </div>
 

@@ -117,7 +117,7 @@
         </div>
 
         <!-- Donation Form (Right Side Desktop) -->
-        <form action="{{ route('payment-success') }}" method="POST" class="space-y-6 w-full lg:w-2/3 lg:max-w-2xl">
+        <form action="{{ route('donasi.store') }}" method="POST" class="space-y-6 w-full lg:w-2/3 lg:max-w-2xl">
             @csrf
 
             <!-- Nominal Section -->
