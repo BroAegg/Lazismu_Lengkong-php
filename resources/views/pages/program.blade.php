@@ -83,139 +83,89 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Zakat Maal -->
-                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100"
-                    data-aos="fade-up" data-aos-delay="100">
-                    <div
-                        class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-gray-50 group-hover:bg-orange-50/30 transition-colors">
-                        <div
-                            class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-xl">
-                            <i class="fas fa-hand-holding-usd"></i>
-                        </div>
-                        <span class="px-3 py-1 bg-gray-200 text-gray-600 text-xs font-bold rounded-full">Wajib</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
-                            Zakat Maal Digital</h3>
-                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
-                            Pembersih harta untuk kesucian jiwa. Hitung otomatis dan salurkan
-                            langsung untuk operasional Panti Taman Harapan.
-                        </p>
-                        <div class="mb-6">
-                            <span class="text-xs text-gray-400 block mb-1">Mulai dari</span>
-                            <strong class="text-xl text-[#1A1A2E]">2.5% x Harta</strong>
-                        </div>
-                        <a href="{{ route('donasi') }}"
-                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
-                            <i class="fas fa-calculator"></i> Hitung & Bayar
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Kado Lebaran Yatim -->
-                <div class="bg-white rounded-2xl shadow-[0_15px_40px_rgba(247,148,29,0.15)] lg:-translate-y-2 border-2 border-primary/20 flex flex-col overflow-hidden relative"
-                    data-aos="fade-up" data-aos-delay="200">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @forelse($programs as $index => $program)
+                <!-- Program Card -->
+                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100 {{ $program->is_featured ? 'lg:-translate-y-2 border-2 border-primary/20 relative' : '' }}"
+                    data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 + 100 }}">
+                    
+                    @if($program->is_featured)
                     <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary to-accent"></div>
-                    <div class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-orange-50/30">
-                        <div
-                            class="w-12 h-12 bg-gradient-to-br from-primary to-accent text-white rounded-xl shadow-lg shadow-orange-200 flex items-center justify-center text-xl">
-                            <i class="fas fa-gift"></i>
+                    @endif
+                    
+                    <!-- Card Header -->
+                    <div class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start {{ $program->is_featured ? 'bg-orange-50/30' : 'bg-gray-50 group-hover:bg-orange-50/30' }} transition-colors">
+                        <div class="w-12 h-12 {{ $program->is_featured ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg shadow-orange-200' : 'bg-white text-primary shadow-sm' }} rounded-xl flex items-center justify-center text-xl">
+                            <i class="{{ $program->pillar->icon ?? 'fas fa-hand-holding-heart' }}"></i>
                         </div>
-                        <span
-                            class="px-3 py-1 bg-red-100 text-red-600 text-xs font-bold rounded-full flex items-center gap-1"><i
-                                class="fas fa-fire"></i> Populer</span>
+                        @if($program->is_featured)
+                        <span class="px-3 py-1 bg-red-100 text-red-600 text-xs font-bold rounded-full flex items-center gap-1">
+                            <i class="fas fa-fire"></i> Unggulan
+                        </span>
+                        @elseif($program->pillar)
+                        <span class="px-3 py-1 text-xs font-bold rounded-full" style="background-color: {{ $program->pillar->color }}20; color: {{ $program->pillar->color }}">
+                            {{ $program->pillar->name }}
+                        </span>
+                        @else
+                        <span class="px-3 py-1 bg-gray-200 text-gray-600 text-xs font-bold rounded-full">
+                            Program
+                        </span>
+                        @endif
                     </div>
+                    
+                    <!-- Card Body -->
                     <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
-                            Kado Lebaran Yatim</h3>
-                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
-                            Kebahagiaan di hari Fitri untuk adik-adik di LKSA Taman Harapan.
-                            Paket lengkap baju baru, sepatu, dan THR.
+                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                            {{ $program->title }}
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed line-clamp-3">
+                            {{ $program->description }}
                         </p>
+                        
+                        <!-- Stats -->
                         <div class="mb-6">
-                            <span class="text-xs text-gray-400 block mb-1">Per Paket</span>
-                            <strong class="text-2xl text-primary">Rp 350.000</strong>
-                        </div>
-
-                        <!-- Progress -->
-                        <div class="mb-6">
-                            <div class="flex justify-between text-xs font-bold mb-2">
-                                <span class="text-gray-600">34 dari 50 paket</span>
-                                <span class="text-primary">68%</span>
+                            <div class="flex justify-between text-xs text-gray-500 mb-2">
+                                <span>Terkumpul</span>
+                                <span>{{ $program->donor_count }} donatur</span>
                             </div>
+                            <div class="flex justify-between items-baseline mb-2">
+                                <span class="text-sm font-bold text-primary">Rp {{ number_format($program->collected_amount, 0, ',', '.') }}</span>
+                                <span class="text-xs text-gray-400">dari Rp {{ number_format($program->target_amount, 0, ',', '.') }}</span>
+                            </div>
+                            
+                            <!-- Progress Bar -->
                             <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-primary to-accent w-[68%] rounded-full"></div>
+                                <div class="h-full bg-gradient-to-r from-primary to-accent rounded-full" style="width: {{ min($program->progress_percent, 100) }}%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs font-bold mt-1">
+                                <span class="text-gray-500">{{ $program->progress_percent }}%</span>
+                                @if($program->days_left)
+                                <span class="text-orange-500">{{ $program->days_left }} hari lagi</span>
+                                @endif
                             </div>
                         </div>
-
-                        <a href="{{ route('donasi') }}"
+                        
+                        <!-- CTA Button -->
+                        <a href="{{ route('program.show', $program->slug) }}"
                             class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
-                            <i class="fas fa-heart"></i> Donasi Sekarang
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                 </div>
-
-                <!-- Beasiswa Sang Surya -->
-                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100"
-                    data-aos="fade-up" data-aos-delay="300">
-                    <div
-                        class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-gray-50 group-hover:bg-orange-50/30 transition-colors">
-                        <div
-                            class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-xl">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <span
-                            class="px-3 py-1 bg-blue-100 text-blue-600 text-xs font-bold rounded-full">Pendidikan</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
-                            Beasiswa Sang Surya</h3>
-                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
-                            Patungan bantu SPP & alat tulis siswa SD/SMP/SMA Muhammadiyah Lengkong
-                            yang kurang mampu.
-                        </p>
-                        <div class="mb-6">
-                            <span class="text-xs text-gray-400 block mb-1">Per Siswa/Bulan</span>
-                            <strong class="text-xl text-[#1A1A2E]">Rp 250.000</strong>
-                        </div>
-                        <a href="{{ route('donasi') }}"
-                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
-                            <i class="fas fa-graduation-cap"></i> Jadi Donatur
-                        </a>
-                    </div>
+                @empty
+                <div class="col-span-full text-center py-16">
+                    <i class="fas fa-inbox text-6xl text-gray-300 mb-4"></i>
+                    <p class="text-xl text-gray-500">Belum ada program tersedia</p>
                 </div>
-
-                <!-- Iftar On The Road -->
-                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100"
-                    data-aos="fade-up" data-aos-delay="400">
-                    <div
-                        class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start bg-gray-50 group-hover:bg-orange-50/30 transition-colors">
-                        <div
-                            class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-xl">
-                            <i class="fas fa-utensils"></i>
-                        </div>
-                        <span
-                            class="px-3 py-1 bg-green-100 text-green-600 text-xs font-bold rounded-full">Ramadan</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors">
-                            Iftar On The Road</h3>
-                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed">
-                            Paket buka puasa sehat untuk pekerja sektor informal Lengkong:
-                            ojol, pedagang kaki lima, dan pemulung.
-                        </p>
-                        <div class="mb-6">
-                            <span class="text-xs text-gray-400 block mb-1">Per Paket</span>
-                            <strong class="text-xl text-[#1A1A2E]">Rp 25.000</strong>
-                        </div>
-                        <a href="{{ route('donasi') }}"
-                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
-                            <i class="fas fa-box-open"></i> Sumbang Paket
-                        </a>
-                    </div>
-                </div>
+                @endforelse
             </div>
+            
+            <!-- Pagination -->
+            @if($programs->hasPages())
+            <div class="mt-12">
+                {{ $programs->links() }}
+            </div>
+            @endif
         </div>
     </section>
 
