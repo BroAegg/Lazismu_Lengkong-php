@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sedekah Makan Santri Yatim - Lazismu Lengkong</title>
+    <title>{{ $program->title }} - Lazismu Lengkong</title>
 
     <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
 
@@ -109,20 +109,18 @@
         <div class="w-full lg:w-2/3 bg-white lg:rounded-2xl lg:shadow-sm lg:border lg:border-gray-100 overflow-hidden">
             <!-- Hero Image -->
             <div class="relative h-[280px] md:h-[400px] lg:h-[450px]">
-                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80" alt="Program"
+                <img src="{{ $program->image_url ?? 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80' }}" alt="{{ $program->title }}"
                     class="w-full h-full object-cover">
                 <div
                     class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 lg:hidden">
                     <span
-                        class="inline-block px-3 py-1 bg-primary text-white text-xs font-bold rounded-full mb-2">Pendidikan
-                        & Yatim</span>
+                        class="inline-block px-3 py-1 bg-primary text-white text-xs font-bold rounded-full mb-2">{{ $program->pillar->name ?? 'Program' }}</span>
                 </div>
             </div>
 
             <div class="p-6">
                 <!-- Title & stats (Desktop Only header usually, but here mixed) -->
-                <h1 class="text-2xl lg:text-3xl font-bold text-[#1A1A2E] mb-2 leading-tight">Sedekah Makanan Bergizi
-                    untuk Santri Yatim & Dhuafa</h1>
+                <h1 class="text-2xl lg:text-3xl font-bold text-[#1A1A2E] mb-2 leading-tight">{{ $program->title }}</h1>
                 <div class="flex items-center gap-2 text-sm text-gray-500 mb-6">
                     <i class="fas fa-map-marker-alt text-primary"></i> Lengkong, Kota Bandung
                     <span class="mx-1">•</span>
@@ -134,17 +132,21 @@
                 <div class="lg:hidden mb-8">
                     <div class="flex justify-between items-end mb-2">
                         <div>
-                            <span class="text-2xl font-bold text-primary">Rp 45.200.000</span>
-                            <span class="text-xs text-gray-400 block">terkumpul dari Rp 100.000.000</span>
+                            <span class="text-2xl font-bold text-primary">Rp {{ number_format($program->collected_amount, 0, ',', '.') }}</span>
+                            <span class="text-xs text-gray-400 block">terkumpul dari Rp {{ number_format($program->target_amount, 0, ',', '.') }}</span>
                         </div>
-                        <span class="font-bold text-gray-700">45%</span>
+                        <span class="font-bold text-gray-700">{{ $program->progress_percent }}%</span>
                     </div>
                     <div class="w-full bg-gray-100 rounded-full h-2.5 mb-2">
-                        <div class="bg-primary h-2.5 rounded-full" style="width: 45%"></div>
+                        <div class="bg-primary h-2.5 rounded-full" style="width: {{ min($program->progress_percent, 100) }}%"></div>
                     </div>
                     <div class="flex justify-between text-xs text-gray-500">
-                        <span><strong>245</strong> Donatur</span>
-                        <span><strong>20</strong> Hari lagi</span>
+                        <span><strong>{{ $program->donor_count }}</strong> Donatur</span>
+                        @if($program->days_left)
+                        <span><strong>{{ $program->days_left }}</strong> Hari lagi</span>
+                        @else
+                        <span class="text-gray-400">Tanpa batas waktu</span>
+                        @endif
                     </div>
                 </div>
 
@@ -160,39 +162,14 @@
                         <button onclick="switchTab('donatur')" id="tab-donatur"
                             class="pb-3 border-b-2 border-transparent text-gray-500 font-medium whitespace-nowrap hover:text-gray-800 transition-colors">Donatur
                             <span
-                                class="bg-gray-100 text-gray-600 text-[10px] px-1.5 rounded-full ml-1">245</span></button>
+                                class="bg-gray-100 text-gray-600 text-[10px] px-1.5 rounded-full ml-1">{{ $program->donor_count }}</span></button>
                     </div>
                 </div>
 
                 <!-- Tab Content: Cerita -->
                 <div id="content-cerita"
                     class="tab-content prose prose-orange max-w-none text-gray-600 leading-relaxed">
-                    <p>
-                        "Bukan kemewahan yang mereka minta, hanya sepiring nasi hangat untuk mengganjal perut sebelum
-                        belajar."
-                    </p>
-                    <p>
-                        Di tengah hiruk pikuk Kota Bandung, masih ada ratusan santri yatim dan dhuafa di pelosok
-                        Kecamatan Lengkong yang kesulitan mendapatkan asupan gizi layak. Keterbatasan ekonomi membuat
-                        mereka seringkali hanya makan nasi dengan garam atau kerupuk seadanya.
-                    </p>
-                    <img src="https://images.unsplash.com/photo-1594708767771-a7502209ff51?w=800&q=80" alt="Anak Makan"
-                        class="rounded-xl w-full my-4">
-                    <p>
-                        <strong>Lazismu Lengkong</strong> berinisiatif menggalang dana untuk menyediakan paket makan
-                        siang bergizi bagi 150 santri binaan setiap hari Jumat. Program ini tidak hanya tentang makanan,
-                        tapi tentang memberikan energi bagi mereka untuk menghafal Al-Qur'an dan menuntut ilmu.
-                    </p>
-                    <h3>Rincian Penggunaan Dana:</h3>
-                    <ul>
-                        <li>Paket Makan Siang (Nasi, Lauk, Sayur, Buah): Rp 25.000/porsi</li>
-                        <li>Target: 150 Santri x 4 Jumat x 12 Bulan</li>
-                        <li>Operasional Distribusi</li>
-                    </ul>
-                    <p>
-                        Mari sisihkan sebagian rezeki kita. Satu porsi makanan darimu, adalah energi kebaikan yang akan
-                        mengalir dalam setiap ayat yang mereka lantunkan.
-                    </p>
+                    {!! $program->content ?? '<p class="text-gray-500 italic">Belum ada deskripsi program.</p>' !!}
                 </div>
 
                 <!-- Tab Content: Kabar Terbaru -->
@@ -225,48 +202,29 @@
                 <!-- Tab Content: Donatur -->
                 <div id="content-donatur" class="tab-content hidden">
                     <div class="space-y-4">
+                        @forelse($program->donations as $donation)
                         <!-- Donor Item -->
                         <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
-                            <div
-                                class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm">
-                                H</div>
-                            <div>
-                                <h5 class="font-bold text-gray-800 text-sm">Hamba Allah</h5>
-                                <p class="text-xs text-gray-500 mb-1">Berdonasi <strong>Rp 500.000</strong> • 5 menit
-                                    lalu</p>
-                                <p class="text-xs text-gray-600 italic">"Semoga menjadi amal jariyah untuk almarhum
-                                    bapak saya."</p>
+                            <div class="w-10 h-10 rounded-full {{ ['bg-blue-100 text-blue-600', 'bg-orange-100 text-primary', 'bg-green-100 text-green-600', 'bg-purple-100 text-purple-600'][($loop->index) % 4] }} flex items-center justify-center font-bold text-sm">
+                                {{ strtoupper(substr($donation->donor_name ?? 'H', 0, 1)) }}
                             </div>
-                        </div>
-
-                        <!-- Donor Item -->
-                        <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
-                            <div
-                                class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-primary font-bold text-sm">
-                                AD</div>
-                            <div>
-                                <h5 class="font-bold text-gray-800 text-sm">Ahmad Dahlan</h5>
-                                <p class="text-xs text-gray-500 mb-1">Berdonasi <strong>Rp 100.000</strong> • 1 jam lalu
+                            <div class="flex-1">
+                                <h5 class="font-bold text-gray-800 text-sm">{{ $donation->donor_name ?? 'Hamba Allah' }}</h5>
+                                <p class="text-xs text-gray-500 mb-1">
+                                    Berdonasi <strong>Rp {{ number_format($donation->amount, 0, ',', '.') }}</strong> • {{ $donation->created_at->diffForHumans() }}
                                 </p>
-                                <p class="text-xs text-gray-600 italic">"Bismillah."</p>
+                                @if($donation->notes)
+                                <p class="text-xs text-gray-600 italic">"{{ $donation->notes }}"</p>
+                                @endif
                             </div>
                         </div>
-
-                        <!-- Donor Item -->
-                        <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
-                            <div
-                                class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold text-sm">
-                                S</div>
-                            <div>
-                                <h5 class="font-bold text-gray-800 text-sm">Siti Aisyah</h5>
-                                <p class="text-xs text-gray-500 mb-1">Berdonasi <strong>Rp 25.000</strong> • 2 jam lalu
-                                </p>
-                            </div>
+                        @empty
+                        <div class="text-center py-12">
+                            <i class="fas fa-heart text-4xl text-gray-300 mb-3"></i>
+                            <p class="text-gray-500">Belum ada donatur</p>
+                            <p class="text-sm text-gray-400">Jadilah yang pertama berdonasi!</p>
                         </div>
-
-                        <button
-                            class="w-full py-3 text-sm font-bold text-primary border border-primary/20 rounded-xl hover:bg-primary/5 transition-colors">Muat
-                            Lebih Banyak</button>
+                        @endforelse
                     </div>
                 </div>
 
@@ -279,20 +237,20 @@
                 <h3 class="font-bold text-lg mb-4 text-[#1A1A2E]">Target Donasi</h3>
 
                 <div class="flex items-end gap-2 mb-2">
-                    <span class="text-3xl font-extrabold text-primary">Rp 45.2jt</span>
+                    <span class="text-3xl font-extrabold text-primary">Rp {{ number_format($program->collected_amount / 1000000, 1) }}jt</span>
                     <span class="text-sm text-gray-400 mb-1.5">terkumpul</span>
                 </div>
 
                 <div class="w-full bg-gray-100 rounded-full h-3 mb-4">
-                    <div class="bg-primary h-3 rounded-full relative" style="width: 45%">
+                    <div class="bg-primary h-3 rounded-full relative" style="width: {{ min($program->progress_percent, 100) }}%">
                         <div class="absolute right-0 -top-1 w-5 h-5 bg-white border-4 border-primary rounded-full">
                         </div>
                     </div>
                 </div>
 
                 <div class="flex justify-between text-sm text-gray-500 mb-6">
-                    <span><strong>45%</strong> tercapai</span>
-                    <span><strong>Rp 100jt</strong> target</span>
+                    <span><strong>{{ $program->progress_percent }}%</strong> tercapai</span>
+                    <span><strong>Rp {{ number_format($program->target_amount / 1000000, 0) }}jt</strong> target</span>
                 </div>
 
                 <a href="{{ route('donasi') }}"
@@ -330,7 +288,7 @@
         class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.1)] p-4 lg:hidden z-50 flex items-center gap-4 pb-safe">
         <div class="flex-1">
             <span class="block text-xs text-gray-500">Terkumpul</span>
-            <span class="block text-lg font-bold text-primary">Rp 45.200.000</span>
+            <span class="block text-lg font-bold text-primary">Rp {{ number_format($program->collected_amount, 0, ',', '.') }}</span>
         </div>
         <a href="{{ route('donasi') }}"
             class="flex-1 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold py-3 rounded-xl shadow-lg text-center">
