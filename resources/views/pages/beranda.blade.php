@@ -22,10 +22,67 @@
     .bg-primary {
         background-color: #F7941D;
     }
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #F7941D 0%, #F15A24 100%);
+    }
+    /* Navbar scrolled state */
+    #navbar.scrolled {
+        background: rgba(26, 26, 46, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
 </style>
 @endpush
 
 @section('content')
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 bg-transparent backdrop-blur-sm"
+        id="navbar">
+        <div class="container mx-auto px-5 flex items-center justify-between max-w-[1200px]">
+            <a href="{{ route('beranda') }}" class="flex flex-col items-center gap-1 group relative logo-container">
+                <!-- Logo Image -->
+                <img src="{{ asset('assets/images/lazismuasli.png') }}" alt="Lazismu Logo"
+                    class="h-10 w-auto transition-all duration-300 logo-img filter brightness-0 invert">
+                <!-- Lengkong text below logo -->
+                <span class="text-[0.625rem] font-normal tracking-wide text-white/70 logo-text-sub transition-colors duration-300"
+                    style="font-family: 'Lato', sans-serif;">
+                    lengkong
+                </span>
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button class="lg:hidden flex flex-col gap-[5px] p-2" id="menuBtn" aria-label="Toggle navigation">
+                <span class="w-[25px] h-[3px] bg-white rounded-sm transition-all"></span>
+                <span class="w-[25px] h-[3px] bg-white rounded-sm transition-all"></span>
+                <span class="w-[25px] h-[3px] bg-white rounded-sm transition-all"></span>
+            </button>
+
+            <ul class="hidden lg:flex items-center gap-8" id="navbarMenu">
+                <li><a href="{{ route('beranda') }}"
+                        class="text-[0.9375rem] font-medium text-white/90 hover:text-white relative py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full nav-link active">Beranda</a>
+                </li>
+                <li><a href="{{ route('kalkulator') }}"
+                        class="text-[0.9375rem] font-medium text-white/90 hover:text-white relative py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full nav-link">Kalkulator
+                        Zakat</a></li>
+                <li><a href="{{ route('program') }}"
+                        class="text-[0.9375rem] font-medium text-white/90 hover:text-white relative py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full nav-link">Program</a>
+                </li>
+                <li><a href="{{ route('tentang-kami') }}"
+                        class="text-[0.9375rem] font-medium text-white/90 hover:text-white relative py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full nav-link">Tentang
+                        Kami</a></li>
+                <li><a href="{{ route('kontak') }}"
+                        class="text-[0.9375rem] font-medium text-white/90 hover:text-white relative py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full nav-link">Kontak</a>
+                </li>
+                <li><a href="{{ route('login') }}"
+                        class="px-5 py-2.5 text-white/90 hover:text-white font-medium hover:scale-105 transition-transform nav-link">Masuk</a>
+                </li>
+                <li><a href="{{ route('donasi') }}"
+                        class="btn-primary flex items-center justify-center gap-2 px-6 py-2.5 text-white font-semibold rounded-lg transition-transform hover:-translate-y-0.5">Donasi
+                        Sekarang</a></li>
+            </ul>
+        </div>
+    </nav>
+
 <!-- Mobile Menu Backdrop -->
     <div class="fixed inset-0 bg-black/50 z-[55] opacity-0 invisible transition-all duration-300 lg:hidden"
         id="menuBackdrop"></div>
@@ -204,12 +261,12 @@
                             <span class="text-sm">Donatur</span>
                         </div>
                         <div class="text-center border-l border-white/20 pl-8">
-                            <strong class="block text-white text-2xl font-bold count-up" data-target="{{ $stats['total_mustahik'] }}"
+                            <strong class="block text-white text-2xl font-bold count-up" data-target="{{ $stats['total_program'] }}"
                                 data-suffix="+">0</strong>
-                            <span class="text-sm">Penerima</span>
+                            <span class="text-sm">Program</span>
                         </div>
                         <div class="text-center border-l border-white/20 pl-8">
-                            <strong class="block text-white text-2xl font-bold count-up" data-target="{{ number_format($stats['total_donasi'] / 1000000, 1, '.', '') }}"
+                            <strong class="block text-white text-2xl font-bold count-up" data-target="{{ number_format($stats['total_tersalurkan'] / 1000000, 1, '.', '') }}"
                                 data-prefix="Rp " data-suffix=" M" data-decimal="true">0</strong>
                             <span class="text-sm">Tersalurkan</span>
                         </div>
@@ -225,11 +282,11 @@
                         <span>Donatur</span>
                     </div>
                     <div class="stats-item-mobile border-l border-white/10">
-                        <strong class="count-up" data-target="{{ $stats['total_mustahik'] }}" data-suffix="+">0</strong>
-                        <span>Penerima</span>
+                        <strong class="count-up" data-target="{{ $stats['total_program'] }}" data-suffix="+">0</strong>
+                        <span>Program</span>
                     </div>
                     <div class="stats-item-mobile border-l border-white/10">
-                        <strong class="count-up" data-target="{{ number_format($stats['total_donasi'] / 1000000, 1, '.', '') }}" data-suffix="M" data-decimal="true">0</strong>
+                        <strong class="count-up" data-target="{{ number_format($stats['total_tersalurkan'] / 1000000, 1, '.', '') }}" data-suffix="M" data-decimal="true">0</strong>
                         <span>Salur</span>
                     </div>
                 </div>
@@ -779,6 +836,16 @@
 
 @push('scripts')
 <script>
+    // Navbar scroll behavior
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
     // Mobile Menu Toggle
     const menuBtn = document.getElementById('menuBtn');
     const closeMenu = document.getElementById('closeMenu');
@@ -825,6 +892,10 @@
                 el: ".swiper-pagination",
                 clickable: true,
             },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
         });
     }
     
@@ -865,5 +936,38 @@
             }
         });
     });
+    
+    // Count Up Animation
+    function animateCountUp(element) {
+        const target = parseFloat(element.getAttribute('data-target'));
+        const prefix = element.getAttribute('data-prefix') || '';
+        const suffix = element.getAttribute('data-suffix') || '';
+        const isDecimal = element.getAttribute('data-decimal') === 'true';
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+
+        const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            const displayValue = isDecimal ? current.toFixed(1) : Math.floor(current);
+            element.textContent = prefix + displayValue + suffix;
+        }, 16);
+    }
+
+    // Trigger count animation when in viewport
+    const countElements = document.querySelectorAll('.count-up');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && entry.target.textContent === '0') {
+                animateCountUp(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    countElements.forEach(el => observer.observe(el));
 </script>
 @endpush

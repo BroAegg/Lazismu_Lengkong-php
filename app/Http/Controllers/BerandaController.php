@@ -12,10 +12,12 @@ class BerandaController extends Controller
     public function index()
     {
         $stats = [
-            'total_donasi' => Donation::verified()->sum('amount'),
-            'total_donatur' => Donation::verified()->distinct('donor_id')->count(),
-            'total_program' => Program::active()->count(),
-            'total_mustahik' => \App\Models\Mustahik::count(),
+            'total_donasi' => Donation::where('status', 'VERIFIED')->sum('amount'),
+            'total_donatur' => Donation::where('status', 'VERIFIED')
+                ->selectRaw('COUNT(DISTINCT COALESCE(donor_id, donor_email)) as count')
+                ->value('count'),
+            'total_program' => Program::where('active', true)->count(),
+            'total_tersalurkan' => Donation::where('status', 'VERIFIED')->sum('net_amount'),
         ];
 
         $featuredPrograms = Program::with('pillar')
@@ -25,9 +27,9 @@ class BerandaController extends Controller
             ->take(6)
             ->get();
 
-        $categories = DonationCategory::active()->ordered()->get();
+        $categories = DonationCategory::where('active', true)->orderBy('order')->get();
 
-        $recentDonations = Donation::verified()
+        $recentDonations = Donation::where('status', 'VERIFIED')
             ->latest()
             ->take(10)
             ->get();
