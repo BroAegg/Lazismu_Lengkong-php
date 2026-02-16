@@ -2,6 +2,29 @@
 
 @section('title', 'Lazismu Lengkong | Zakat, Infaq & Sedekah untuk Warga Lengkong')
 
+@push('styles')
+<style>
+    .btn-primary {
+        background: linear-gradient(135deg, #F7941D 0%, #F15A24 100%);
+    }
+    .gradient-primary {
+        background: linear-gradient(135deg, #F7941D 0%, #F15A24 100%);
+    }
+    .shadow-orange-glow {
+        box-shadow: 0 10px 30px rgba(247, 148, 29, 0.3);
+    }
+    .shadow-orange-glow-hover {
+        box-shadow: 0 15px 40px rgba(247, 148, 29, 0.5);
+    }
+    .text-primary {
+        color: #F7941D;
+    }
+    .bg-primary {
+        background-color: #F7941D;
+    }
+</style>
+@endpush
+
 @section('content')
 <!-- Mobile Menu Backdrop -->
     <div class="fixed inset-0 bg-black/50 z-[55] opacity-0 invisible transition-all duration-300 lg:hidden"
@@ -753,3 +776,94 @@
 
     <!-- Footer -->
 @endsection
+
+@push('scripts')
+<script>
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const closeMenu = document.getElementById('closeMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuBackdrop = document.getElementById('menuBackdrop');
+    
+    if (menuBtn) {
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.style.right = '0';
+            menuBackdrop.style.opacity = '1';
+            menuBackdrop.style.visibility = 'visible';
+        });
+    }
+    
+    if (closeMenu) {
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.style.right = '-100%';
+            menuBackdrop.style.opacity = '0';
+            menuBackdrop.style.visibility = 'invisible';
+        });
+    }
+    
+    if (menuBackdrop) {
+        menuBackdrop.addEventListener('click', () => {
+            mobileMenu.style.right = '-100%';
+            menuBackdrop.style.opacity = '0';
+            menuBackdrop.style.visibility = 'invisible';
+        });
+    }
+    
+    // Swiper Initialization
+    if (typeof Swiper !== 'undefined') {
+        const swiper = new Swiper(".mySwiper", {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            effect: "fade",
+            fadeEffect: {
+                crossFade: true
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+    }
+    
+    // Back to Top Button
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.style.opacity = '1';
+                backToTop.style.visibility = 'visible';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.visibility = 'invisible';
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+    
+    // Smooth Scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                // Close mobile menu if open
+                if (mobileMenu) {
+                    mobileMenu.style.right = '-100%';
+                    menuBackdrop.style.opacity = '0';
+                    menuBackdrop.style.visibility = 'invisible';
+                }
+            }
+        });
+    });
+</script>
+@endpush
