@@ -24,9 +24,13 @@
         @stack('styles')
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen @if(!request()->is('/')) bg-gray-100 @endif">
-            @if(!request()->is('/', 'login', 'register', 'password/*', 'program', 'program/*', 'donasi', 'donasi/*'))
+        <div class="min-h-screen @if(request()->is('dashboard*', 'profile*', 'admin*')) bg-gray-100 @endif">
+            @if(request()->is('dashboard*', 'profile*'))
+                {{-- User dashboard - use Breeze navigation --}}
                 @include('layouts.navigation')
+            @elseif(!request()->is('login', 'register', 'password/*', 'admin*'))
+                {{-- Public pages - use custom navbar --}}
+                <x-public-navbar />
             @endif
 
             <!-- Page Heading -->
@@ -45,6 +49,11 @@
                     {{ $slot }}
                 @endisset
             </main>
+            
+            @if(!request()->is('login', 'register', 'password/*', 'admin*', 'dashboard*', 'profile*'))
+                {{-- Public pages - use custom footer --}}
+                <x-footer />
+            @endif
         </div>
         
         <!-- Swiper JS -->
