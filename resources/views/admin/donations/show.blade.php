@@ -21,14 +21,54 @@
 @if($donation->status === \App\Enums\DonationStatus::PENDING)
 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
     <h2 class="font-bold text-dark-500 mb-4">Verifikasi Donasi</h2>
-    <form method="POST" action="{{ route('admin.donations.verify', $donation->id) }}" class="space-y-4">
+    
+    <!-- Verify Form -->
+    <form method="POST" action="{{ route('admin.donations.verify', $donation->id) }}" class="mb-4" x-data="{ showVerify: false }">
         @csrf @method('PUT')
-        <div><label class="block text-sm font-medium text-gray-700 mb-1">Catatan (Opsional)</label><textarea name="notes" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none"></textarea></div>
-        <div class="flex gap-3">
-            <button type="submit" name="status" value="verified" class="px-6 py-3 bg-green-500 text-white font-bold rounded-xl hover:bg-green-600 transition-colors"><i class="fas fa-check mr-1"></i> Verifikasi</button>
-            <button type="submit" name="status" value="failed" class="px-6 py-3 bg-red-500 text-white font-bold rounded-xl hover:bg-red-600 transition-colors"><i class="fas fa-times mr-1"></i> Tolak</button>
+        <button type="button" @click="showVerify = !showVerify" class="px-6 py-3 bg-green-500 text-white font-bold rounded-xl hover:bg-green-600 transition-colors">
+            <i class="fas fa-check mr-1"></i> Verifikasi Donasi
+        </button>
+        
+        <div x-show="showVerify" x-transition class="mt-4 space-y-3">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Catatan (Opsional)</label>
+                <textarea name="notes" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none" placeholder="Tambahkan catatan jika diperlukan..."></textarea>
+            </div>
+            <div class="flex gap-2">
+                <button type="submit" class="px-6 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors">
+                    Konfirmasi Verifikasi
+                </button>
+                <button type="button" @click="showVerify = false" class="px-6 py-2 bg-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-300 transition-colors">
+                    Batal
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Reject Form -->
+    <form method="POST" action="{{ route('admin.donations.reject', $donation->id) }}" x-data="{ showReject: false }">
+        @csrf @method('PUT')
+        <button type="button" @click="showReject = !showReject" class="px-6 py-3 bg-red-500 text-white font-bold rounded-xl hover:bg-red-600 transition-colors">
+            <i class="fas fa-times mr-1"></i> Tolak Donasi
+        </button>
+        
+        <div x-show="showReject" x-transition class="mt-4 space-y-3">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Alasan Penolakan <span class="text-red-500">*</span></label>
+                <textarea name="notes" rows="3" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500/20 focus:border-red-500 outline-none" placeholder="Jelaskan alasan penolakan..."></textarea>
+            </div>
+            <div class="flex gap-2">
+                <button type="submit" class="px-6 py-2 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors">
+                    Konfirmasi Penolakan
+                </button>
+                <button type="button" @click="showReject = false" class="px-6 py-2 bg-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-300 transition-colors">
+                    Batal
+                </button>
+            </div>
         </div>
     </form>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 @endif
 @endsection

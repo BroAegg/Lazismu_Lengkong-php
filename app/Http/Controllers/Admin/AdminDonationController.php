@@ -43,25 +43,50 @@ class AdminDonationController extends Controller
     public function verify(Request $request, int $id)
     {
         $request->validate([
-            'status' => 'required|in:verified,failed',
             'notes' => 'nullable|string|max:500',
         ]);
 
         $donation = Donation::findOrFail($id);
+        
+        if ($donation->status->value === 'VERIFIED') {
+            return back()->with('error', 'Donasi sudah terverifikasi sebelumnya.');
+        }
+
         $donation->update([
-            'status' => $request->status === 'verified' ? DonationStatus::VERIFIED : DonationStatus::FAILED,
+            'status' => DonationStatus::VERIFIED,
             'verified_by' => Auth::id(),
             'verified_at' => now(),
             'notes' => $request->notes,
         ]);
 
         // Update program collected_amount if verified
-        if ($request->status === 'verified' && $donation->program_id) {
+        if ($donation->program_id) {
             $donation->program->increment('collected_amount', $donation->net_amount);
             $donation->program->increment('donor_count');
         }
 
-        $statusLabel = $request->status === 'verified' ? 'diverifikasi' : 'ditolak';
-        return back()->with('success', "Donasi berhasil {$statusLabel}.");
+        return back()->with('success', 'Donasi berhasil diverifikasi.');
+    }
+
+    public function reject(Request $request, int $id)
+    {
+        $request->validate([
+            'notes' => 'required|string|max:500',
+        ]);
+
+        $donation = Donation::findOrFail($id);
+        
+        if ($donation->status->value === 'VERIFIED') {
+            return back()->with('error', 'Donasi yang sudah terverifikasi tidak dapat ditolak.');
+        }
+
+        $donation->update([
+            'status' => DonationStatus::REJECTED,
+            'verified_by' => Auth::id(),
+            'verified_at' => now(),
+            'notes' => $request->notes,
+        ]);
+
+        return back()->with('success', 'Donasi berhasil ditolak.');
     }
 }
