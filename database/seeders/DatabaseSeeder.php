@@ -16,10 +16,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            DonationCategorySeeder::class,
-            ProgramPillarSeeder::class,
             SettingSeeder::class,
             UserSeeder::class,
+            ProgramPillarSeeder::class,
+            DonationCategorySeeder::class,
+            ProgramSeeder::class,
+            DonationSeeder::class,
         ]);
     }
 }
