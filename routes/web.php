@@ -26,6 +26,10 @@ Route::get('/program/{slug}', [ProgramController::class, 'show'])->name('program
 Route::get('/donasi', [DonasiController::class, 'index'])->name('donasi');
 Route::get('/donasi/{slug}', [DonasiController::class, 'show'])->name('donasi.show');
 
+// Donation submission (public - allows guest donations)
+Route::post('/donasi', [DonasiController::class, 'store'])->name('donasi.store');
+Route::get('/donasi/sukses/{invoice}', [DonasiController::class, 'success'])->name('donasi.success');
+
 // Static Pages
 Route::get('/tentang-kami', [HalamanController::class, 'tentangKami'])->name('tentang-kami');
 Route::get('/kontak', [HalamanController::class, 'kontak'])->name('kontak');
@@ -60,10 +64,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/akun', [AkunController::class, 'index'])->name('akun');
     Route::put('/akun', [AkunController::class, 'update'])->name('akun.update');
     Route::put('/akun/password', [AkunController::class, 'updatePassword'])->name('akun.password');
-
-    // Donation (authenticated)
-    Route::post('/donasi', [DonasiController::class, 'store'])->name('donasi.store');
-    Route::get('/donasi/sukses/{invoice}', [DonasiController::class, 'success'])->name('donasi.success');
 
     // ══════════════════════════════════════════════════
     // ADMIN ROUTES (Staff Only)

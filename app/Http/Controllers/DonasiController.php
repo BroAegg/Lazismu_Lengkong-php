@@ -38,7 +38,8 @@ class DonasiController extends Controller
             'amount' => 'required|numeric|min:10000',
             'payment_method' => 'required|string',
             'donor_name' => 'nullable|string|max:255',
-            'donor_phone' => 'nullable|string|max:20',
+            'donor_email' => 'required_without:donor_phone|email|nullable',
+            'donor_phone' => 'required_without:donor_email|string|max:20|nullable',
             'message' => 'nullable|string|max:500',
             'is_anonymous' => 'boolean',
         ]);
@@ -46,9 +47,9 @@ class DonasiController extends Controller
         $donation = Donation::create([
             'invoice_number' => Donation::generateInvoiceNumber(),
             'donor_id' => auth()->id(),
-            'donor_name' => $request->is_anonymous ? null : ($request->donor_name ?? auth()->user()->name),
-            'donor_email' => auth()->user()->email,
-            'donor_phone' => $request->donor_phone ?? auth()->user()->phone,
+            'donor_name' => $request->is_anonymous ? null : ($request->donor_name ?? auth()->user()?->name),
+            'donor_email' => $request->donor_email ?? auth()->user()?->email,
+            'donor_phone' => $request->donor_phone ?? auth()->user()?->phone,
             'category_id' => $request->category_id,
             'sub_category_id' => $request->sub_category_id,
             'program_id' => $request->program_id,

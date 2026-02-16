@@ -120,6 +120,28 @@
         <form action="{{ route('donasi.store') }}" method="POST" class="space-y-6 w-full lg:w-2/3 lg:max-w-2xl">
             @csrf
 
+            <!-- Category Selection -->
+            <div class="bg-white p-5 lg:p-8 rounded-2xl shadow-card border border-gray-100">
+                <label class="block text-sm font-bold text-gray-700 mb-4 text-base">Pilih Kategori Donasi</label>
+                <select name="category_id" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all">
+                    <option value="">-- Pilih Kategori --</option>
+                    @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- Program Selection (Optional) -->
+            <div class="bg-white p-5 lg:p-8 rounded-2xl shadow-card border border-gray-100">
+                <label class="block text-sm font-bold text-gray-700 mb-4 text-base">Pilih Program (Opsional)</label>
+                <select name="program_id" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all">
+                    <option value="">-- Donasi Umum --</option>
+                    @foreach($programs as $program)
+                    <option value="{{ $program->id }}">{{ $program->title }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <!-- Nominal Section -->
             <div class="bg-white p-5 lg:p-8 rounded-2xl shadow-card border border-gray-100">
                 <label class="block text-sm font-bold text-gray-700 mb-4 text-base">Pilih Nominal Donasi</label>
@@ -145,9 +167,9 @@
 
                 <div class="relative">
                     <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">Rp</span>
-                    <input type="number" id="customAmount"
+                    <input type="number" id="customAmount" name="amount" required
                         class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl font-bold text-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-                        placeholder="Nominal Lainnya" value="100000">
+                        placeholder="Nominal Lainnya" value="100000" min="10000">
                 </div>
                 <p class="text-xs text-gray-400 mt-2 ml-1">Minimal donasi Rp 10.000</p>
             </div>
@@ -160,7 +182,7 @@
                     <!-- QRIS -->
                     <label
                         class="flex items-center gap-4 p-4 border border-primary bg-orange-50 rounded-xl cursor-pointer transition-all hover:bg-orange-100/50">
-                        <input type="radio" name="payment"
+                        <input type="radio" name="payment_method" value="QRIS" required
                             class="w-5 h-5 text-primary focus:ring-primary border-gray-300" checked>
                         <div class="flex-grow">
                             <span class="block font-bold text-sm text-gray-800">Qris (GoPay / OVO / Dana)</span>
@@ -173,7 +195,7 @@
                     <!-- Bank Transfer -->
                     <label
                         class="flex items-center gap-4 p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all">
-                        <input type="radio" name="payment"
+                        <input type="radio" name="payment_method" value="TRANSFER_BSI"
                             class="w-5 h-5 text-primary focus:ring-primary border-gray-300">
                         <div class="flex-grow">
                             <span class="block font-bold text-sm text-gray-800">Transfer Bank</span>
@@ -192,15 +214,18 @@
                 </div>
 
                 <div class="space-y-4">
-                    <input type="text"
+                    <input type="text" name="donor_name"
                         class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all"
                         placeholder="Nama Lengkap (Opsional)">
-                    <input type="email"
+                    <input type="email" name="donor_email" required
                         class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all"
-                        placeholder="Email atau WhatsApp (Penting)">
+                        placeholder="Email (Penting untuk invoice)">
+                    <input type="tel" name="donor_phone" required
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all"
+                        placeholder="WhatsApp / No. HP (Penting)">
 
                     <div class="flex items-center gap-2 mt-2">
-                        <input type="checkbox" id="anonim"
+                        <input type="checkbox" id="anonim" name="is_anonymous" value="1"
                             class="w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary">
                         <label for="anonim" class="text-sm text-gray-600 cursor-pointer">Sembunyikan nama saya (Hamba
                             Allah)</label>
@@ -209,15 +234,15 @@
 
                 <!-- Doa -->
                 <div class="mt-4 pt-4 border-t border-gray-100">
-                    <textarea
+                    <textarea name="message"
                         class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all h-24 resize-none"
-                        placeholder="Tulis doa atau harapan Anda di sini..."></textarea>
+                        placeholder="Tulis doa atau harapan Anda di sini..." maxlength="500"></textarea>
                 </div>
             </div>
 
             <!-- Desktop Submit Button (Inside Form) -->
             <div class="hidden lg:block">
-                <button type="button" onclick="processDonation()"
+                <button type="submit"
                     class="w-full bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-orange-glow hover:-translate-y-1 transition-all flex justify-between px-8 items-center text-lg">
                     <span class="font-medium opacity-90">Lanjut Pembayaran</span>
                     <span class="font-bold" id="totalBtnDesktop">Rp 100.000</span>
