@@ -297,16 +297,8 @@
         updateTotal(100000);
 
         function processDonation() {
-            // Simulate processing
-            const btns = document.querySelectorAll('button[onclick="processDonation()"]');
-            btns.forEach(btn => {
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin mx-auto"></i>';
-                btn.disabled = true;
-            });
-
-            setTimeout(() => {
-                window.location.href = '{{ route('payment-success') }}';
-            }, 1500);
+            // This function is no longer used - form submits directly via POST
+            // Keeping for backward compatibility if JavaScript still references it
         }
     </script>
 </body>
