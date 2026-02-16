@@ -275,3 +275,8 @@ git log --oneline -5
 ---
 
 **Current Status:** Phase 2 at **95% Complete** 🔥
+
+- kado ramadhan
+- back to masjid
+- takjil
+- mudik

@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masuk - Lazismu Lengkong</title>
-    <meta name="description"
-        content="Masuk ke akun Lazismu Lengkong Anda untuk mengelola donasi dan melihat dampak kebaikan Anda.">
+    <meta name="description" content="Masuk ke akun Lazismu Lengkong Anda untuk mengelola donasi dan melihat dampak kebaikan Anda.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
@@ -14,9 +13,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&family=Lato:wght@300;400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -68,8 +65,7 @@
     <div class="hidden lg:flex w-1/2 bg-[#1A1A2E] relative items-center justify-center overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&q=80" alt="Anak-anak Panti"
-                class="w-full h-full object-cover opacity-60">
+            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&q=80" alt="Anak-anak Panti" class="w-full h-full object-cover opacity-60">
         </div>
 
         <!-- Overlay Gradient -->
@@ -78,8 +74,7 @@
         <!-- Content -->
         <div class="relative z-20 max-w-lg px-8 text-center text-white">
             <div class="mb-8 flex justify-center">
-                <div
-                    class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20">
+                <div class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20">
                     <i class="fas fa-heart text-3xl text-primary"></i>
                 </div>
             </div>
@@ -92,15 +87,11 @@
             </p>
 
             <!-- Testimonial Tiny -->
-            <div
-                class="mt-12 flex items-center gap-4 bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/5 mx-auto w-fit transition-transform hover:scale-105 duration-300">
+            <div class="mt-12 flex items-center gap-4 bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/5 mx-auto w-fit transition-transform hover:scale-105 duration-300">
                 <div class="flex -space-x-3">
-                    <img class="w-10 h-10 rounded-full border-2 border-[#1A1A2E]"
-                        src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
-                    <img class="w-10 h-10 rounded-full border-2 border-[#1A1A2E]"
-                        src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
-                    <img class="w-10 h-10 rounded-full border-2 border-[#1A1A2E]"
-                        src="https://randomuser.me/api/portraits/men/85.jpg" alt="User">
+                    <img class="w-10 h-10 rounded-full border-2 border-[#1A1A2E]" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                    <img class="w-10 h-10 rounded-full border-2 border-[#1A1A2E]" src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                    <img class="w-10 h-10 rounded-full border-2 border-[#1A1A2E]" src="https://randomuser.me/api/portraits/men/85.jpg" alt="User">
                 </div>
                 <div class="text-left">
                     <p class="text-sm font-bold text-white">1,200+ Donatur</p>
@@ -113,33 +104,46 @@
     <!-- Right Side - Login Form -->
     <div class="w-full lg:w-1/2 h-full bg-white relative overflow-y-auto custom-scrollbar">
         <!-- Decoration -->
-        <div
-            class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none">
-        </div>
-        <div
-            class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none">
-        </div>
+        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none"></div>
 
         <div class="min-h-full flex flex-col justify-center items-center p-8 md:p-12 relative z-10 w-full">
             <div class="w-full max-w-md space-y-6 animate-fade-in">
                 <!-- Header (Title Only) -->
                 <div class="mb-4">
-                    <h3 class="text-2xl font-bold text-gray-900 leading-tight">Masuk untuk mulai tolong-menolong sesama
-                    </h3>
+                    <h3 class="text-2xl font-bold text-gray-900 leading-tight">Masuk untuk mulai tolong-menolong sesama</h3>
                 </div>
 
+                <!-- Session Status -->
+                @if (session('status'))
+                    <div class="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg text-sm">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+                <!-- Validation Errors -->
+                @if ($errors->any())
+                    <div class="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm space-y-1">
+                        <p class="font-semibold">Terjadi kesalahan:</p>
+                        <ul class="list-disc list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <!-- Form -->
-                <form action="{{ route('login.attempt') }}" method="POST" class="space-y-5">
+                <form method="POST" action="{{ route('login') }}" class="space-y-5">
                     @csrf
+
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1 ml-1">Email / No.
-                            Handphone</label>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1 ml-1">Email / No. Handphone</label>
                         <div class="relative group">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <i
-                                    class="fas fa-envelope text-gray-400 group-focus-within:text-primary transition-colors"></i>
+                                <i class="fas fa-envelope text-gray-400 group-focus-within:text-primary transition-colors"></i>
                             </div>
-                            <input type="text" id="email" name="email" required
+                            <input type="text" id="email" name="email" value="{{ old('email') }}" required autofocus
                                 class="pl-11 w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder-gray-400 text-gray-800"
                                 placeholder="Email atau Nomor HP">
                         </div>
@@ -148,20 +152,16 @@
                     <div>
                         <div class="flex justify-between items-center mb-1 ml-1">
                             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                            <a href="{{ route('password.request') }}"
-                                class="text-xs font-semibold text-primary hover:text-orange-600 transition-colors">Lupa
-                                Password?</a>
+                            <a href="{{ route('password.request') }}" class="text-xs font-semibold text-primary hover:text-orange-600 transition-colors">Lupa Password?</a>
                         </div>
                         <div class="relative group">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <i
-                                    class="fas fa-lock text-gray-400 group-focus-within:text-primary transition-colors"></i>
+                                <i class="fas fa-lock text-gray-400 group-focus-within:text-primary transition-colors"></i>
                             </div>
                             <input type="password" id="password" name="password" required
                                 class="pl-11 w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder-gray-400 text-gray-800"
                                 placeholder="••••••••">
-                            <button type="button" onclick="togglePassword()"
-                                class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
+                            <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
                                 <i class="fas fa-eye" id="toggleIcon"></i>
                             </button>
                         </div>
@@ -169,14 +169,11 @@
 
                     <!-- Remember Me -->
                     <div class="flex items-center ml-1">
-                        <input id="remember-me" name="remember" type="checkbox"
-                            class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded cursor-pointer">
-                        <label for="remember-me"
-                            class="ml-2 block text-sm text-gray-500 cursor-pointer select-none">Ingat saya</label>
+                        <input id="remember_me" name="remember" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded cursor-pointer">
+                        <label for="remember_me" class="ml-2 block text-sm text-gray-500 cursor-pointer select-none">Ingat saya</label>
                     </div>
 
-                    <button type="submit"
-                        class="w-full bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold py-3.5 rounded-xl shadow-lg shadow-orange-200 hover:shadow-orange-glow hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2 group">
+                    <button type="submit" class="w-full bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold py-3.5 rounded-xl shadow-lg shadow-orange-200 hover:shadow-orange-glow hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2 group">
                         <span>Masuk</span>
                         <i class="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
                     </button>
@@ -185,30 +182,26 @@
                 <!-- Footer Link -->
                 <p class="text-center text-gray-600 text-sm">
                     Belum punya akun?
-                    <a href="{{ route('register') }}"
-                        class="font-bold text-primary hover:text-orange-600 transition-colors hover:underline decoration-2 underline-offset-2">Daftar</a>
+                    <a href="{{ route('register') }}" class="font-bold text-primary hover:text-orange-600 transition-colors hover:underline decoration-2 underline-offset-2">Daftar</a>
                 </p>
 
                 <!-- Divider -->
                 <div class="relative flex py-2 items-center">
                     <div class="flex-grow border-t border-gray-200"></div>
-                    <span class="flex-shrink-0 mx-4 text-gray-400 text-xs text-gray-500 font-medium">Atau lebih
-                        cepat</span>
+                    <span class="flex-shrink-0 mx-4 text-gray-400 text-xs text-gray-500 font-medium">Atau lebih cepat</span>
                     <div class="flex-grow border-t border-gray-200"></div>
                 </div>
 
-                <!-- Social Login -->
-                <button
-                    class="w-full flex items-center justify-center gap-3 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300 text-gray-700 font-medium py-3 px-4 rounded-xl transition-all duration-300 group shadow-sm">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg"
-                        class="w-5 h-5 group-hover:scale-110 transition-transform" alt="Google">
-                    <span>Masuk dengan Google</span>
+                <!-- Social Login (Disabled for now) -->
+                <button disabled class="w-full flex items-center justify-center gap-3 bg-gray-100 border border-gray-200 text-gray-400 font-medium py-3 px-4 rounded-xl cursor-not-allowed opacity-60">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" alt="Google">
+                    <span>Masuk dengan Google (Segera Hadir)</span>
                 </button>
 
                 <div class="pt-6 border-t border-gray-100 flex justify-center gap-6 text-xs text-gray-400">
-                    <a href="{{ route('kebijakan-privasi') }}" class="hover:text-gray-600 transition-colors">Kebijakan Privasi</a>
-                    <a href="{{ route('syarat-ketentuan') }}" class="hover:text-gray-600 transition-colors">Syarat & Ketentuan</a>
-                    <a href="{{ route('bantuan') }}" class="hover:text-gray-600 transition-colors">Bantuan</a>
+                    <a href="#" class="hover:text-gray-600 transition-colors">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-gray-600 transition-colors">Syarat & Ketentuan</a>
+                    <a href="#" class="hover:text-gray-600 transition-colors">Bantuan</a>
                 </div>
             </div>
         </div>
