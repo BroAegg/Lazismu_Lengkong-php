@@ -15,9 +15,9 @@
 
         <!-- Mobile Menu Button -->
         <button class="lg:hidden flex flex-col gap-[5px] p-2" id="menuBtn" aria-label="Toggle navigation">
-            <span class="w-[25px] h-[3px] bg-white rounded-sm transition-all"></span>
-            <span class="w-[25px] h-[3px] bg-white rounded-sm transition-all"></span>
-            <span class="w-[25px] h-[3px] bg-white rounded-sm transition-all"></span>
+            <span class="w-[25px] h-[3px] bg-white rounded-sm transition-all toggle-bar"></span>
+            <span class="w-[25px] h-[3px] bg-white rounded-sm transition-all toggle-bar"></span>
+            <span class="w-[25px] h-[3px] bg-white rounded-sm transition-all toggle-bar"></span>
         </button>
 
         <ul class="hidden lg:flex items-center gap-8" id="navbarMenu">
