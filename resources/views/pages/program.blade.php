@@ -104,31 +104,50 @@
                     data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 + 100 }}">
                     
                     @if($program->is_featured)
-                    <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary to-accent"></div>
+                    <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary to-accent z-20"></div>
                     @endif
                     
-                    <!-- Card Header -->
-                    <div class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start {{ $program->is_featured ? 'bg-orange-50/30' : 'bg-gray-50 group-hover:bg-orange-50/30' }} transition-colors">
-                        <div class="w-12 h-12 {{ $program->is_featured ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg shadow-orange-200' : 'bg-white text-primary shadow-sm' }} rounded-xl flex items-center justify-center text-xl">
+                    <!-- Card Image -->
+                    <div class="relative h-48 overflow-hidden bg-gray-100">
+                        @php
+                        $heroImages = [
+                            'kado-ramadhan'           => 'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=600&q=80',
+                            'back-to-masjid-ramadhan' => 'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=600&q=80',
+                            'tebar-takjil'            => 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&q=80',
+                            'mudikmu-aman'            => 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80',
+                        ];
+                        $imgUrl = $heroImages[$program->slug]
+                            ?? ($program->image && str_starts_with($program->image, 'http') ? $program->image : null)
+                            ?? ($program->image ? asset('storage/' . $program->image) : null)
+                            ?? 'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=600&q=80';
+                        @endphp
+                        <img src="{{ $imgUrl }}" alt="{{ $program->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        
+                        <!-- Overlay Gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        
+                        <!-- Badges -->
+                        <div class="absolute top-4 right-4 flex flex-col gap-2 items-end">
+                            @if($program->is_featured)
+                            <span class="px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full flex items-center gap-1 shadow-lg">
+                                <i class="fas fa-fire"></i> Unggulan
+                            </span>
+                            @endif
+                            @if($program->pillar)
+                            <span class="px-3 py-1 text-xs font-bold rounded-full shadow-lg" style="background-color: {{ $program->pillar->color }}; color: white;">
+                                {{ $program->pillar->name }}
+                            </span>
+                            @endif
+                        </div>
+                        
+                        <!-- Icon -->
+                        <div class="absolute -bottom-6 left-6 w-12 h-12 {{ $program->is_featured ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg shadow-orange-200' : 'bg-white text-primary shadow-md' }} rounded-xl flex items-center justify-center text-xl border-2 border-white z-10">
                             <i class="{{ $program->pillar->icon ?? 'fas fa-hand-holding-heart' }}"></i>
                         </div>
-                        @if($program->is_featured)
-                        <span class="px-3 py-1 bg-red-100 text-red-600 text-xs font-bold rounded-full flex items-center gap-1">
-                            <i class="fas fa-fire"></i> Unggulan
-                        </span>
-                        @elseif($program->pillar)
-                        <span class="px-3 py-1 text-xs font-bold rounded-full" style="background-color: {{ $program->pillar->color }}20; color: {{ $program->pillar->color }}">
-                            {{ $program->pillar->name }}
-                        </span>
-                        @else
-                        <span class="px-3 py-1 bg-gray-200 text-gray-600 text-xs font-bold rounded-full">
-                            Program
-                        </span>
-                        @endif
                     </div>
                     
                     <!-- Card Body -->
-                    <div class="p-6 flex-1 flex flex-col">
+                    <div class="p-6 pt-10 flex-1 flex flex-col">
                         <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors line-clamp-2">
                             {{ $program->title }}
                         </h3>
