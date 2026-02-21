@@ -29,9 +29,10 @@ class BerandaController extends Controller
 
         $categories = DonationCategory::where('is_active', true)->orderBy('sort_order')->get();
 
-        $recentDonations = Donation::where('status', 'VERIFIED')
+        $recentDonations = Donation::with('program:id,title,slug')
+            ->where('status', 'VERIFIED')
             ->latest()
-            ->take(10)
+            ->take(8)
             ->get();
 
         return view('pages.beranda', compact('stats', 'featuredPrograms', 'categories', 'recentDonations'));

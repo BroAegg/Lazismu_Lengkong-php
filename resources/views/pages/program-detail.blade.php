@@ -109,7 +109,18 @@
         <div class="w-full lg:w-2/3 bg-white lg:rounded-2xl lg:shadow-sm lg:border lg:border-gray-100 overflow-hidden">
             <!-- Hero Image -->
             <div class="relative h-[280px] md:h-[400px] lg:h-[450px]">
-                <img src="{{ $program->image_url ?? 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80' }}" alt="{{ $program->title }}"
+                @php
+                $heroImages = [
+                    'kado-ramadhan'           => 'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=1200&q=80',
+                    'back-to-masjid-ramadhan' => 'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=1200&q=80',
+                    'tebar-takjil'            => 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1200&q=80',
+                    'mudikmu-aman'            => 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&q=80',
+                ];
+                $heroImg = $heroImages[$program->slug]
+                    ?? ($program->image && str_starts_with($program->image, 'http') ? $program->image : null)
+                    ?? 'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=1200&q=80';
+                @endphp
+                <img src="{{ $heroImg }}" alt="{{ $program->title }}"
                     class="w-full h-full object-cover">
                 <div
                     class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 lg:hidden">

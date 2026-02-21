@@ -358,112 +358,150 @@
         </div>
     </section>
 
-    <!-- Programs Section -->
-    <section class="py-24 bg-white" id="program">
+    <!-- How It Works Section -->
+    <section class="py-20 bg-white" id="cara-berdonasi">
         <div class="container mx-auto px-5 max-w-[1200px]">
+
+            <!-- Section Header -->
             <div class="text-center mb-16" data-aos="fade-up">
-                <span
-                    class="inline-block px-4 py-2 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white text-sm font-semibold rounded-full mb-4">Pilih
-                    Paket Kebaikan Anda</span>
-                <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold text-[#1A1A2E] mb-4 leading-tight">Program
-                    Unggulan</h2>
-                <p class="text-lg text-gray-600 max-w-[700px] mx-auto">
-                    Berbagai pilihan program untuk menyalurkan zakat, infaq, dan sedekah Anda
-                    sesuai dengan fokus kebaikan yang diinginkan.
+                <span class="inline-block px-4 py-2 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white text-sm font-semibold rounded-full mb-4">
+                    Mudah & Aman
+                </span>
+                <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold text-[#1A1A2E] mb-4 leading-tight">
+                    Berdonasi Semudah 3 Langkah
+                </h2>
+                <p class="text-lg text-gray-600 max-w-[600px] mx-auto">
+                    Tidak perlu ribet. Pilih program, bayar, dan Anda langsung menjadi bagian dari kebaikan nyata.
                 </p>
             </div>
 
-            @if($featuredPrograms->count() > 0)
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach($featuredPrograms as $index => $program)
-                <div class="bg-white rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden group border border-gray-100 {{ $index === 0 ? 'lg:col-span-1 border-2 border-primary/20 shadow-[0_15px_40px_rgba(247,148,29,0.15)]' : '' }}"
-                    data-aos="fade-up" data-aos-delay="{{ ($index + 1) * 100 }}">
-                    
-                    @if($index === 0)
-                    <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary to-accent"></div>
-                    @endif
-                    
-                    <div class="p-6 pb-4 border-b border-gray-100 flex justify-between items-start {{ $index === 0 ? 'bg-orange-50/30' : 'bg-gray-50 group-hover:bg-orange-50/30' }} transition-colors">
-                        <div class="w-12 h-12 {{ $index === 0 ? 'bg-gradient-to-br from-primary to-accent text-white shadow-lg shadow-orange-200' : 'bg-white text-primary shadow-sm' }} rounded-xl flex items-center justify-center text-xl">
-                            <i class="fas fa-hand-holding-heart"></i>
-                        </div>
-                        @if($index === 0)
-                        <span class="px-3 py-1 bg-red-100 text-red-600 text-xs font-bold rounded-full flex items-center gap-1">
-                            <i class="fas fa-fire"></i> Populer
-                        </span>
-                        @else
-                        <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">
-                            {{ $program->pillar->name ?? 'Program' }}
-                        </span>
-                        @endif
+            <!-- 3 Steps -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20" data-aos="fade-up" data-aos-delay="100">
+
+                <!-- Step 1 -->
+                <div class="relative text-center group">
+                    <div class="hidden md:block absolute top-10 left-[calc(50%+3rem)] w-full h-0.5 bg-gradient-to-r from-primary/40 to-transparent -z-0"></div>
+                    <div class="relative z-10 w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg shadow-orange-200 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-th-large"></i>
+                        <span class="absolute -top-2 -right-2 w-7 h-7 bg-[#1A1A2E] text-white text-xs font-black rounded-full flex items-center justify-center">1</span>
                     </div>
-                    
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-lg font-bold text-[#1A1A2E] mb-3 group-hover:text-primary transition-colors line-clamp-2 min-h-[3.5rem]">
-                            {{ $program->title }}
-                        </h3>
-                        <p class="text-gray-600 text-sm mb-6 flex-1 leading-relaxed line-clamp-3">
-                            {{ $program->description }}
-                        </p>
-                        
-                        @if($program->target_amount)
-                        <div class="mb-6">
-                            <span class="text-xs text-gray-400 block mb-1">Target Donasi</span>
-                            <strong class="text-xl {{ $index === 0 ? 'text-primary' : 'text-[#1A1A2E]' }}">
-                                Rp {{ number_format($program->target_amount, 0, ',', '.') }}
-                            </strong>
-                        </div>
-                        
-                        @if($program->collected_amount > 0)
-                        <div class="mb-6">
-                            <div class="flex justify-between text-xs font-bold mb-2">
-                                <span class="text-gray-600">
-                                    Rp {{ number_format($program->collected_amount, 0, ',', '.') }} terkumpul
-                                </span>
-                                <span class="text-primary">
-                                    {{ $program->target_amount > 0 ? round(($program->collected_amount / $program->target_amount) * 100) : 0 }}%
-                                </span>
+                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">Pilih Program</h3>
+                    <p class="text-gray-500 leading-relaxed">
+                        Geser hero di atas, pilih program Ramadan yang paling dekat di hati Anda, lalu klik <strong>Donasi Sekarang</strong>.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative text-center group">
+                    <div class="hidden md:block absolute top-10 left-[calc(50%+3rem)] w-full h-0.5 bg-gradient-to-r from-primary/40 to-transparent -z-0"></div>
+                    <div class="relative z-10 w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg shadow-emerald-200 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-credit-card"></i>
+                        <span class="absolute -top-2 -right-2 w-7 h-7 bg-[#1A1A2E] text-white text-xs font-black rounded-full flex items-center justify-center">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">Isi & Bayar</h3>
+                    <p class="text-gray-500 leading-relaxed">
+                        Masukkan nama, jumlah donasi, dan pilih metode pembayaran: <strong>Transfer Bank, QRIS,</strong> atau <strong>Tunai</strong>.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative text-center group">
+                    <div class="relative z-10 w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg shadow-blue-200 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fab fa-whatsapp"></i>
+                        <span class="absolute -top-2 -right-2 w-7 h-7 bg-[#1A1A2E] text-white text-xs font-black rounded-full flex items-center justify-center">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">Terima Laporan</h3>
+                    <p class="text-gray-500 leading-relaxed">
+                        Donasi Anda tercatat. Laporan penyaluran dikirim langsung ke <strong>WhatsApp & Email</strong> Anda secara berkala.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Live Donation Feed -->
+            <div class="flex flex-col lg:flex-row gap-10 items-start" data-aos="fade-up" data-aos-delay="200">
+
+                <!-- Left: Feed Header + List -->
+                <div class="w-full lg:w-1/2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                        </span>
+                        <h3 class="text-lg font-bold text-[#1A1A2E]">Donasi Terbaru</h3>
+                        <span class="text-xs text-gray-400 font-medium">— live</span>
+                    </div>
+
+                    <div class="space-y-3" id="donationFeed">
+                        @forelse($recentDonations as $donation)
+                        <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-primary/20 hover:bg-orange-50/30 transition-all duration-200">
+                            <!-- Avatar -->
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm">
+                                {{ $donation->is_anonymous ? '🤲' : strtoupper(substr($donation->donor_name ?? 'D', 0, 1)) }}
                             </div>
-                            <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-primary to-accent rounded-full" 
-                                     style="width: {{ $program->target_amount > 0 ? min(($program->collected_amount / $program->target_amount) * 100, 100) : 0 }}%"></div>
+                            <!-- Info -->
+                            <div class="flex-1 min-w-0">
+                                <p class="font-semibold text-[#1A1A2E] text-sm truncate">
+                                    {{ $donation->is_anonymous ? 'Hamba Allah' : ($donation->donor_name ?? 'Donatur') }}
+                                </p>
+                                <p class="text-xs text-gray-400 truncate">
+                                    {{ $donation->program?->title ?? 'Donasi Umum' }}
+                                </p>
+                            </div>
+                            <!-- Amount & Time -->
+                            <div class="text-right shrink-0">
+                                <p class="font-bold text-primary text-sm">Rp {{ number_format($donation->amount, 0, ',', '.') }}</p>
+                                <p class="text-xs text-gray-400">{{ $donation->created_at->diffForHumans() }}</p>
                             </div>
                         </div>
-                        @endif
-                        @endif
-                        
-                        <a href="{{ route('program.show', $program->slug) }}"
-                            class="btn-primary w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-200 transition-all">
-                            <i class="fas fa-heart"></i> Donasi Sekarang
-                        </a>
+                        @empty
+                        <div class="text-center py-10 text-gray-400">
+                            <i class="fas fa-heart text-4xl mb-3 text-gray-200"></i>
+                            <p>Jadilah yang pertama berdonasi!</p>
+                        </div>
+                        @endforelse
                     </div>
                 </div>
-                @endforeach
-            </div>
-            
-            <div class="text-center mt-12" data-aos="fade-up">
-                <a href="{{ route('program') }}" 
-                   class="inline-flex items-center gap-2 px-8 py-3 border-2 border-primary text-primary font-bold rounded-xl hover:bg-primary hover:text-white transition-all">
-                    Lihat Semua Program <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            @else
-            <div class="text-center py-20">
-                <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-box-open text-4xl text-gray-400"></i>
+
+                <!-- Right: Urgency CTA Box -->
+                <div class="w-full lg:w-1/2 sticky top-24">
+                    <div class="bg-gradient-to-br from-[#1A1A2E] to-[#2D2D44] rounded-3xl p-8 text-white relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-primary/20 rounded-full blur-3xl -mr-10 -mt-10"></div>
+                        <div class="relative z-10">
+                            <span class="inline-block px-3 py-1 bg-primary/20 text-[#FFB347] text-xs font-bold rounded-full border border-primary/30 mb-4">
+                                <i class="fas fa-moon mr-1"></i> RAMADAN 1447 H
+                            </span>
+                            <h3 class="text-2xl font-extrabold mb-3 leading-tight">
+                                Setiap Rupiah Berlipat <span class="text-[#FFB347]">Pahalanya.</span>
+                            </h3>
+                            <p class="text-white/70 text-sm leading-relaxed mb-6">
+                                Ramadan adalah bulan terbaik untuk beramal. Tidak ada waktu yang lebih tepat dari sekarang untuk mulai berbagi.
+                            </p>
+
+                            <!-- Mini Stats -->
+                            <div class="grid grid-cols-2 gap-4 mb-8">
+                                <div class="bg-white/10 rounded-2xl p-4 text-center">
+                                    <strong class="block text-2xl font-extrabold text-[#FFB347]">{{ $stats['total_donatur'] }}+</strong>
+                                    <span class="text-xs text-white/60">Donatur Aktif</span>
+                                </div>
+                                <div class="bg-white/10 rounded-2xl p-4 text-center">
+                                    <strong class="block text-2xl font-extrabold text-[#FFB347]">{{ $featuredPrograms->count() }}</strong>
+                                    <span class="text-xs text-white/60">Program Ramadan</span>
+                                </div>
+                            </div>
+
+                            <a href="{{ route('program') }}"
+                               class="flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold rounded-xl shadow-lg shadow-orange-900/30 hover:-translate-y-0.5 hover:shadow-orange-900/50 transition-all duration-300">
+                                <i class="fas fa-hand-holding-heart"></i> Pilih Program & Donasi
+                            </a>
+                            <p class="text-center text-white/40 text-xs mt-3">
+                                <i class="fas fa-shield-alt mr-1"></i> Aman · Transparan · Sesuai Syariah
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-3">Belum Ada Program</h3>
-                <p class="text-gray-600 mb-8">Program unggulan akan ditampilkan di sini setelah ditambahkan melalui CMS.</p>
-                @auth
-                    @if(auth()->user()->role !== 'USER')
-                    <a href="{{ route('admin.program.create') }}" 
-                       class="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white font-bold rounded-xl hover:shadow-lg hover:shadow-orange-200 transition-all">
-                        <i class="fas fa-plus"></i> Tambah Program Pertama
-                    </a>
-                    @endif
-                @endauth
+
             </div>
-            @endif
         </div>
     </section>
 
