@@ -150,7 +150,7 @@
                         <i class="fas fa-chevron-down text-sm text-gray-400 shrink-0 transition-transform duration-300"
                             :class="{ 'rotate-180': open === {{ $i }} }"></i>
                     </button>
-                    <div x-show="open === {{ $i }}" x-collapse class="px-5 pb-5">
+                    <div x-show="open === {{ $i }}" x-transition.duration.300ms class="px-5 pb-5">
                         <p class="text-gray-600 text-sm leading-relaxed border-t border-gray-200 pt-4">{{ $faq['a'] }}</p>
                     </div>
                 </div>
