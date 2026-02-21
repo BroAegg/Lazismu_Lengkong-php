@@ -25,18 +25,25 @@ class AdminProgramController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'pillar_id' => 'required|exists:program_pillars,id',
-            'description' => 'required|string',
-            'content' => 'nullable|string',
-            'target_amount' => 'required|numeric|min:0',
-            'image' => 'nullable|image|max:2048',
-            'start_date' => 'nullable|date',
-            'end_date' => 'nullable|date|after:start_date',
+            'title'           => 'required|string|max:255',
+            'pillar_id'       => 'required|exists:program_pillars,id',
+            'description'     => 'required|string',
+            'content'         => 'nullable|string',
+            'psak_fund_type'  => 'required|string|in:' . implode(',', array_column(\App\Enums\PsakFundType::cases(), 'value')),
+            'target_amount'   => 'required|numeric|min:0',
+            'collected_amount'=> 'nullable|numeric|min:0',
+            'donor_count'     => 'nullable|integer|min:0',
+            'image'           => 'nullable|image|max:2048',
+            'start_date'      => 'nullable|date',
+            'end_date'        => 'nullable|date|after_or_equal:start_date',
         ]);
 
         $data = $request->except('image');
-        $data['slug'] = Str::slug($request->title);
+        $data['slug']        = Str::slug($request->title);
+        $data['is_active']   = $request->boolean('is_active');
+        $data['is_featured'] = $request->boolean('is_featured');
+        $data['collected_amount'] = $request->input('collected_amount', 0);
+        $data['donor_count']      = $request->input('donor_count', 0);
 
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('programs', 'public');
@@ -56,14 +63,22 @@ class AdminProgramController extends Controller
     public function update(Request $request, Program $program)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'pillar_id' => 'required|exists:program_pillars,id',
-            'description' => 'required|string',
-            'target_amount' => 'required|numeric|min:0',
-            'image' => 'nullable|image|max:2048',
+            'title'           => 'required|string|max:255',
+            'pillar_id'       => 'required|exists:program_pillars,id',
+            'description'     => 'required|string',
+            'content'         => 'nullable|string',
+            'psak_fund_type'  => 'required|string|in:' . implode(',', array_column(\App\Enums\PsakFundType::cases(), 'value')),
+            'target_amount'   => 'required|numeric|min:0',
+            'collected_amount'=> 'nullable|numeric|min:0',
+            'donor_count'     => 'nullable|integer|min:0',
+            'image'           => 'nullable|image|max:2048',
+            'start_date'      => 'nullable|date',
+            'end_date'        => 'nullable|date|after_or_equal:start_date',
         ]);
 
         $data = $request->except('image');
+        $data['is_active']   = $request->boolean('is_active');
+        $data['is_featured'] = $request->boolean('is_featured');
 
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('programs', 'public');

@@ -8,7 +8,7 @@
 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
     <div class="overflow-x-auto">
         <table class="w-full text-sm">
-            <thead><tr class="border-b border-gray-200"><th class="text-left py-3 px-2">Program</th><th class="text-left py-3 px-2">Pilar</th><th class="text-right py-3 px-2">Target</th><th class="text-right py-3 px-2">Terkumpul</th><th class="text-center py-3 px-2">Status</th><th class="text-center py-3 px-2">Aksi</th></tr></thead>
+            <thead><tr class="border-b border-gray-200"><th class="text-left py-3 px-2">Program</th><th class="text-left py-3 px-2">Pilar</th><th class="text-right py-3 px-2">Target</th><th class="text-right py-3 px-2">Terkumpul</th><th class="text-center py-3 px-2">Status</th><th class="text-center py-3 px-2">Hero</th><th class="text-center py-3 px-2">Aksi</th></tr></thead>
             <tbody>
                 @forelse($programs as $p)
                 <tr class="border-b border-gray-50">
@@ -17,6 +17,9 @@
                     <td class="py-3 px-2 text-right">Rp {{ number_format($p->target_amount, 0, ',', '.') }}</td>
                     <td class="py-3 px-2 text-right font-bold text-primary-500">Rp {{ number_format($p->collected_amount, 0, ',', '.') }}</td>
                     <td class="py-3 px-2 text-center"><span class="px-2 py-1 text-xs rounded-full {{ $p->is_active ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-500' }}">{{ $p->is_active ? 'Aktif' : 'Nonaktif' }}</span></td>
+                    <td class="py-3 px-2 text-center">
+                        @if($p->is_featured)<span title="Tampil di Hero Slider"><i class="fas fa-star text-yellow-400"></i></span>@else<span class="text-gray-200"><i class="far fa-star"></i></span>@endif
+                    </td>
                     <td class="py-3 px-2 text-center flex justify-center gap-2">
                         <a href="{{ route('admin.program.edit', $p) }}" class="text-blue-500 text-xs"><i class="fas fa-edit"></i></a>
                         <form method="POST" action="{{ route('admin.program.destroy', $p) }}" onsubmit="return confirm('Hapus program?')">@csrf @method('DELETE')<button class="text-red-500 text-xs"><i class="fas fa-trash"></i></button></form>
