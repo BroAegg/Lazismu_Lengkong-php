@@ -361,138 +361,187 @@
 
             <!-- Section Header -->
             <div class="text-center mb-16" data-aos="fade-up">
-                <span class="inline-block px-4 py-2 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white text-sm font-semibold rounded-full mb-4">
-                    Mudah & Aman
+                <span class="inline-block px-4 py-2 bg-orange-50 text-orange-600 text-sm font-bold tracking-wide rounded-full mb-4 border border-orange-100">
+                    <i class="fas fa-check-circle mr-2"></i>Mudah & Aman
                 </span>
-                <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold text-[#1A1A2E] mb-4 leading-tight">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-[#1A1A2E] mb-6 leading-tight">
                     {{ \App\Models\Setting::get('beranda_cara_heading', 'Berdonasi Semudah 3 Langkah') }}
                 </h2>
-                <p class="text-lg text-gray-600 max-w-[600px] mx-auto">
+                <p class="text-lg md:text-xl text-gray-500 max-w-[700px] mx-auto leading-relaxed">
                     {{ \App\Models\Setting::get('beranda_cara_desc', 'Tidak perlu ribet. Pilih program, bayar, dan Anda langsung menjadi bagian dari kebaikan nyata.') }}
                 </p>
             </div>
 
-            <!-- 3 Steps -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20" data-aos="fade-up" data-aos-delay="100">
+            <!-- 3 Steps Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 relative" data-aos="fade-up" data-aos-delay="100">
+                <!-- Connector Line (Desktop) -->
+                <div class="hidden md:block absolute top-[3.5rem] left-[16%] right-[16%] h-1 bg-gray-100 border-t-2 border-dashed border-gray-300 -z-10" aria-hidden="true"></div>
 
                 <!-- Step 1 -->
-                <div class="relative text-center group">
-                    <div class="hidden md:block absolute top-10 left-[calc(50%+3rem)] w-full h-0.5 bg-gradient-to-r from-primary/40 to-transparent -z-0"></div>
-                    <div class="relative z-10 w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg shadow-orange-200 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-th-large"></i>
-                        <span class="absolute -top-2 -right-2 w-7 h-7 bg-[#1A1A2E] text-white text-xs font-black rounded-full flex items-center justify-center">1</span>
+                <div class="relative bg-white rounded-[2rem] p-8 border border-gray-100 shadow-xl shadow-gray-100/50 hover:shadow-2xl hover:shadow-orange-100/50 hover:-translate-y-2 transition-all duration-300 text-center group h-full">
+                    <div class="relative w-24 h-24 mx-auto mb-8">
+                        <div class="absolute inset-0 bg-orange-100/80 rounded-full animate-pulse-slow"></div>
+                        <div class="relative w-full h-full bg-orange-50 rounded-full border-4 border-white shadow-sm flex items-center justify-center text-orange-500 text-4xl group-hover:bg-orange-500 group-hover:text-white transition-colors duration-300">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-10 h-10 bg-[#1A1A2E] text-white text-lg font-bold rounded-full border-4 border-white flex items-center justify-center shadow-md">1</div>
                     </div>
-                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">{{ \App\Models\Setting::get('beranda_cara_step1_title', 'Pilih Program') }}</h3>
-                    <p class="text-gray-500 leading-relaxed">
+                    <h3 class="text-2xl font-bold text-[#1A1A2E] mb-4 group-hover:text-orange-600 transition-colors">
+                        {{ \App\Models\Setting::get('beranda_cara_step1_title', 'Pilih Program') }}
+                    </h3>
+                    <p class="text-gray-500 leading-7 text-[1.05rem]">
                         {{ \App\Models\Setting::get('beranda_cara_step1_desc', 'Geser hero di atas, pilih program Ramadan yang paling dekat di hati Anda, lalu klik Donasi Sekarang.') }}
                     </p>
                 </div>
 
                 <!-- Step 2 -->
-                <div class="relative text-center group">
-                    <div class="hidden md:block absolute top-10 left-[calc(50%+3rem)] w-full h-0.5 bg-gradient-to-r from-primary/40 to-transparent -z-0"></div>
-                    <div class="relative z-10 w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg shadow-emerald-200 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-credit-card"></i>
-                        <span class="absolute -top-2 -right-2 w-7 h-7 bg-[#1A1A2E] text-white text-xs font-black rounded-full flex items-center justify-center">2</span>
+                <div class="relative bg-white rounded-[2rem] p-8 border border-gray-100 shadow-xl shadow-gray-100/50 hover:shadow-2xl hover:shadow-emerald-100/50 hover:-translate-y-2 transition-all duration-300 text-center group h-full">
+                    <div class="relative w-24 h-24 mx-auto mb-8">
+                        <div class="absolute inset-0 bg-emerald-100/80 rounded-full animate-pulse-slow"></div>
+                        <div class="relative w-full h-full bg-emerald-50 rounded-full border-4 border-white shadow-sm flex items-center justify-center text-emerald-500 text-4xl group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-10 h-10 bg-[#1A1A2E] text-white text-lg font-bold rounded-full border-4 border-white flex items-center justify-center shadow-md">2</div>
                     </div>
-                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">{{ \App\Models\Setting::get('beranda_cara_step2_title', 'Isi & Bayar') }}</h3>
-                    <p class="text-gray-500 leading-relaxed">
+                    <h3 class="text-2xl font-bold text-[#1A1A2E] mb-4 group-hover:text-emerald-600 transition-colors">
+                        {{ \App\Models\Setting::get('beranda_cara_step2_title', 'Isi & Bayar') }}
+                    </h3>
+                    <p class="text-gray-500 leading-7 text-[1.05rem]">
                         {{ \App\Models\Setting::get('beranda_cara_step2_desc', 'Masukkan nama, jumlah donasi, dan pilih metode pembayaran: Transfer Bank, QRIS, atau Tunai.') }}
                     </p>
                 </div>
 
                 <!-- Step 3 -->
-                <div class="relative text-center group">
-                    <div class="relative z-10 w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg shadow-blue-200 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fab fa-whatsapp"></i>
-                        <span class="absolute -top-2 -right-2 w-7 h-7 bg-[#1A1A2E] text-white text-xs font-black rounded-full flex items-center justify-center">3</span>
+                <div class="relative bg-white rounded-[2rem] p-8 border border-gray-100 shadow-xl shadow-gray-100/50 hover:shadow-2xl hover:shadow-blue-100/50 hover:-translate-y-2 transition-all duration-300 text-center group h-full">
+                    <div class="relative w-24 h-24 mx-auto mb-8">
+                        <div class="absolute inset-0 bg-blue-100/80 rounded-full animate-pulse-slow"></div>
+                        <div class="relative w-full h-full bg-blue-50 rounded-full border-4 border-white shadow-sm flex items-center justify-center text-blue-500 text-4xl group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-10 h-10 bg-[#1A1A2E] text-white text-lg font-bold rounded-full border-4 border-white flex items-center justify-center shadow-md">3</div>
                     </div>
-                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">{{ \App\Models\Setting::get('beranda_cara_step3_title', 'Terima Laporan') }}</h3>
-                    <p class="text-gray-500 leading-relaxed">
+                    <h3 class="text-2xl font-bold text-[#1A1A2E] mb-4 group-hover:text-blue-600 transition-colors">
+                        {{ \App\Models\Setting::get('beranda_cara_step3_title', 'Terima Laporan') }}
+                    </h3>
+                    <p class="text-gray-500 leading-7 text-[1.05rem]">
                         {{ \App\Models\Setting::get('beranda_cara_step3_desc', 'Donasi Anda tercatat. Laporan penyaluran dikirim langsung ke WhatsApp & Email Anda secara berkala.') }}
                     </p>
                 </div>
 
             </div>
 
-            <!-- Live Donation Feed -->
-            <div class="flex flex-col lg:flex-row gap-10 items-start" data-aos="fade-up" data-aos-delay="200">
+            <!-- Live Donation Feed & CTA -->
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch" data-aos="fade-up" data-aos-delay="200">
 
-                <!-- Left: Feed Header + List -->
-                <div class="w-full lg:w-1/2">
-                    <div class="flex items-center gap-3 mb-6">
-                        <span class="relative flex h-3 w-3">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                        </span>
-                        <h3 class="text-lg font-bold text-[#1A1A2E]">Donasi Terbaru</h3>
-                        <span class="text-xs text-gray-400 font-medium">— live</span>
-                    </div>
-
-                    <div class="space-y-3" id="donationFeed">
-                        @forelse($recentDonations as $donation)
-                        <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-primary/20 hover:bg-orange-50/30 transition-all duration-200">
-                            <!-- Avatar -->
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm">
-                                {{ $donation->is_anonymous ? '🤲' : strtoupper(substr($donation->donor_name ?? 'D', 0, 1)) }}
+                <!-- Left: Live Feed Card -->
+                <div class="w-full lg:w-1/2 flex flex-col">
+                    <div class="bg-white rounded-[2rem] border border-gray-100 p-8 shadow-xl shadow-gray-100/50 h-full relative overflow-hidden group">
+                        <!-- Decorative bg -->
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-orange-50/50 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+                        
+                        <div class="relative z-10 flex items-center justify-between mb-8 border-b border-gray-100 pb-6">
+                            <div class="flex items-center gap-4">
+                                <div class="relative flex h-4 w-4">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-4 w-4 bg-green-500"></span>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-extrabold text-[#1A1A2E]">Donasi Terbaru</h3>
+                                    <span class="text-sm text-gray-400 font-medium">Real-time update</span>
+                                </div>
                             </div>
-                            <!-- Info -->
-                            <div class="flex-1 min-w-0">
-                                <p class="font-semibold text-[#1A1A2E] text-sm truncate">
-                                    {{ $donation->is_anonymous ? 'Hamba Allah' : ($donation->donor_name ?? 'Donatur') }}
-                                </p>
-                                <p class="text-xs text-gray-400 truncate">
-                                    {{ $donation->program?->title ?? 'Donasi Umum' }}
-                                </p>
-                            </div>
-                            <!-- Amount & Time -->
-                            <div class="text-right shrink-0">
-                                <p class="font-bold text-primary text-sm">Rp {{ number_format($donation->amount, 0, ',', '.') }}</p>
-                                <p class="text-xs text-gray-400">{{ $donation->created_at->diffForHumans() }}</p>
+                            <div class="bg-gray-50 px-4 py-2 rounded-full text-xs font-bold text-gray-500 uppercase tracking-wider border border-gray-100">
+                                {{ date('d M Y') }}
                             </div>
                         </div>
-                        @empty
-                        <div class="text-center py-10 text-gray-400">
-                            <i class="fas fa-heart text-4xl mb-3 text-gray-200"></i>
-                            <p>Jadilah yang pertama berdonasi!</p>
+
+                        <div class="space-y-4 max-h-[450px] overflow-y-auto pr-2 custom-scrollbar relative z-10" id="donationFeed">
+                            @forelse($recentDonations as $donation)
+                            <div class="flex items-center gap-5 p-5 bg-gray-50 rounded-2xl border border-gray-100 hover:border-orange-200 hover:bg-orange-50 transition-all duration-300 group/item">
+                                <!-- Avatar -->
+                                <div class="w-12 h-12 rounded-full bg-white border-2 border-white shadow-sm flex items-center justify-center text-lg shrink-0 group-hover/item:scale-110 transition-transform">
+                                    <div class="w-full h-full rounded-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center text-orange-600 font-bold">
+                                        {{ $donation->is_anonymous ? '🤲' : strtoupper(substr($donation->donor_name ?? 'D', 0, 1)) }}
+                                    </div>
+                                </div>
+                                <!-- Info -->
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-bold text-[#1A1A2E] text-base truncate group-hover/item:text-orange-600 transition-colors">
+                                        {{ $donation->is_anonymous ? 'Hamba Allah' : ($donation->donor_name ?? 'Donatur') }}
+                                    </p>
+                                    <div class="flex items-center gap-2 text-xs text-gray-500 mt-1">
+                                        <i class="fas fa-clock text-gray-300"></i>
+                                        <span>{{ $donation->created_at->diffForHumans() }}</span>
+                                        <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                        <span class="text-orange-500 font-medium truncate max-w-[120px]">
+                                            {{ $donation->program?->title ?? 'Donasi Umum' }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- Amount -->
+                                <div class="text-right shrink-0">
+                                    <p class="font-extrabold text-orange-500 text-lg">Rp {{ number_format($donation->amount, 0, ',', '.') }}</p>
+                                    <span class="text-[10px] uppercase font-bold text-gray-300 tracking-wider">Donasi</span>
+                                </div>
+                            </div>
+                            @empty
+                            <div class="flex flex-col items-center justify-center py-12 text-center h-full">
+                                <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-4 text-gray-300 text-3xl animate-pulse">
+                                    <i class="fas fa-hand-holding-heart"></i>
+                                </div>
+                                <h4 class="text-gray-900 font-bold text-lg mb-1">Belum Ada Donasi</h4>
+                                <p class="text-gray-400 text-sm max-w-[200px]">Jadilah orang baik pertama hari ini yang menebar kebahagiaan.</p>
+                            </div>
+                            @endforelse
                         </div>
-                        @endforelse
                     </div>
                 </div>
 
                 <!-- Right: Urgency CTA Box -->
-                <div class="w-full lg:w-1/2 sticky top-24">
-                    <div class="bg-gradient-to-br from-[#1A1A2E] to-[#2D2D44] rounded-3xl p-8 text-white relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-40 h-40 bg-primary/20 rounded-full blur-3xl -mr-10 -mt-10"></div>
-                        <div class="relative z-10">
-                            <span class="inline-block px-3 py-1 bg-primary/20 text-[#FFB347] text-xs font-bold rounded-full border border-primary/30 mb-4">
-                                <i class="fas fa-moon mr-1"></i> {{ \App\Models\Setting::get('beranda_cta_badge', 'RAMADAN 1447 H') }}
-                            </span>
-                            <h3 class="text-2xl font-extrabold mb-3 leading-tight">
-                                {{ \App\Models\Setting::get('beranda_cta_heading', 'Setiap Rupiah Berlipat Pahalanya.') }}
-                            </h3>
-                            <p class="text-white/70 text-sm leading-relaxed mb-6">
-                                {{ \App\Models\Setting::get('beranda_cta_desc', 'Ramadan adalah bulan terbaik untuk beramal. Tidak ada waktu yang lebih tepat dari sekarang untuk mulai berbagi.') }}
-                            </p>
-
-                            <!-- Mini Stats -->
-                            <div class="grid grid-cols-2 gap-4 mb-8">
-                                <div class="bg-white/10 rounded-2xl p-4 text-center">
-                                    <strong class="block text-2xl font-extrabold text-[#FFB347]">{{ $stats['total_donatur'] }}+</strong>
-                                    <span class="text-xs text-white/60">Donatur Aktif</span>
+                <div class="w-full lg:w-1/2 flex flex-col sticky top-24">
+                    <div class="bg-[#1A1A2E] rounded-[2rem] p-8 md:p-10 text-white relative overflow-hidden h-full shadow-2xl shadow-gray-200 group">
+                        <!-- Decorative Accents -->
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-primary/30 transition-colors duration-500"></div>
+                        <div class="absolute bottom-0 left-0 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl -ml-10 -mb-10"></div>
+                        
+                        <!-- Content -->
+                        <div class="relative z-10 flex flex-col h-full justify-between">
+                            <div>
+                                <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-[#FFB347] text-xs font-bold rounded-full border border-white/10 mb-6 backdrop-blur-sm">
+                                    <i class="fas fa-moon"></i> {{ \App\Models\Setting::get('beranda_cta_badge', 'RAMADAN 1447 H') }}
                                 </div>
-                                <div class="bg-white/10 rounded-2xl p-4 text-center">
-                                    <strong class="block text-2xl font-extrabold text-[#FFB347]">{{ $featuredPrograms->count() }}</strong>
-                                    <span class="text-xs text-white/60">Program Ramadan</span>
+                                <h3 class="text-3xl md:text-4xl font-extrabold mb-6 leading-tight">
+                                    {{ \App\Models\Setting::get('beranda_cta_heading', 'Setiap Rupiah Berlipat Pahalanya.') }}
+                                </h3>
+                                <p class="text-white/70 text-lg leading-relaxed mb-8 border-l-4 border-[#FFB347] pl-4">
+                                    {{ \App\Models\Setting::get('beranda_cta_desc', 'Ramadan adalah bulan terbaik untuk beramal. Tidak ada waktu yang lebih tepat dari sekarang untuk mulai berbagi.') }}
+                                </p>
+
+                                <!-- Mini Stats -->
+                                <div class="grid grid-cols-2 gap-4 mb-8">
+                                    <div class="bg-white/5 rounded-2xl p-5 border border-white/5 hover:bg-white/10 transition-colors text-center">
+                                        <strong class="block text-3xl font-extrabold text-[#FFB347] mb-1">{{ $stats['total_donatur'] }}+</strong>
+                                        <span class="text-xs text-white/50 uppercase tracking-wider font-bold">Donatur Aktif</span>
+                                    </div>
+                                    <div class="bg-white/5 rounded-2xl p-5 border border-white/5 hover:bg-white/10 transition-colors text-center">
+                                        <strong class="block text-3xl font-extrabold text-[#FFB347] mb-1">{{ $featuredPrograms->count() }}</strong>
+                                        <span class="text-xs text-white/50 uppercase tracking-wider font-bold">Program Ramadan</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <a href="{{ route('program') }}"
-                               class="flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold rounded-xl shadow-lg shadow-orange-900/30 hover:-translate-y-0.5 hover:shadow-orange-900/50 transition-all duration-300">
-                                <i class="fas fa-hand-holding-heart"></i> Pilih Program & Donasi
-                            </a>
-                            <p class="text-center text-white/40 text-xs mt-3">
-                                <i class="fas fa-shield-alt mr-1"></i> Aman · Transparan · Sesuai Syariah
+                            <div>
+                                <a href="{{ route('program') }}"
+                                   class="relative overflow-hidden flex items-center justify-center gap-3 w-full py-5 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold text-lg rounded-2xl shadow-lg shadow-orange-900/30 hover:-translate-y-1 hover:shadow-orange-900/50 transition-all duration-300 group/btn">
+                                    <span class="relative z-10 font-bold tracking-wide">PILIH PROGRAM & DONASI</span>
+                                    <i class="fas fa-arrow-right relative z-10 group-hover/btn:translate-x-1 transition-transform"></i>
+                                    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></div>
+                                </a>
+                                <p class="text-center text-white/30 text-xs mt-4 flex items-center justify-center gap-2">
+                                    <i class="fas fa-shield-alt"></i> Aman · Transparan · Sesuai Syariah
+                                </p>
+                            </div>
+                        </div>
                             </p>
                         </div>
                     </div>
