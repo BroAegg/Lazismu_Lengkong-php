@@ -29,7 +29,7 @@
                 <li><a href="{{ route('kalkulator') }}"
                         class="text-[0.9375rem] font-medium text-white/90 hover:text-white relative py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full nav-link">Kalkulator
                         Zakat</a></li>
-                <li><a href="{{ route('program.index') }}"
+                <li><a href="{{ route('program') }}"
                         class="text-[0.9375rem] font-medium text-white/90 hover:text-white relative py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full nav-link">Program</a>
                 </li>
                 <li><a href="{{ route('tentang-kami') }}"

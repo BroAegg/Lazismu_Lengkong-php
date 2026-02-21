@@ -53,7 +53,7 @@
             <ul class="flex items-center gap-8">
                 <li><a href="{{ route('beranda') }}"
                         class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Beranda</a></li>
-                <li><a href="{{ route('program.index') }}"
+                <li><a href="{{ route('program') }}"
                         class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Program</a></li>
                 <li><a href="{{ route('kalkulator') }}"
                         class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Kalkulator</a>
@@ -248,7 +248,7 @@
             <i class="fas fa-home text-xl mb-0.5 group-hover:scale-110 transition-transform"></i>
             <span class="text-[0.65rem] font-medium">Beranda</span>
         </a>
-        <a href="{{ route('program.index') }}"
+        <a href="{{ route('program') }}"
             class="flex flex-col items-center gap-1 text-gray-400 group hover:text-primary transition-colors">
             <i class="fas fa-hand-holding-heart text-xl mb-0.5 group-hover:scale-110 transition-transform"></i>
             <span class="text-[0.65rem] font-medium">Program</span>

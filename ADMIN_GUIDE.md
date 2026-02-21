@@ -2,6 +2,8 @@
 
 Panduan lengkap untuk admin dan staff LAZISMU Lengkong dalam mengelola sistem donasi online.
 
+> **Last Updated:** 22 Februari 2026
+
 ---
 
 ## 📋 Daftar Isi
@@ -33,15 +35,28 @@ https://lazismu-lengkong.org/admin/dashboard
 
 ### Login Admin
 
-1. Buka `https://lazismu-lengkong.org/login`
-2. Masukkan email kantor LAZISMU
-3. Password yang diberikan oleh Kepala Kantor
-4. Klik **"Masuk"**
+1. Buka `http://127.0.0.1:8000/login` (dev) atau URL production
+2. Masukkan **email** kantor LAZISMU **atau nomor HP**
+3. Masukkan password
+4. Klik **"Masuk"** → otomatis redirect ke `/admin/dashboard`
 
 **Catatan:** 
+- Login bisa pakai **email** atau **nomor HP**
 - Jika belum punya akun, hubungi Kepala Kantor atau Administrasi
 - Jangan bagikan password ke pihak lain
 - Ganti password secara berkala
+
+### Default Credentials (Development Only)
+
+> ⚠️ **WAJIB DIGANTI sebelum production!**
+
+| Role | Email | Password |
+|------|-------|----------|
+| Kepala Kantor | `kepala@lazismulengkong.org` | `password` |
+| Administrasi | `admin@lazismulengkong.org` | `password` |
+| Fund Rising | `fundraising@lazismulengkong.org` | `password` |
+| Staff Pelayanan | `pelayanan@lazismulengkong.org` | `password` |
+| User/Donatur | `user@lazismulengkong.org` | `password` |
 
 ---
 

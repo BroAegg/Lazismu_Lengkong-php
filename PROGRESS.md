@@ -1,6 +1,6 @@
 # 📊 Lazismu Lengkong - Progress Development
 
-**Last Updated:** February 16, 2026  
+**Last Updated:** February 22, 2026  
 **Developer:** Reyvan & Aegner (@BroAegg)  
 **Laravel Version:** 12.x  
 **PHP Version:** 8.2+
@@ -107,59 +107,60 @@ Platform donasi digital (ZISKA: Zakat, Infaq, Sedekah, Wakaf, Kemanusiaan) untuk
 - [x] HTML→Blade conversion committed
 - [x] `.gitignore` configured for deployment
 
+### 8. Bug Fixes & Backend Wiring ✓ *(Feb 22, 2026)*
+- [x] `DonationStatus::REJECTED` ditambah ke enum (dipakai AdminDonationController)
+- [x] `badgeColor()` di `DonationStatus` & `UserRole` difix → return Tailwind CSS classes
+- [x] `CheckRole` middleware difix: case-insensitive role matching (`strtoupper`)
+- [x] Login redirect berbasis role — admin → `/admin/dashboard`, user → `/dashboard`
+- [x] `LoginRequest` mendukung login dengan **email ATAU nomor HP** + cek `is_active`
+- [x] `RegisteredUserController` difix: set default role `USER` + support field `phone`
+- [x] Route name `program.index` tidak ada — difix ke `program` di 11 blade files
+- [x] **Semua 66 routes verified berjalan tanpa error**
+
 ---
 
 ## ❌ PENDING TASKS
 
 ### 1. Backend Integration 🔴 HIGH PRIORITY
-- [ ] Update controllers to pass dynamic data
-- [ ] Implement CRUD logic in admin controllers
-- [ ] Connect public pages to database
-- [ ] Implement authentication (login/register)
-- [ ] Middleware protection for admin routes
-
-**Controllers to Update:**
-- `BerandaController` → pass stats, featured programs
-- `ProgramController` → list programs, show detail
-- `DashboardController` → user donations, stats
-- `DonasiController` → handle donation submission
-- `Admin/*` → implement CRUD operations
+- [x] ~~Update controllers to pass dynamic data~~ ✓ Semua controllers sudah query DB
+- [x] ~~Implement CRUD logic in admin controllers~~ ✓ Admin CRUD sudah lengkap
+- [x] ~~Connect public pages to database~~ ✓ Beranda, Program, Donasi sudah dynamic
+- [x] ~~Implement authentication (login/register)~~ ✓ Sudah jalan dengan role redirect
+- [x] ~~Middleware protection for admin routes~~ ✓ CheckRole middleware aktif
 
 ### 2. Dynamic Data Integration 🔴 HIGH PRIORITY
-Replace hardcoded content with Blade variables:
-- [ ] Program cards → `@foreach($programs as $program)`
-- [ ] Stats counter → `{{ $totalDonatur }}`, `{{ $totalDonasi }}`
-- [ ] User info → `{{ Auth::user()->name }}`
-- [ ] Donation history → loop dari database
+- [x] ~~Program cards~~ ✓ Loop dari DB
+- [x] ~~Stats counter~~ ✓ Query dari Donation model
+- [x] ~~User info~~ ✓ `Auth::user()`
+- [x] ~~Donation history~~ ✓ Loop dari DB
 
 ### 3. Admin CMS 🟡 MEDIUM PRIORITY
-**Modules to Build:**
-- [ ] Admin layout (`layouts/admin.blade.php`)
-- [ ] Dashboard admin (charts, stats overview)
-- [ ] Program management (CRUD + image upload)
-- [ ] Donation management (approval, export)
-- [ ] User management (CRUD, role assignment)
-- [ ] Category management
-- [ ] Settings page
-- [ ] Report generation (PDF export)
+- [x] ~~Admin layout~~ ✓ `layouts/admin.blade.php`
+- [x] ~~Dashboard admin~~ ✓ Stats + recent donations
+- [x] ~~Program management~~ ✓ CRUD + image upload
+- [x] ~~Donation management~~ ✓ List, show, verify, reject
+- [x] ~~User management~~ ✓ CRUD + role assignment
+- [x] ~~Report generation~~ ✓ PDF export via DomPDF (PSAK 109)
+- [ ] Category management (halaman admin belum ada)
+- [ ] Settings page (halaman admin belum ada)
 
 ### 4. Form Handling 🟡 MEDIUM PRIORITY
-- [ ] Login/Register authentication
-- [ ] Donation form validation
-- [ ] Payment proof upload
-- [ ] Kalkulator Zakat calculation logic
-- [ ] Contact form submission
+- [x] ~~Login/Register authentication~~ ✓ Bisa email/HP, role redirect
+- [x] ~~Donation form validation~~ ✓ Validasi + generate invoice
+- [ ] Payment proof upload (UI sudah ada, logic belum)
+- [x] ~~Kalkulator Zakat calculation logic~~ ✓ KalkulatorController
+- [ ] Contact form submission (masih static)
 
 ### 5. Payment Gateway 🟠 LOW PRIORITY
 - [ ] Midtrans integration (optional)
 - [ ] Manual transfer verification
 - [ ] Payment receipt generation (PDF)
-- [ ] Payment notification
+- [ ] Payment notification (email)
 
 ### 6. Testing & Deployment 🟠 LOW PRIORITY
-- [ ] Run `php artisan serve` for local testing
-- [ ] Validate all routes functional
-- [ ] Test responsive design
+- [x] ~~Run `php artisan serve` for local testing~~ ✓ Tested
+- [x] ~~Validate all routes functional~~ ✓ 66 routes OK
+- [ ] Test responsive design (manual di browser/device)
 - [ ] Deploy to cPanel via git pull
 - [ ] Configure production .env
 
@@ -265,30 +266,21 @@ lazismulengkong/
 
 ## 🚀 Next Steps (Priority Order)
 
-1. **Run Seeders** ✓ (COMPLETED)
-   ```bash
-   php artisan db:seed
-   ```
+1. **Seeders** ✓ (COMPLETED)
+2. **Controllers & Backend Wiring** ✓ (COMPLETED)
+3. **Admin CMS** ✓ (COMPLETED — CRUD Donasi, Program, User, Laporan PDF)
+4. **Bug Fixes & Route Debugging** ✓ (COMPLETED Feb 22, 2026)
 
-2. **Update Controllers** 🔴
-   - Pass data from database to views
-   - Implement query logic
-
-3. **Update Blade Views** 🔴
-   - Replace hardcoded data with loops
-   - Add conditional rendering
-
-4. **Build Admin CMS** 🟡
-   - Create admin layout
-   - CRUD interfaces
-
-5. **Testing** 🟠
-   - Test all routes
-   - Fix bugs
+5. **Yang masih perlu dikerjakan:** 🟡
+   - Upload bukti pembayaran (payment proof) — logic di backend
+   - Halaman admin: Category management & Settings
+   - Contact form kirim email
+   - Test responsive di device nyata
 
 6. **Deployment** 🟠
-   - Push to cPanel
-   - Production config
+   - Push ke cPanel / hosting
+   - Setup production `.env`
+   - `php artisan optimize`
 
 ---
 
@@ -297,19 +289,26 @@ lazismulengkong/
 - All forms have CSRF protection
 - Images use Laravel asset() helper
 - Routes use named routes
-- Password default: `password123` (CHANGE IN PRODUCTION!)
-- Amil percentage: 12.5%
+- **Password default seeder: `password`** (CHANGE IN PRODUCTION!)
+- Login support: **email ATAU nomor HP**
+- Amil percentage: 12.5% (Zakat), 20% (Infaq/Sedekah)
 - Nisab emas: 85 gram
 - Harga emas: Rp 1,200,000/gram
+- XAMPP MySQL: `/opt/lampp/bin/mysql`
 
 ---
 
 ## 🐛 Known Issues
 
-- Admin pages need UI (currently minimal from Aegner)
-- Payment gateway not integrated yet
-- PDF generation not tested
-- Email notifications not configured
+- ~~`route('program.index')` not defined~~ ✅ Fixed Feb 22
+- ~~Admin redirect setelah login salah~~ ✅ Fixed Feb 22
+- ~~Login tidak support nomor HP~~ ✅ Fixed Feb 22
+- ~~`DonationStatus::REJECTED` tidak ada~~ ✅ Fixed Feb 22
+- ~~`badgeColor()` return string warna bukan CSS class~~ ✅ Fixed Feb 22
+- Upload bukti pembayaran — UI ada, logic belum
+- Category & Settings admin page belum ada
+- Email notifications belum dikonfigurasi
+- PDF laporan belum ditest end-to-end
 
 ---
 

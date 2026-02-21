@@ -8,7 +8,7 @@
 
         <ul class="flex items-center gap-8">
             <li><a href="{{ route('beranda') }}" class="text-sm font-medium text-gray-600 hover:text-primary-500 transition-colors">Beranda</a></li>
-            <li><a href="{{ route('program.index') }}" class="text-sm font-medium text-gray-600 hover:text-primary-500 transition-colors">Program</a></li>
+            <li><a href="{{ route('program') }}" class="text-sm font-medium text-gray-600 hover:text-primary-500 transition-colors">Program</a></li>
             <li><a href="{{ route('kalkulator') }}" class="text-sm font-medium text-gray-600 hover:text-primary-500 transition-colors">Kalkulator</a></li>
             <li>
                 <div x-data="{ open: false }" class="relative">

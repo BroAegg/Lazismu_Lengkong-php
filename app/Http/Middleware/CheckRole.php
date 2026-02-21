@@ -24,9 +24,9 @@ class CheckRole
                 ->with('error', 'Silakan login terlebih dahulu.');
         }
 
-        // Konversi string parameter ke UserRole enum
+        // Konversi string parameter ke UserRole enum (case-insensitive)
         $allowedRoles = array_map(
-            fn(string $role) => UserRole::tryFrom($role),
+            fn(string $role) => UserRole::tryFrom(strtoupper($role)),
             $roles
         );
 

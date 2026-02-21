@@ -30,11 +30,11 @@ enum UserRole: string
     public function badgeColor(): string
     {
         return match ($this) {
-            self::KEPALA_KANTOR   => 'red',
-            self::ADMINISTRASI    => 'blue',
-            self::FUND_RISING     => 'green',
-            self::STAFF_PELAYANAN => 'yellow',
-            self::USER            => 'gray',
+            self::KEPALA_KANTOR   => 'bg-red-100 text-red-700',
+            self::ADMINISTRASI    => 'bg-blue-100 text-blue-700',
+            self::FUND_RISING     => 'bg-green-100 text-green-700',
+            self::STAFF_PELAYANAN => 'bg-yellow-100 text-yellow-700',
+            self::USER            => 'bg-gray-100 text-gray-600',
         };
     }
 

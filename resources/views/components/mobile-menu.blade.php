@@ -14,7 +14,7 @@
     <a href="{{ route('kalkulator') }}" class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group">
         Kalkulator <i class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary-500 transition-colors"></i>
     </a>
-    <a href="{{ route('program.index') }}" class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group">
+    <a href="{{ route('program') }}" class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group">
         Program <i class="fas fa-chevron-right text-xs text-gray-300 group-hover:text-primary-500 transition-colors"></i>
     </a>
     <a href="{{ route('tentang-kami') }}" class="text-lg font-bold text-gray-800 py-3 w-full border-b border-gray-50 flex items-center justify-between group">

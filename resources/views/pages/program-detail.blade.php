@@ -73,7 +73,7 @@
             <ul class="flex items-center gap-8">
                 <li><a href="{{ route('beranda') }}"
                         class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Beranda</a></li>
-                <li><a href="{{ route('program.index') }}"
+                <li><a href="{{ route('program') }}"
                         class="text-sm font-medium text-primary transition-colors font-bold">Program</a></li>
                 <li><a href="{{ route('kalkulator') }}"
                         class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Kalkulator</a>

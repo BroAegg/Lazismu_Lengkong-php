@@ -4,7 +4,7 @@
         <i class="fas fa-home text-xl mb-0.5 group-hover:scale-110 transition-transform"></i>
         <span class="text-[0.65rem] font-medium">Beranda</span>
     </a>
-    <a href="{{ route('program.index') }}" class="flex flex-col items-center gap-1 {{ request()->routeIs('program.*') ? 'text-primary-500' : 'text-gray-400' }} group hover:text-primary-500 transition-colors">
+    <a href="{{ route('program') }}" class="flex flex-col items-center gap-1 {{ request()->routeIs('program.*') ? 'text-primary-500' : 'text-gray-400' }} group hover:text-primary-500 transition-colors">
         <i class="fas fa-hand-holding-heart text-xl mb-0.5 group-hover:scale-110 transition-transform"></i>
         <span class="text-[0.65rem] font-medium">Program</span>
     </a>
