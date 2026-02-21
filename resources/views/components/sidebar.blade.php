@@ -41,9 +41,31 @@
         <div class="pt-4 mt-4 border-t border-gray-100">
             <p class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-3 px-4">Admin Panel</p>
             <a href="{{ route('admin.dashboard') }}"
-               class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl transition-colors {{ request()->routeIs('admin.*') ? 'bg-blue-50 text-blue-600' : '' }}">
-                <i class="fas fa-shield-alt w-5"></i> Panel Admin
+               class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors {{ request()->routeIs('admin.dashboard') ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-50' }}">
+                <i class="fas fa-shield-alt w-5"></i> Dashboard Admin
             </a>
+            <a href="{{ route('admin.donations.index') }}"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors {{ request()->routeIs('admin.donations.*') ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-50' }}">
+                <i class="fas fa-inbox w-5"></i> Kelola Donasi
+            </a>
+            <a href="{{ route('admin.program.index') }}"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors {{ request()->routeIs('admin.program.*') ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-50' }}">
+                <i class="fas fa-layer-group w-5"></i> Kelola Program
+            </a>
+            @if(auth()->user()->role->value === 'kepala_kantor' || auth()->user()->role->value === 'administrasi')
+            <a href="{{ route('admin.users.index') }}"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors {{ request()->routeIs('admin.users.*') ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-50' }}">
+                <i class="fas fa-users w-5"></i> Kelola User
+            </a>
+            <a href="{{ route('admin.reports.index') }}"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors {{ request()->routeIs('admin.reports.*') ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-50' }}">
+                <i class="fas fa-chart-bar w-5"></i> Laporan
+            </a>
+            <a href="{{ route('admin.settings.index') }}"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors {{ request()->routeIs('admin.settings.*') ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-50' }}">
+                <i class="fas fa-cog w-5"></i> Pengaturan CMS
+            </a>
+            @endif
         </div>
         @endif
 

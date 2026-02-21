@@ -23,7 +23,7 @@
 
     <section class="py-24 bg-white" id="program">
         <div class="container mx-auto px-5 max-w-[1200px]">
-            <div class="text-center mb-16" data-aos="fade-up">
+            <div class="text-center mb-12" data-aos="fade-up">
                 <span
                     class="inline-block px-4 py-2 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white text-sm font-semibold rounded-full mb-4">Pilih
                     Paket Kebaikan Anda</span>
@@ -33,6 +33,68 @@
                     Berbagai pilihan program untuk menyalurkan zakat, infaq, dan sedekah Anda
                     sesuai dengan fokus kebaikan yang diinginkan.
                 </p>
+            </div>
+
+            <!-- Filter & Search Bar -->
+            <div class="mb-10" data-aos="fade-up" data-aos-delay="100">
+                <form method="GET" action="{{ route('program') }}" id="filterForm">
+                    <div class="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+
+                        {{-- Filter Pilar --}}
+                        <div class="flex flex-wrap gap-2">
+                            <a href="{{ route('program', array_filter(['search' => request('search')])) }}"
+                               class="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 border
+                                      {{ !request('pilar') ? 'bg-[#F7941D] text-white border-[#F7941D] shadow-md' : 'bg-white text-gray-600 border-gray-200 hover:border-primary hover:text-primary' }}">
+                                <i class="fas fa-th-large mr-1"></i> Semua
+                            </a>
+                            @foreach($pillars as $pillar)
+                            <a href="{{ route('program', array_filter(['pilar' => $pillar->slug, 'search' => request('search')])) }}"
+                               class="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 border
+                                      {{ request('pilar') === $pillar->slug ? 'bg-[#F7941D] text-white border-[#F7941D] shadow-md' : 'bg-white text-gray-600 border-gray-200 hover:border-primary hover:text-primary' }}">
+                                @if($pillar->icon)<i class="{{ $pillar->icon }} mr-1"></i>@endif
+                                {{ $pillar->name }}
+                            </a>
+                            @endforeach
+                        </div>
+
+                        {{-- Search --}}
+                        <div class="relative w-full md:w-72 flex-shrink-0">
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                   placeholder="Cari program..."
+                                   class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-sm"
+                                   onchange="this.form.submit()">
+                            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                            @if(request('pilar'))
+                            <input type="hidden" name="pilar" value="{{ request('pilar') }}">
+                            @endif
+                        </div>
+
+                    </div>
+
+                    {{-- Active Filter Badge --}}
+                    @if(request('pilar') || request('search'))
+                    <div class="mt-3 flex items-center gap-2 text-sm text-gray-500">
+                        <span>Filter aktif:</span>
+                        @if(request('pilar'))
+                        <span class="inline-flex items-center gap-1 px-3 py-1 bg-orange-50 text-primary border border-primary/20 rounded-full font-medium">
+                            Pilar: {{ $pillars->firstWhere('slug', request('pilar'))?->name ?? request('pilar') }}
+                            <a href="{{ route('program', array_filter(['search' => request('search')])) }}" class="ml-1 hover:text-red-500">
+                                <i class="fas fa-times text-xs"></i>
+                            </a>
+                        </span>
+                        @endif
+                        @if(request('search'))
+                        <span class="inline-flex items-center gap-1 px-3 py-1 bg-orange-50 text-primary border border-primary/20 rounded-full font-medium">
+                            "{{ request('search') }}"
+                            <a href="{{ route('program', array_filter(['pilar' => request('pilar')])) }}" class="ml-1 hover:text-red-500">
+                                <i class="fas fa-times text-xs"></i>
+                            </a>
+                        </span>
+                        @endif
+                        <span class="text-gray-400">— {{ $programs->total() }} program ditemukan</span>
+                    </div>
+                    @endif
+                </form>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

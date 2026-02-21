@@ -52,6 +52,10 @@
         <i class="fas fa-chart-bar text-2xl text-green-500 mb-2"></i>
         <p class="text-sm font-semibold text-gray-700">Laporan</p>
     </a>
+    <a href="{{ route('admin.settings.index') }}" class="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center">
+        <i class="fas fa-cog text-2xl text-gray-500 mb-2"></i>
+        <p class="text-sm font-semibold text-gray-700">Pengaturan CMS</p>
+    </a>
     @endif
 </div>
 

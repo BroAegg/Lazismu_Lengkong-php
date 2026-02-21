@@ -265,11 +265,10 @@
                             <i class="fas fa-calculator mr-2"></i>Kalkulator Zakat
                         </span>
                         <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
-                            Sudah Tahu Berapa <span class="text-primary">Zakat Anda?</span>
+                            {{ \App\Models\Setting::get('beranda_kalkulator_heading', 'Sudah Tahu Berapa Zakat Anda?') }}
                         </h2>
                         <p class="text-lg text-white/80 mb-8 leading-relaxed">
-                            Jangan ragu. Gunakan alat bantu hitung kami untuk mengetahui kewajiban zakat maal atau
-                            profesi Anda dengan akurat sesuai nisab. Hanya butuh 1 menit.
+                            {{ \App\Models\Setting::get('beranda_kalkulator_desc', 'Jangan ragu. Gunakan alat bantu hitung kami untuk mengetahui kewajiban zakat maal atau profesi Anda dengan akurat sesuai nisab. Hanya butuh 1 menit.') }}
                         </p>
                         <a href="{{ route('kalkulator') }}"
                             class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold rounded-xl shadow-lg hover:shadow-orange-glow transition-all hover:-translate-y-1">
@@ -317,12 +316,10 @@
                         Mengapa Lazismu Lengkong?
                     </span>
                     <h2 class="text-3xl md:text-5xl font-extrabold text-[#1A1A2E] mb-6 leading-tight">
-                        Amanah yang Berakar, <br><span class="text-primary">Dampak yang Melebar.</span>
+                        {{ \App\Models\Setting::get('beranda_tentang_heading', 'Amanah yang Berakar, Dampak yang Melebar.') }}
                     </h2>
                     <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                        Kami bukan sekadar penyalur, kami adalah pengelola ekosistem kebaikan di bawah naungan
-                        Muhammadiyah Lengkong. Dari <strong>Panti Asuhan Taman Harapan</strong> yang bersejarah hingga
-                        puluhan sekolah yang mencerahkan bangsa.
+                        {{ \App\Models\Setting::get('beranda_tentang_desc', 'Kami bukan sekadar penyalur, kami adalah pengelola ekosistem kebaikan di bawah naungan Muhammadiyah Lengkong. Dari Panti Asuhan Taman Harapan yang bersejarah hingga puluhan sekolah yang mencerahkan bangsa.') }}
                     </p>
 
                     <ul class="space-y-4 mb-10">
@@ -368,10 +365,10 @@
                     Mudah & Aman
                 </span>
                 <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold text-[#1A1A2E] mb-4 leading-tight">
-                    Berdonasi Semudah 3 Langkah
+                    {{ \App\Models\Setting::get('beranda_cara_heading', 'Berdonasi Semudah 3 Langkah') }}
                 </h2>
                 <p class="text-lg text-gray-600 max-w-[600px] mx-auto">
-                    Tidak perlu ribet. Pilih program, bayar, dan Anda langsung menjadi bagian dari kebaikan nyata.
+                    {{ \App\Models\Setting::get('beranda_cara_desc', 'Tidak perlu ribet. Pilih program, bayar, dan Anda langsung menjadi bagian dari kebaikan nyata.') }}
                 </p>
             </div>
 
@@ -385,9 +382,9 @@
                         <i class="fas fa-th-large"></i>
                         <span class="absolute -top-2 -right-2 w-7 h-7 bg-[#1A1A2E] text-white text-xs font-black rounded-full flex items-center justify-center">1</span>
                     </div>
-                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">Pilih Program</h3>
+                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">{{ \App\Models\Setting::get('beranda_cara_step1_title', 'Pilih Program') }}</h3>
                     <p class="text-gray-500 leading-relaxed">
-                        Geser hero di atas, pilih program Ramadan yang paling dekat di hati Anda, lalu klik <strong>Donasi Sekarang</strong>.
+                        {{ \App\Models\Setting::get('beranda_cara_step1_desc', 'Geser hero di atas, pilih program Ramadan yang paling dekat di hati Anda, lalu klik Donasi Sekarang.') }}
                     </p>
                 </div>
 
@@ -398,9 +395,9 @@
                         <i class="fas fa-credit-card"></i>
                         <span class="absolute -top-2 -right-2 w-7 h-7 bg-[#1A1A2E] text-white text-xs font-black rounded-full flex items-center justify-center">2</span>
                     </div>
-                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">Isi & Bayar</h3>
+                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">{{ \App\Models\Setting::get('beranda_cara_step2_title', 'Isi & Bayar') }}</h3>
                     <p class="text-gray-500 leading-relaxed">
-                        Masukkan nama, jumlah donasi, dan pilih metode pembayaran: <strong>Transfer Bank, QRIS,</strong> atau <strong>Tunai</strong>.
+                        {{ \App\Models\Setting::get('beranda_cara_step2_desc', 'Masukkan nama, jumlah donasi, dan pilih metode pembayaran: Transfer Bank, QRIS, atau Tunai.') }}
                     </p>
                 </div>
 
@@ -410,9 +407,9 @@
                         <i class="fab fa-whatsapp"></i>
                         <span class="absolute -top-2 -right-2 w-7 h-7 bg-[#1A1A2E] text-white text-xs font-black rounded-full flex items-center justify-center">3</span>
                     </div>
-                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">Terima Laporan</h3>
+                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">{{ \App\Models\Setting::get('beranda_cara_step3_title', 'Terima Laporan') }}</h3>
                     <p class="text-gray-500 leading-relaxed">
-                        Donasi Anda tercatat. Laporan penyaluran dikirim langsung ke <strong>WhatsApp & Email</strong> Anda secara berkala.
+                        {{ \App\Models\Setting::get('beranda_cara_step3_desc', 'Donasi Anda tercatat. Laporan penyaluran dikirim langsung ke WhatsApp & Email Anda secara berkala.') }}
                     </p>
                 </div>
 
@@ -469,13 +466,13 @@
                         <div class="absolute top-0 right-0 w-40 h-40 bg-primary/20 rounded-full blur-3xl -mr-10 -mt-10"></div>
                         <div class="relative z-10">
                             <span class="inline-block px-3 py-1 bg-primary/20 text-[#FFB347] text-xs font-bold rounded-full border border-primary/30 mb-4">
-                                <i class="fas fa-moon mr-1"></i> RAMADAN 1447 H
+                                <i class="fas fa-moon mr-1"></i> {{ \App\Models\Setting::get('beranda_cta_badge', 'RAMADAN 1447 H') }}
                             </span>
                             <h3 class="text-2xl font-extrabold mb-3 leading-tight">
-                                Setiap Rupiah Berlipat <span class="text-[#FFB347]">Pahalanya.</span>
+                                {{ \App\Models\Setting::get('beranda_cta_heading', 'Setiap Rupiah Berlipat Pahalanya.') }}
                             </h3>
                             <p class="text-white/70 text-sm leading-relaxed mb-6">
-                                Ramadan adalah bulan terbaik untuk beramal. Tidak ada waktu yang lebih tepat dari sekarang untuk mulai berbagi.
+                                {{ \App\Models\Setting::get('beranda_cta_desc', 'Ramadan adalah bulan terbaik untuk beramal. Tidak ada waktu yang lebih tepat dari sekarang untuk mulai berbagi.') }}
                             </p>
 
                             <!-- Mini Stats -->
@@ -737,11 +734,10 @@
                     Tunaikan Sekarang
                 </span>
                 <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold text-[#1A1A2E] mb-4 leading-tight">
-                    Sempurnakan Ibadah, Mulai Dampak Nyata
+                    {{ \App\Models\Setting::get('beranda_finalcta_heading', 'Sempurnakan Ibadah, Mulai Dampak Nyata') }}
                 </h2>
                 <p class="text-lg text-gray-600 max-w-[700px] mx-auto mb-10">
-                    Ramadan hanya 30 hari, namun dampak di Taman Harapan bertahan selamanya. Berapapun angka Anda, bagi
-                    mereka itu adalah doa yang terkabul.
+                    {{ \App\Models\Setting::get('beranda_finalcta_desc', 'Ramadan hanya 30 hari, namun dampak di Taman Harapan bertahan selamanya. Berapapun angka Anda, bagi mereka itu adalah doa yang terkabul.') }}
                 </p>
 
                 <a href="{{ route('donasi') }}"

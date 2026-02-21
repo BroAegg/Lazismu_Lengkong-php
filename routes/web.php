@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminDonationController;
 use App\Http\Controllers\Admin\AdminProgramController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminReportController;
+use App\Http\Controllers\Admin\AdminSettingController;
 use Illuminate\Support\Facades\Route;
 
 // ══════════════════════════════════════════════════════
@@ -86,6 +87,11 @@ Route::middleware('auth')->group(function () {
         Route::middleware('role:kepala_kantor,administrasi')->group(function () {
             Route::get('/laporan', [AdminReportController::class, 'index'])->name('reports.index');
             Route::get('/laporan/pdf', [AdminReportController::class, 'exportPdf'])->name('reports.pdf');
+        });
+        // Settings (Kepala Kantor & Administrasi Only)
+        Route::middleware('role:kepala_kantor,administrasi')->group(function () {
+            Route::get('/pengaturan', [AdminSettingController::class, 'index'])->name('settings.index');
+            Route::post('/pengaturan', [AdminSettingController::class, 'update'])->name('settings.update');
         });
     });
 });
