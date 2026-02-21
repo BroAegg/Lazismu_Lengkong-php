@@ -26,106 +26,160 @@
         <div class="swiper mySwiper w-full h-full absolute inset-0 z-0">
             <div class="swiper-wrapper">
 
-                <!-- Slide 1: Ramadan (Spiritual Hook) -->
+                @php
+                $heroConfigs = [
+                    'kado-ramadhan' => [
+                        'badge'       => 'KADO RAMADHAN 1447 H',
+                        'badge_class' => 'bg-primary/20 text-[#FFB347] border-primary/30',
+                        'bg_image'    => 'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=1920&q=80',
+                        'overlay'     => 'bg-[#1A1A2E]/85',
+                        'accent'      => 'text-[#FFB347]',
+                        'cta_icon'    => 'fas fa-gift',
+                        'cta_label'   => 'Kirim Kado Sekarang',
+                        'cta_class'   => 'bg-gradient-primary shadow-orange-glow hover:shadow-orange-glow-hover',
+                        'bar_color'   => 'bg-[#F7941D]',
+                    ],
+                    'back-to-masjid-ramadhan' => [
+                        'badge'       => 'BACK TO MASJID',
+                        'badge_class' => 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+                        'bg_image'    => 'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=1920&q=80',
+                        'overlay'     => 'bg-gradient-to-r from-emerald-900/90 via-emerald-900/80 to-transparent',
+                        'accent'      => 'text-emerald-400',
+                        'cta_icon'    => 'fas fa-mosque',
+                        'cta_label'   => 'Makmurkan Masjid',
+                        'cta_class'   => 'bg-emerald-600 hover:bg-emerald-500',
+                        'bar_color'   => 'bg-emerald-400',
+                    ],
+                    'tebar-takjil' => [
+                        'badge'       => 'TEBAR TAKJIL GRATIS',
+                        'badge_class' => 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+                        'bg_image'    => 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1920&q=80',
+                        'overlay'     => 'bg-gradient-to-r from-[#1A1A2E]/88 via-[#1A1A2E]/75 to-transparent',
+                        'accent'      => 'text-amber-400',
+                        'cta_icon'    => 'fas fa-utensils',
+                        'cta_label'   => 'Bagikan Takjil',
+                        'cta_class'   => 'bg-amber-500 hover:bg-amber-400',
+                        'bar_color'   => 'bg-amber-400',
+                    ],
+                    'mudikmu-aman' => [
+                        'badge'       => 'MUDIKMU AMAN 1447 H',
+                        'badge_class' => 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+                        'bg_image'    => 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1920&q=80',
+                        'overlay'     => 'bg-gradient-to-r from-blue-900/90 via-blue-900/80 to-transparent',
+                        'accent'      => 'text-blue-400',
+                        'cta_icon'    => 'fas fa-car-side',
+                        'cta_label'   => 'Dukung Program',
+                        'cta_class'   => 'bg-blue-600 hover:bg-blue-500',
+                        'bar_color'   => 'bg-blue-400',
+                    ],
+                ];
+                $defaultCfg = [
+                    'badge'       => 'PROGRAM UNGGULAN',
+                    'badge_class' => 'bg-primary/20 text-[#FFB347] border-primary/30',
+                    'bg_image'    => 'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=1920&q=80',
+                    'overlay'     => 'bg-[#1A1A2E]/85',
+                    'accent'      => 'text-[#FFB347]',
+                    'cta_icon'    => 'fas fa-hand-holding-heart',
+                    'cta_label'   => 'Donasi Sekarang',
+                    'cta_class'   => 'bg-gradient-primary shadow-orange-glow hover:shadow-orange-glow-hover',
+                    'bar_color'   => 'bg-[#F7941D]',
+                ];
+                @endphp
+
+                @forelse($featuredPrograms as $program)
+                @php $cfg = $heroConfigs[$program->slug] ?? $defaultCfg; @endphp
+
+                <!-- Slide: {{ $program->title }} -->
                 <div class="swiper-slide relative">
                     <!-- Background Image -->
-                    <div class="absolute inset-0 bg-no-repeat bg-center bg-cover" style="background-image: url('{{ asset('assets/images/hero-bg.png') }}')">
-                    </div>
+                    <div class="absolute inset-0 bg-no-repeat bg-center bg-cover"
+                         style="background-image: url('{{ $cfg['bg_image'] }}')"></div>
                     <!-- Overlay -->
+                    <div class="absolute inset-0 {{ $cfg['overlay'] }}"></div>
+
+                    <!-- Content -->
+                    <div class="container mx-auto px-5 h-full flex items-center relative z-10 max-w-[1200px]">
+                        <div class="w-full lg:w-2/3">
+
+                            {{-- Badge / Program Tag --}}
+                            <span class="inline-block px-4 py-1 rounded-full {{ $cfg['badge_class'] }} text-sm font-bold border mb-6">
+                                {{ $cfg['badge'] }}
+                            </span>
+
+                            {{-- Title --}}
+                            <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-white leading-[1.15] mb-6">
+                                {{ $program->title }}
+                            </h1>
+
+                            {{-- Description --}}
+                            <p class="text-lg text-white/80 mb-6 leading-relaxed max-w-2xl">
+                                {{ $program->description }}
+                            </p>
+
+                            {{-- Progress Bar --}}
+                            @if($program->target_amount > 0)
+                            @php $pct = min(100, round($program->collected_amount / $program->target_amount * 100)); @endphp
+                            <div class="mb-8 max-w-sm">
+                                <div class="flex justify-between text-white/70 text-sm mb-2">
+                                    <span>Terkumpul:
+                                        <strong class="text-white">Rp {{ number_format($program->collected_amount, 0, ',', '.') }}</strong>
+                                    </span>
+                                    <span class="{{ $cfg['accent'] }} font-bold">{{ $pct }}%</span>
+                                </div>
+                                <div class="h-1.5 bg-white/20 rounded-full overflow-hidden">
+                                    <div class="h-full {{ $cfg['bar_color'] }} rounded-full transition-all duration-1000"
+                                         style="width: {{ $pct }}%"></div>
+                                </div>
+                                <p class="text-white/50 text-xs mt-1">
+                                    dari target Rp {{ number_format($program->target_amount, 0, ',', '.') }}
+                                    &bull; {{ $program->donor_count }} donatur
+                                </p>
+                            </div>
+                            @endif
+
+                            {{-- CTA Buttons --}}
+                            <div class="flex flex-wrap gap-4 mb-20">
+                                <a href="{{ route('donasi.show', $program->slug) }}"
+                                   class="px-8 py-4 {{ $cfg['cta_class'] }} rounded-xl text-white font-bold text-lg shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
+                                    <i class="{{ $cfg['cta_icon'] }}"></i>
+                                    {{ $cfg['cta_label'] }}
+                                </a>
+                                <a href="{{ route('program.show', $program->slug) }}"
+                                   class="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl text-white font-bold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-2">
+                                    <i class="fas fa-info-circle"></i> Pelajari Program
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                @empty
+                <!-- Fallback slide jika belum ada program -->
+                <div class="swiper-slide relative">
+                    <div class="absolute inset-0 bg-no-repeat bg-center bg-cover"
+                         style="background-image: url('{{ asset('assets/images/hero-bg.png') }}')"></div>
                     <div class="absolute inset-0 bg-gray-900/85"></div>
-
-                    <!-- Content -->
                     <div class="container mx-auto px-5 h-full flex items-center relative z-10 max-w-[1200px]">
                         <div class="w-full lg:w-2/3">
-                            <span
-                                class="inline-block px-4 py-1 rounded-full bg-primary/20 text-[#FFB347] text-sm font-bold border border-primary/30 mb-6">RAMADAN
-                                1447 H</span>
+                            <span class="inline-block px-4 py-1 rounded-full bg-primary/20 text-[#FFB347] text-sm font-bold border border-primary/30 mb-6">
+                                LAZISMU LENGKONG
+                            </span>
                             <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-white leading-[1.15] mb-6">
-                                Ramadan Berkah, <br> <span class="text-[#FFB347]">Dampak Nyata.</span>
+                                Bersama, Kita <br><span class="text-[#FFB347]">Wujudkan Kebaikan.</span>
                             </h1>
                             <p class="text-lg text-white/80 mb-8 leading-relaxed max-w-2xl">
-                                Sucikan harta, sempurnakan ibadah. Lihat seberapa besar keberkahan yang bisa Anda
-                                salurkan!
+                                Zakat, Infaq, dan Sedekah Anda menjadi nyala harapan bagi masyarakat Lengkong yang membutuhkan.
                             </p>
                             <div class="flex flex-wrap gap-4 mb-20">
-                                <a href="#kalkulator"
-                                    class="px-8 py-4 bg-gradient-primary rounded-xl text-white font-bold text-lg shadow-orange-glow hover:shadow-orange-glow-hover hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 group/btn">
-                                    <i
-                                        class="fas fa-calculator text-white/90 group-hover/btn:scale-110 transition-transform"></i>
-                                    Hitung Dampak Kebaikan
+                                <a href="{{ route('program') }}"
+                                   class="px-8 py-4 bg-gradient-primary rounded-xl text-white font-bold text-lg shadow-orange-glow hover:shadow-orange-glow-hover hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
+                                    <i class="fas fa-hand-holding-heart"></i> Lihat Program
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Slide 2: Pendidikan (Future Hook) -->
-                <div class="swiper-slide relative">
-                    <!-- Background Image -->
-                    <div
-                        class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&q=80')] bg-no-repeat bg-center bg-cover">
-                    </div>
-                    <!-- Overlay -->
-                    <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/80 to-transparent">
-                    </div>
-
-                    <!-- Content -->
-                    <div class="container mx-auto px-5 h-full flex items-center relative z-10 max-w-[1200px]">
-                        <div class="w-full lg:w-2/3">
-                            <span
-                                class="inline-block px-4 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm font-bold border border-blue-500/30 mb-6">BEASISWA
-                                SANG SURYA</span>
-                            <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-white leading-[1.15] mb-6">
-                                Mimpi Mereka <br> <span class="text-blue-400">Tak Boleh Putus Sekolah.</span>
-                            </h1>
-                            <p class="text-lg text-white/80 mb-8 leading-relaxed max-w-2xl">
-                                Ratusan siswa dhuafa di Lengkong terancam putus sekolah. Zakat Anda adalah jembatan masa
-                                depan mereka untuk terus berprestasi.
-                            </p>
-                            <div class="flex flex-wrap gap-4 mb-20">
-                                <a href="#donasi"
-                                    class="px-8 py-4 bg-blue-600 rounded-xl text-white font-bold text-lg shadow-lg hover:bg-blue-500 hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
-                                    <i class="fas fa-graduation-cap"></i> Bantu Beasiswa
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3: LKSA Taman Harapan (Flagship Hook) -->
-                <div class="swiper-slide relative">
-                    <!-- Background Image -->
-                    <div
-                        class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&q=80')] bg-no-repeat bg-center bg-cover">
-                    </div>
-                    <!-- Overlay -->
-                    <div class="absolute inset-0 bg-gradient-to-r from-[#1A1A2E]/90 via-[#1A1A2E]/80 to-transparent">
-                    </div>
-
-                    <!-- Content -->
-                    <div class="container mx-auto px-5 h-full flex items-center relative z-10 max-w-[1200px]">
-                        <div class="w-full lg:w-2/3">
-                            <span
-                                class="inline-block px-4 py-1 rounded-full bg-primary/20 text-[#FFB347] text-sm font-bold border border-primary/30 mb-6">PROGRAM
-                                UNGGULAN</span>
-                            <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-white leading-[1.15] mb-6">
-                                Bantu Mereka <br> <span class="text-primary">Bertahan Hidup.</span>
-                            </h1>
-                            <p class="text-lg text-white/80 mb-8 leading-relaxed max-w-2xl">
-                                Infaq dan sedekah Anda adalah <strong>nafas</strong> bagi puluhan <strong>anak Yatim dan
-                                    Dhuafa</strong> di Panti Taman Harapan.
-                                Pastikan mereka menjalani Ramadhan di panti tertua Muhammadiyah ini dengan penuh
-                                kebahagiaan.
-                            </p>
-                            <div class="flex flex-wrap gap-4 mb-20">
-                                <a href="#donasi"
-                                    class="px-8 py-4 bg-gradient-primary rounded-xl text-white font-bold text-lg shadow-orange-glow hover:shadow-orange-glow-hover hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
-                                    <i class="fas fa-hand-holding-heart"></i> Santuni Panti
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
 
             </div>
 
