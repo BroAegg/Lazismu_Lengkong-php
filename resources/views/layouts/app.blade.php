@@ -302,6 +302,7 @@
         </style>
         
         @stack('styles')
+        @livewireStyles
     </head>
     <body class="font-sans text-gray-800 bg-white overflow-x-hidden antialiased pb-20 lg:pb-0">
         <div class="min-h-screen @if(request()->is('dashboard*', 'profile*', 'admin*')) bg-gray-100 @endif">
@@ -351,5 +352,6 @@
         </script>
         
         @stack('scripts')
+        @livewireScripts
     </body>
 </html>
