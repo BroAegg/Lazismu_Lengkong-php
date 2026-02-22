@@ -90,36 +90,40 @@
                 @php $cfg = $heroConfigs[$program->slug] ?? $defaultCfg; @endphp
 
                 <!-- Slide: {{ $program->title }} -->
-                <div class="swiper-slide relative">
+                <div class="swiper-slide relative flex flex-col md:block h-full">
                     <!-- Background Image -->
-                    <div class="absolute inset-0 bg-no-repeat bg-center bg-cover"
-                         style="background-image: url('{{ $cfg['bg_image'] }}')"></div>
-                    <!-- Overlay -->
-                    <div class="absolute inset-0 {{ $cfg['overlay'] }}"></div>
+                    <div class="relative w-full h-[40vh] md:h-full md:absolute md:inset-0 bg-no-repeat bg-center bg-cover"
+                         style="background-image: url('{{ $cfg['bg_image'] }}')">
+                         <!-- Mobile Overlay -->
+                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent md:hidden"></div>
+                    </div>
+                    <!-- Desktop Overlay -->
+                    <div class="hidden md:block absolute inset-0 {{ $cfg['overlay'] }}"></div>
 
                     <!-- Content -->
-                    <div class="container mx-auto px-5 h-full flex items-center relative z-10 max-w-[1200px]">
-                        <div class="w-full lg:w-2/3">
+                    <div class="flex-1 w-full bg-gray-900 md:bg-transparent md:h-full flex items-center relative z-10 pb-24 md:pb-0 md:pt-20">
+                        <div class="container mx-auto px-5 py-8 md:py-0 max-w-[1200px]">
+                            <div class="w-full lg:w-2/3">
 
                             {{-- Badge / Program Tag --}}
-                            <span class="inline-block px-4 py-1 rounded-full {{ $cfg['badge_class'] }} text-sm font-bold border mb-6">
+                            <span class="inline-block px-3 sm:px-4 py-1 rounded-full {{ $cfg['badge_class'] }} text-xs sm:text-sm font-bold border mb-3 sm:mb-6">
                                 {{ $cfg['badge'] }}
                             </span>
 
                             {{-- Title --}}
-                            <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-white leading-[1.15] mb-6">
+                            <h1 class="text-2xl sm:text-4xl lg:text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-white leading-[1.15] mb-3 sm:mb-6">
                                 {{ $program->title }}
                             </h1>
 
                             {{-- Description --}}
-                            <p class="text-lg text-white/80 mb-6 leading-relaxed max-w-2xl">
+                            <p class="text-sm sm:text-base lg:text-lg text-white/80 mb-3 sm:mb-6 leading-relaxed max-w-2xl">
                                 {{ $program->description }}
                             </p>
 
                             {{-- Progress Bar --}}
                             @if($program->target_amount > 0)
                             @php $pct = min(100, round($program->collected_amount / $program->target_amount * 100)); @endphp
-                            <div class="mb-8 max-w-sm">
+                            <div class="hidden sm:block mb-6 lg:mb-8 max-w-sm">
                                 <div class="flex justify-between text-white/70 text-sm mb-2">
                                     <span>Terkumpul:
                                         <strong class="text-white">Rp {{ number_format($program->collected_amount, 0, ',', '.') }}</strong>
@@ -138,45 +142,55 @@
                             @endif
 
                             {{-- CTA Buttons --}}
-                            <div class="flex flex-wrap gap-4 mb-20">
+                            <div class="flex flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-20">
                                 <a href="{{ route('donasi.show', $program->slug) }}"
-                                   class="px-8 py-4 {{ $cfg['cta_class'] }} rounded-xl text-white font-bold text-lg shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
+                                   class="px-5 py-2.5 sm:px-8 sm:py-4 {{ $cfg['cta_class'] }} rounded-lg sm:rounded-xl text-white font-bold text-sm sm:text-lg shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
                                     <i class="{{ $cfg['cta_icon'] }}"></i>
                                     {{ $cfg['cta_label'] }}
                                 </a>
                                 <a href="{{ route('program.show', $program->slug) }}"
-                                   class="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl text-white font-bold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-2">
+                                   class="hidden sm:flex px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl text-white font-bold text-lg hover:bg-white/20 transition-all duration-300 items-center gap-2">
                                     <i class="fas fa-info-circle"></i> Pelajari Program
                                 </a>
                             </div>
 
                         </div>
                     </div>
+                    </div>
                 </div>
                 @empty
                 <!-- Fallback slide jika belum ada program -->
-                <div class="swiper-slide relative">
-                    <div class="absolute inset-0 bg-no-repeat bg-center bg-cover"
-                         style="background-image: url('{{ asset('assets/images/hero-bg.png') }}')"></div>
-                    <div class="absolute inset-0 bg-gray-900/85"></div>
-                    <div class="container mx-auto px-5 h-full flex items-center relative z-10 max-w-[1200px]">
-                        <div class="w-full lg:w-2/3">
-                            <span class="inline-block px-4 py-1 rounded-full bg-primary/20 text-[#FFB347] text-sm font-bold border border-primary/30 mb-6">
+                <div class="swiper-slide relative flex flex-col md:block h-full">
+                    <!-- Background Image -->
+                    <div class="relative w-full h-[40vh] md:h-full md:absolute md:inset-0 bg-no-repeat bg-center bg-cover"
+                         style="background-image: url('{{ asset('assets/images/hero-bg.png') }}')">
+                         <!-- Mobile Overlay -->
+                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent md:hidden"></div>
+                    </div>
+                    <!-- Desktop Overlay -->
+                    <div class="hidden md:block absolute inset-0 bg-gray-900/85"></div>
+
+                    <!-- Content -->
+                    <div class="flex-1 w-full bg-gray-900 md:bg-transparent md:h-full flex items-center relative z-10 pb-24 md:pb-0 md:pt-20">
+                        <div class="container mx-auto px-5 py-8 md:py-0 max-w-[1200px]">
+                            <div class="w-full lg:w-2/3">
+                            <span class="inline-block px-3 sm:px-4 py-1 rounded-full bg-primary/20 text-[#FFB347] text-xs sm:text-sm font-bold border border-primary/30 mb-3 sm:mb-6">
                                 LAZISMU LENGKONG
                             </span>
-                            <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-white leading-[1.15] mb-6">
+                            <h1 class="text-2xl sm:text-4xl lg:text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-white leading-[1.15] mb-3 sm:mb-6">
                                 Bersama, Kita <br><span class="text-[#FFB347]">Wujudkan Kebaikan.</span>
                             </h1>
-                            <p class="text-lg text-white/80 mb-8 leading-relaxed max-w-2xl">
+                            <p class="text-sm sm:text-base lg:text-lg text-white/80 mb-4 sm:mb-8 leading-relaxed max-w-2xl">
                                 Zakat, Infaq, dan Sedekah Anda menjadi nyala harapan bagi masyarakat Lengkong yang membutuhkan.
                             </p>
-                            <div class="flex flex-wrap gap-4 mb-20">
+                            <div class="flex flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-20">
                                 <a href="{{ route('program') }}"
-                                   class="px-8 py-4 bg-gradient-primary rounded-xl text-white font-bold text-lg shadow-orange-glow hover:shadow-orange-glow-hover hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
+                                   class="px-5 py-2.5 sm:px-8 sm:py-4 bg-gradient-primary rounded-lg sm:rounded-xl text-white font-bold text-sm sm:text-lg shadow-orange-glow hover:shadow-orange-glow-hover hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
                                     <i class="fas fa-hand-holding-heart"></i> Lihat Program
                                 </a>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
                 @endforelse

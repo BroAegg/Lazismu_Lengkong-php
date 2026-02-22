@@ -224,7 +224,7 @@
                     display: none !important;
                 }
                 .swiper-pagination {
-                    bottom: 120px !important;
+                    bottom: 75px !important;
                 }
             }
             /* Stats Bar Responsive */
