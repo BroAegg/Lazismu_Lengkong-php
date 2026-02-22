@@ -13,11 +13,9 @@ class DonasiController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = DonationCategory::with('subCategories')->active()->ordered()->get();
-        $programs = Program::active()->ongoing()->get(['id', 'title', 'slug']);
-        $paymentMethods = PaymentMethod::cases();
-
-        return view('pages.donasi', compact('categories', 'programs', 'paymentMethods'));
+        // Redirect ke halaman program agar user memilih program terlebih dahulu
+        // sebelum mengisi form donasi — sesuai prinsip UX: Discovery → Selection → Action
+        return redirect()->route('program')->with('info', 'Silakan pilih program yang ingin Anda dukung terlebih dahulu.');
     }
 
     public function show(string $slug)

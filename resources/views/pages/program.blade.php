@@ -21,6 +21,21 @@
         </div>
     </section>
 
+    {{-- Flash info redirect dari /donasi --}}
+    @if(session('info'))
+    <div class="bg-orange-50 border-l-4 border-primary py-4 px-6" x-data="{ show: true }" x-show="show">
+        <div class="container mx-auto max-w-[1200px] flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3 text-sm text-primary font-medium">
+                <i class="fas fa-hand-pointer text-lg"></i>
+                {{ session('info') }}
+            </div>
+            <button @click="show = false" class="text-primary/50 hover:text-primary shrink-0">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    @endif
+
     <section class="py-24 bg-white" id="program">
         <div class="container mx-auto px-5 max-w-[1200px]">
             <div class="text-center mb-12" data-aos="fade-up">

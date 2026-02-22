@@ -789,10 +789,16 @@
                     {{ \App\Models\Setting::get('beranda_finalcta_desc', 'Ramadan hanya 30 hari, namun dampak di Taman Harapan bertahan selamanya. Berapapun angka Anda, bagi mereka itu adalah doa yang terkabul.') }}
                 </p>
 
-                <a href="{{ route('donasi') }}"
-                    class="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold text-xl rounded-2xl shadow-xl shadow-orange-200 hover:shadow-orange-glow hover:-translate-y-1 transition-all duration-300">
-                    <i class="fas fa-heart"></i> Donasi Sekarang
-                </a>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="{{ route('program') }}"
+                        class="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-[#F7941D] to-[#F15A24] text-white font-bold text-xl rounded-2xl shadow-xl shadow-orange-200 hover:shadow-orange-glow hover:-translate-y-1 transition-all duration-300">
+                        <i class="fas fa-hand-holding-heart"></i> Pilih Program & Donasi
+                    </a>
+                    <a href="{{ route('kalkulator') }}"
+                        class="inline-flex items-center gap-3 px-8 py-5 bg-white border-2 border-gray-200 text-[#1A1A2E] font-bold text-lg rounded-2xl hover:border-primary hover:text-primary hover:-translate-y-1 transition-all duration-300">
+                        <i class="fas fa-calculator"></i> Hitung Zakat Dulu
+                    </a>
+                </div>
 
                 <p class="mt-6 text-sm text-gray-500 font-medium">
                     <i class="fas fa-shield-alt text-primary mr-1"></i> Transaksi Aman, Transparan & Sesuai Syariah

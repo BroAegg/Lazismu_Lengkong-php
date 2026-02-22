@@ -41,9 +41,9 @@
                 <li><a href="{{ route('login') }}"
                         class="px-5 py-2.5 text-white/90 hover:text-white font-medium hover:scale-105 transition-transform nav-link">Masuk</a>
                 </li>
-                <li><a href="{{ route('donasi') }}"
-                        class="btn-primary flex items-center justify-center gap-2 px-6 py-2.5 text-white font-semibold rounded-lg transition-transform hover:-translate-y-0.5">Donasi
-                        Sekarang</a></li>
+                <li><a href="{{ route('program') }}"
+                        class="btn-primary flex items-center justify-center gap-2 px-6 py-2.5 text-white font-semibold rounded-lg transition-transform hover:-translate-y-0.5">
+                        <i class="fas fa-hand-holding-heart"></i> Mulai Donasi</a></li>
             </ul>
         </div>
     </nav>
