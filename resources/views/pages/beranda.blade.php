@@ -101,7 +101,7 @@
                     <div class="hidden md:block absolute inset-0 {{ $cfg['overlay'] }}"></div>
 
                     <!-- Content -->
-                    <div class="flex-1 w-full bg-gray-900 md:bg-transparent md:h-full flex items-center relative z-10 pb-24 md:pb-0 md:pt-20">
+                    <div class="flex-1 w-full bg-gray-900 md:bg-transparent md:h-full flex items-start md:items-center relative z-10 pt-5 pb-6 md:pb-0 md:pt-20">
                         <div class="container mx-auto px-5 py-8 md:py-0 max-w-[1200px]">
                             <div class="w-full lg:w-2/3">
 
@@ -171,7 +171,7 @@
                     <div class="hidden md:block absolute inset-0 bg-gray-900/85"></div>
 
                     <!-- Content -->
-                    <div class="flex-1 w-full bg-gray-900 md:bg-transparent md:h-full flex items-center relative z-10 pb-24 md:pb-0 md:pt-20">
+                    <div class="flex-1 w-full bg-gray-900 md:bg-transparent md:h-full flex items-start md:items-center relative z-10 pt-5 pb-6 md:pb-0 md:pt-20">
                         <div class="container mx-auto px-5 py-8 md:py-0 max-w-[1200px]">
                             <div class="w-full lg:w-2/3">
                             <span class="inline-block px-3 sm:px-4 py-1 rounded-full bg-primary/20 text-[#FFB347] text-xs sm:text-sm font-bold border border-primary/30 mb-3 sm:mb-6">
